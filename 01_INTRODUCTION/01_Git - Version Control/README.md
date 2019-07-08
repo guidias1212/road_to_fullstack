@@ -12,3 +12,7 @@ https://git-scm.com/docs
 **Introductory videos:**
 
 https://git-scm.com/videos
+
+**History - Wikipedia**
+
+https://en.wikipedia.org/wiki/Git
