@@ -5,7 +5,15 @@
 
 Git is a distributed version-control system for tracking changes in source code during software development. It is designed for coordinating work among programmers, but it can be used to track changes in any set of files. Its goals include speed, data integrity, and support for distributed, non-linear workflows.
 
+**Installation**
+
+In order to install Git, click on the link below download a suitable version and follow its installation steps:
+
+https://git-scm.com/downloads
+
 **Basic comands on a standard workflow:**
+
+Here is a list of the most common commands used on Git.
 
 Clone a repository into a new directory:
 ```
