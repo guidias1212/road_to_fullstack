@@ -249,25 +249,35 @@ tput reset
 Clear bash history (clear all the commands in history):
 ```
 history -cw
+
 Or (depending on what Terminal is in use):
+
 Alt+T, C
 ```
 
 Sometimes you might want to do Ctrl+L+L to make a nice little gap (the vertical size of your terminal window) to see where your previous command started to give input. For example:
 ```
 reset
+
 man -h
+
  *enter* *up-arrow*man -h
+ 
 man -h
 ```
 
 And you can't really scroll up and quickly see where you typed the command second or third time. But:
 ```
 reset
+
 man -h
+
 Ctrl+L+L
+
 man -h
+
 Ctrl+L+L
+
 man -h
 ```
 
