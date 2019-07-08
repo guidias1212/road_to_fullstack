@@ -261,7 +261,7 @@ reset
 
 man -h
 
- *enter* *up-arrow*man -h
+*enter* *up-arrow*man -h
  
 man -h
 ```
