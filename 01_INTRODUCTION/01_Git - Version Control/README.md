@@ -27,32 +27,32 @@ cd <>
 git checkout -b <branch-name>
 ```
 
-Show the working tree status:
+**Show the working tree status:**
 ```
 git status
 ```
 
-Show changes between commits, commit and working tree, etc:
+**Show changes between commits, commit and working tree, etc:**
 ```
 git diff
 ```
 
-Add file contents to the index:
+**Add file contents to the index:**
 ```
 git add
 ```
 
-Record changes to the repository:
+**Record changes to the repository:**
 ```
 git commit
 ```
 
-Update remote refs along with associated objects:
+**Update remote refs along with associated objects:**
 ```
 git push
 ```
 
-Fetch from and integrate with another repository or a local branch:
+**Fetch from and integrate with another repository or a local branch:**
 ```
 git pull
 ```
