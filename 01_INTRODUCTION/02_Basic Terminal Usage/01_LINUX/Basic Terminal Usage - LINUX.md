@@ -1,11 +1,6 @@
-# road_to_fullstack
-**1) INTRODUCTION**
+# 1.2.1) Basic Terminal Usage - LINUX
 
-**1.2) Basic Terminal Usage**
-
-Some basic, but usefull terminal commands.
-
-**1.2.1) LINUX**
+Some basic, but usefull terminal commands used on LINUX.
 
 The below commands can be tested in this online Linux prompt:
 
@@ -284,6 +279,22 @@ man -h
 And scroll up and you can clearly see where your commands begun.
 
 Some people like to keep enter pressed down for one second to make that gap, which is in some cases a better method (the gap isn't as huge as with the Ctrl+L+L method).
+
+Copy the highlighted text to clipboard:
+```
+Ctrl+Shift+C
+```
+
+Paste:
+```
+Ctrl+Shift+V
+
+Shift+Insert
+
+(In elementary OS also Ctrl+C and Ctrl+V work. If text is not highlighted, Ctrl+C is the Cancel command, like it is normally.)
+```
+
+
 
 **1.2.2) WINDOWS**
 
