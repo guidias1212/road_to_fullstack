@@ -574,7 +574,7 @@ Or
 echo $USER
 ```
 
-***USEFULL LINKS*
+***USEFULL LINKS**
 
 **The commands can be tested in this online Linux prompt:**
 
