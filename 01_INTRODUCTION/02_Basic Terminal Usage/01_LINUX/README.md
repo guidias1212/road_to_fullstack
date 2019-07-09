@@ -1,6 +1,6 @@
 # 1.2.1) Basic Terminal Usage - LINUX
 
-Some basic, but usefull terminal commands used on LINUX.
+Some usefull terminal commands used on LINUX.
 
 Some of the below commands can be tested in this online Linux prompt:
 
