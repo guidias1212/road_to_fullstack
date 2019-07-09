@@ -2,7 +2,7 @@
 
 Some basic, but usefull terminal commands used on LINUX.
 
-The below commands can be tested in this online Linux prompt:
+Some of the below commands can be tested in this online Linux prompt:
 
 https://bellard.org/jslinux/
 
