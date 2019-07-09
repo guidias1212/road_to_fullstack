@@ -12,17 +12,17 @@ https://git-scm.com/downloads
 
 Here is a list of the most common commands used on Git.
 
-Clone a repository into a new directory:
+**Clone a repository into a new directory:**
 ```
 git clone <url>
 ```
 
-Change directory:
+**Change directory:**
 ```
 cd <>
 ```
 
-Switch branches or restore working tree files:
+**Switch branches or restore working tree files:**
 ```
 git checkout -b <branch-name>
 ```
