@@ -294,9 +294,285 @@ Shift+Insert
 (In elementary OS also Ctrl+C and Ctrl+V work. If text is not highlighted, Ctrl+C is the Cancel command, like it is normally.)
 ```
 
+Use Tab to autocomplete commands, files and directories you are typing:
+```
+cd .config/tran *Tab*  -> cd .config/transmission
+```
 
+Double-tap Tab to reveal, for example, all files/folders in /usr/share/ that start with "gtk" while still being able to continue typing the command:
+```
+ls /usr/share/gtk *double-tap Tab
+```
 
-**1.2.2) WINDOWS**
+Double-tap Tab to reveal what’s inside the folder /usr/ while still being able to continue typing the command:
+```
+ls /usr/ *double-tap Tab*
+```
 
-**1.2.3) MAC**
+List files and directories of the current directory:
+```
+ls
+```
 
+List files and directories of the current directory, including hidden files:
+```
+ls -a
+```
+
+List more info about the files in current directory:
+```
+ls -l
+```
+
+List files starting with "blen" in the directory you're in:
+```
+ls blen*
+```
+
+List all the .jpg files in the directory you're in:
+```
+ls *.jpg
+```
+
+List the contents of another directory:
+```
+ls /usr/bin
+
+ls /usr/bin/blen*
+
+ls /home/mj/.config/blender
+
+ls ~/.config/blender
+
+ls $HOME/.config/blender
+```
+
+List multiple other directories at the same time:
+```
+ls ~/.config/blender ~/.config/transmission
+```
+
+Using echo for listing:
+```
+echo Pictures/*.txt
+
+echo /usr/bin/blen*
+
+echo /usr/bin/*ender
+```
+
+Create a file called file1.txt
+```
+touch file1.txt
+
+touch ~/Documents/file1.txt
+```
+
+Insert a text line into file1.txt:
+```
+echo apple >> file1.txt
+```
+
+Check what the file1.txt contains:
+```
+cat file1.txt
+```
+
+Check what the file1.txt contains, for files with a lot of information:
+```
+less file1.txt
+
+(quit by pressing Q):
+```
+
+Find the word "apple" inside all .txt files:
+```
+grep apple *.txt
+```
+
+Copy file1.txt to file2.txt:
+```
+cp file1.txt file2.txt
+```
+
+Copy file1.txt to ~/Texts:
+```
+cp file1.txt ~/Texts
+
+Or
+
+cp file1.txt ~/Texts/
+
+Or
+
+cp file1.txt ~/Texts/file1.txt
+```
+
+Move/Rename file1.txt to file2.txt:
+```
+mv file1.txt file2.txt
+```
+
+Move file1.txt to ~/Texts/:
+```
+mv file1.txt ~/Texts/
+```
+
+Move and Rename at the same time:
+```
+mv file1.txt ~/Texts/file2.txt
+```
+
+Chain commands:
+```
+cp file1.txt ~/Texts/ && mv file1.txt ~/Texts/file2.txt
+
+Or
+
+cp file1.txt ~/Texts/ && mv ~/Texts/file1.txt ~/Texts/file2.txt
+
+Or
+
+cp file1.txt ~/Texts/ && mv ~/Texts/file1.txt file2.txt
+```
+
+Chaining choices *:
+```
+A && B  Run B if A succeeded
+
+A; B    Run A and then B, regardless of success of A
+
+A || B  Run B if A failed
+```
+
+Other way to chain commands:
+```
+sh -s <<EOF *Enter*> cp ~/test/file.txt ~/test/folder1/
+
+ *Enter*> cp ~/test/file.txt ~/test/folder2/
+ 
+ *Enter*> EOF
+ 
+ *Enter*
+ 
+ Or
+ 
+ for dest in folder1 folder2; do cp ~/test/file.txt ~/test/"$dest"; done
+ 
+A&     Run A in background
+
+A &    Run A in background
+```
+
+Open Thunar File Manager with root privileges:
+```
+sudo thunar
+
+You can't use that particular terminal window after doing this, until you close that Thunar window.
+
+If you close the terminal, thunar also closes.
+
+If you close Thunar, you can use that terminal window again.
+```
+
+Install Thunar in Ubuntu-based systems with the command:
+```
+sudo apt install thunar
+```
+
+Open Thunar with root privileges in background:
+```
+sudo thunar&
+
+After that you can use or close the terminal and keep the rooted Thunar running.
+
+Remember that if you, for example, copy a picture to your home folder in a rooted Thunar, you can't edit and save them with your regular user unless you modify the file's permissions again.
+```
+
+Make a symbolic link from file1.txt to file1_symbolic_link.txt:
+```
+ln -s file1.txt file1_symbolic_link.txt
+
+When you change the contents of file1.txt the same changes can be seen in file1_symbolic_link.txt.
+```
+
+Terminal system monitor (quit with q or Ctrl+C):
+```
+top
+```
+
+Better system monitor (colors, supports mouse):
+```
+htop
+```
+
+In Ubuntu-based systems, install better system monitor:
+```
+sudo apt install htop
+```
+
+Uptime, how long your computer has been on:
+```
+uptime
+```
+
+Calendar:
+```
+cal
+```
+
+Get the disk usage of the Home folder and /usr/bin:
+```
+du -sh ~ /usr/bin
+```
+
+Get the disk usage of the 15 largest folders in /storage/Dropbox/:
+```
+du -h /storage/Dropbox/ | sort -h | tail -n 15
+```
+
+Find files that have in their name the word "workroom" from your hard drive, in this case, the whole system ( / ):
+```
+sudo find / -iname *workroom*
+```
+
+Find files that have in their name the word "workroom" and "weakroom":
+```
+sudo find / -iname *w??kroom*
+```
+
+Find folders that have in their name the word "workroom". The iname means that it doesn't matter if the letters are upper-case or lower-case:
+```
+sudo find / -type d -iname *workroom*
+```
+
+Find a file from the folder you’re currently standing in:
+```
+sudo find . -iname *workroom*
+```
+
+Find a file that's exactly Workroom_hour_list, with only W being a capital letter, nothing else:
+```
+sudo find / -name Workroom_hour_list
+```
+
+Find all the .txt files:
+```
+sudo find / -iname *.txt
+```
+
+Find all the files:
+```
+sudo find / -iname *.*
+
+If the list you're finding is too long and keeps on growing, cancel it with Ctrl+C. Or go up and down the list with Shift+PgUp and Shift+PgDn
+```
+
+Show your user ID:
+```
+id -un
+
+Or
+
+echo $USER
+```
