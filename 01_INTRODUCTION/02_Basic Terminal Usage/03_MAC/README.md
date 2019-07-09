@@ -12,17 +12,17 @@ cd ~/Directory/
 defaults write com.apple.finder AppleShowAllFiles -bool TRUE
 ```
 
-**Restart the finder**
+**Restart the finder:**
 ```
 killall Finder
 ```
 
-**View file contents**
+**View file contents:**
 ```
 cat ~/enter/file/path
 ```
 
-**Copy the contents of a folder from one place to another**
+**Copy the contents of a folder from one place to another:**
 ```
 ditto -V ~/original/folder/ ~/new/folder/
 ```
@@ -68,7 +68,7 @@ defaults write com.apple.Dock showhidden -bool TRUE
 killall Dock
 ```
 
-**Hide non-active apps in your Dock**
+**Hide non-active apps in your Dock:**
 ```
 defaults write com.apple.dock static-only -bool TRUE
 
