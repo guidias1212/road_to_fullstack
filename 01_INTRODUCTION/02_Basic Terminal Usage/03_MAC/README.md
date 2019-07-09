@@ -2,7 +2,7 @@
 
 Some usefull terminal commands used on MAC OS.
 
-***Chose a working directory:*
+***Chose a working directory:**
 ```
 cd ~/Directory/
 ```
