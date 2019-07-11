@@ -171,7 +171,7 @@ Operators are used to perform operations on variables and values.
 * Arithmetic Operators:
 
 | Operator | Name | Description | Example |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | + | Addition | Adds together two values | x + y |
 | - | Subtraction | Subtracts one value from another | x - y |
 | * | Multiplication | Multiplies two values | x * y|
