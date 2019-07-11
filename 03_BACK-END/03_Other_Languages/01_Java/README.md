@@ -568,7 +568,7 @@ Syntax:
 
 * **myMethod(int par1, String par2):** Name of the method, accepting parameters 1 (integer) and 2 (String)
 * **static** means that the method belongs to the MyClass class and not an object of the MyClass class.
-* **void means** that this method does not have a return value.
+* **void** means that this method does not have a return value.
 ```
 //This is a script to test Java Methods.
 
