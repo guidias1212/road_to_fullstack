@@ -168,7 +168,7 @@ public class MyClass {
 
 Operators are used to perform operations on variables and values.
 
-* Arithmetic Operators:
+* **Arithmetic Operators**:
 
 | Operator | Name | Description | Example |
 | --- | --- | --- | --- |
@@ -181,7 +181,7 @@ Operators are used to perform operations on variables and values.
 | -- | Decrement | Decreases the value of a variable by 1 | --x |
 
 
-* Assignment Operators:
+* **Assignment Operators**:
 
 | Operator | Example | Same As |
 | --- | --- | --- |
@@ -198,7 +198,7 @@ Operators are used to perform operations on variables and values.
 | <<= | x <<= 3 | x = x << 3 |
 
 
-* Comparison Operators:
+* **Comparison Operators**:
 
 | Operator | Name | Example |
 | --- | --- | --- |
@@ -210,7 +210,7 @@ Operators are used to perform operations on variables and values.
 | <= | Less than or equal to | x <= y |
 
 
-* Logical Operators:
+* **Logical Operators**:
 
 | Operator | Name | Description | Example |
 | --- | --- | --- | --- |
