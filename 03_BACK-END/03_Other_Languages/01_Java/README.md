@@ -68,19 +68,19 @@ System.out.println("Hello World");
 
 The Java language supports three kinds of comments: double slashes, C-style, and Doc Comments:
 
-* double slashes:
+* **double slashes:**
 ```
 //This is a simple comment line.
 ```
 
-* C-style:
+* **C-style:**
 ```
 /* These are
 C-style comments
 */
 ```
 
-* Doc Comments:
+* **Doc Comments:**
 ```
 /** This class displays a text string at
 *  the console.
@@ -89,11 +89,11 @@ C-style comments
 
 **Variables:**
 
-* **String:** Stores text, such as "Hello". String values are surrounded by double quotes
-* **int:** Stores integers (whole numbers), without decimals, such as 123 or -123
-* **float:** Stores floating point numbers, with decimals, such as 19.99 or -19.99
-* **char:** Stores single characters, such as 'a' or 'B'. Char values are surrounded by single quotes
-* **boolean:** Stores values with two states: true or false
+* **String:** Stores text, such as "Hello". String values are surrounded by double quotes.
+* **int:** Stores integers (whole numbers), without decimals, such as 123 or -123.
+* **float:** Stores floating point numbers, with decimals, such as 19.99 or -19.99.
+* **char:** Stores single characters, such as 'a' or 'B'. Char values are surrounded by single quotes.
+* **boolean:** Stores values with two states: true or false.
 
 To create a variable, you must specify the type and assign it a value:
 ```
@@ -232,7 +232,7 @@ class StringManipulation {
 	System.out.println(txt);
 	
 	//Show string length:
-    System.out.println("The length of the txt string is: " + txt.length());
+	System.out.println("The length of the txt string is: " + txt.length());
 	
 	//Make it upper case (THIS IS A SIMPLE STRING OBJECT.):
 	System.out.println(txt.toUpperCase());
@@ -266,14 +266,14 @@ class StringManipulation {
 
 | **Escape character** | **Result** | **Description** |
 | --- | --- | --- |
-| \' | ' | Single quote |
-| \" | " | Double quote |
-| \\ | \ | Backslash |
-| \n | New Line |   |
-| \r | Carriage Return |   |
-| \t | Tab |   |
-| \b | Backspace |   |
-| \f | Form Feed |   |
+| \\' | ' | Single quote |
+| \\" | " | Double quote |
+| \\\ | \ | Backslash |
+| \n | New Line | \- |
+| \r | Carriage Return | \- |
+| \t | Tab | \- |
+| \b | Backspace | \- |
+| \f | Form Feed | \- |
 
 **Math Class:**
 
@@ -287,7 +287,7 @@ class MathClassTests {
 	double x;
 	 
 	//The Math.max(x,y) method can be used to find the highest value of x and y:
-    x = Math.max(5.0, 10.0);
+	x = Math.max(5.0, 10.0);
 	System.out.println(x);
 	
 	//The Math.min(x,y) method can be used to find the lowest value of of x and y:
@@ -566,9 +566,9 @@ A method is a block of code which only runs when it is called. You can pass data
 
 Syntax:
 
-* myMethod(int par1, String par2): Name of the method, accepting parameters 1 (integer) and 2 (String)
-* static means that the method belongs to the MyClass class and not an object of the MyClass class.
-* void means that this method does not have a return value.
+* **myMethod(int par1, String par2):** Name of the method, accepting parameters 1 (integer) and 2 (String)
+* **static** means that the method belongs to the MyClass class and not an object of the MyClass class.
+* **void means** that this method does not have a return value.
 ```
 //This is a script to test Java Methods.
 
