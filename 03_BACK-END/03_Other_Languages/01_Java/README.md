@@ -128,7 +128,7 @@ Data types are divided into two groups:
 
 Type casting is when you assign a value of one primitive data type to another type.
 
-* Widening Casting:
+* **Widening Casting:**
 ```
 /*
 Widening Casting (automatically) - converting a smaller type to a larger type size:
@@ -146,7 +146,7 @@ public class MyClass {
 }
 ```
 
-* Narrowing Casting:
+* **Narrowing Casting:**
 ```
 /*
 Narrowing Casting (manually) - converting a larger type to a smaller size type:
@@ -170,7 +170,7 @@ Operators are used to perform operations on variables and values.
 
 * **Arithmetic Operators**:
 
-| Operator | Name | Description | Example |
+| **Operator** | **Name** | **Description** | **Example** |
 | --- | --- | --- | --- |
 | + | Addition | Adds together two values | x + y |
 | - | Subtraction | Subtracts one value from another | x - y |
@@ -183,7 +183,7 @@ Operators are used to perform operations on variables and values.
 
 * **Assignment Operators**:
 
-| Operator | Example | Same As |
+| **Operator** | **Example** | **Same As** |
 | --- | --- | --- |
 | = | x = 5 | x = 5 |
 | += | x += 3 | x = x + 3 |
@@ -192,7 +192,7 @@ Operators are used to perform operations on variables and values.
 | /= | x /= 3 | x = x / 3 |
 | %= | x %= 3 |x = x % 3 |
 | &= | x &= 3 | x = x & 3 |
-| |= | x |= 3 | x = x | 3 |
+| \|= | x \|= 3 | x = x \| 3 |
 | ^= | x ^= 3 | x = x ^ 3 |
 | >>= | x >>= 3 | x = x >> 3 |
 | <<= | x <<= 3 | x = x << 3 |
@@ -200,7 +200,7 @@ Operators are used to perform operations on variables and values.
 
 * **Comparison Operators**:
 
-| Operator | Name | Example |
+| **Operator** | **Name** | **Example** |
 | --- | --- | --- |
 | == | Equal to | x == y |
 | != | Not equal | x != y |
@@ -212,12 +212,394 @@ Operators are used to perform operations on variables and values.
 
 * **Logical Operators**:
 
-| Operator | Name | Description | Example |
+| **Operator** | **Name** | **Description** | **Example** |
 | --- | --- | --- | --- |
 | && | Logical and | Returns true if both statements are true | x < 5 &&  x < 10 |
-| || | Logical or | Returns true if one of the statements is true | x < 5 || x < 4 |
+| \|\| | Logical or | Returns true if one of the statements is true | x < 5 \|\| x < 4 |
 | ! | Logical not | Reverse the result, returns false if the result is true | !(x < 5 && x < 10) |
 
+
+**String Manipulation:**
+
+A String in Java is actually an object, which contain methods that can perform certain operations on strings:
+```
+//This is a script to test different string manipulation methods.
+
+class StringManipulation {
+  public static void main(String[] args){
+	//Declare a string object:
+	String txt = "This is a simple String object.";
+	System.out.println(txt);
+	
+	//Show string length:
+    System.out.println("The length of the txt string is: " + txt.length());
+	
+	//Make it upper case (THIS IS A SIMPLE STRING OBJECT.):
+	System.out.println(txt.toUpperCase());
+	
+	//Make it to lower case (this is a simple string object.):
+	System.out.println(txt.toLowerCase());
+	
+	//Find the index (the position) of the first occurrence of a specified text in a string (including whitespace):
+	System.out.println(txt.indexOf("is")); // Outputs 2
+	
+	//String concatenation(1):
+	String firstName = "Guilherme";
+	String lastName = "Dias";
+	System.out.println(firstName + " " + lastName);
+	
+	//String concatenation(2):
+	firstName = "Guilherme";
+	lastName = "Dias";
+	System.out.println(firstName.concat(lastName));
+	
+	//Adding numbers and Strings (Java uses the + operator for both addition and concatenation. Numbers are added. Strings are concatenated.):
+	String x = "10"; //x is a String
+	int y = 20; //y is an integer
+	String z = x + y;   // z will be 1020 (a String)
+	System.out.println(z);
+  }
+}
+```
+
+* **String Special and Escape Characters:**
+
+| **Escape character** | **Result** | **Description** |
+| --- | --- | --- |
+| \' | ' | Single quote |
+| \" | " | Double quote |
+| \\ | \ | Backslash |
+| \n | New Line |   |
+| \r | Carriage Return |   |
+| \t | Tab |   |
+| \b | Backspace |   |
+| \f | Form Feed |   |
+
+**Math Class:**
+
+The Java Math class has many methods that allows you to perform mathematical tasks on numbers:
+```
+//This is a script to test different Math class methods.
+
+class MathClassTests {
+  public static void main(String[] args){
+	
+	double x;
+	 
+	//The Math.max(x,y) method can be used to find the highest value of x and y:
+    x = Math.max(5.0, 10.0);
+	System.out.println(x);
+	
+	//The Math.min(x,y) method can be used to find the lowest value of of x and y:
+	x = Math.min(5.0, 10.0);
+	System.out.println(x);
+	
+	//The Math.sqrt(x) method returns the square root of x:
+	x = Math.sqrt(64.0);
+	System.out.println(x);
+	
+	//The Math.abs(x) method returns the absolute (positive) value of x:
+	x = Math.abs(-4.7);
+	System.out.println(x);
+	
+	//Math.random() returns a random number between 0 (inclusive), and 1 (exclusive):
+	x = Math.random();
+	System.out.println(x);
+  }
+}
+```
+
+**If...Else:**
+
+Use the if statement to specify a block of Java code to be executed if a condition is true:
+```
+//This is a script to test the If...Else statements.
+
+class IfElseTests {
+  public static void main(String[] args){
+	
+	//If...Else If... Else Statements:
+	int time = 22;
+	if (time < 10) {
+		System.out.println("Good morning.");
+	} else if (time < 20) {
+		System.out.println("Good day.");
+	} else {
+		System.out.println("Good evening.");
+	}
+	// Outputs "Good evening."
+	  
+	
+	//Short Hand If...Else (Ternary Operator):
+	//variable = (condition) ? expressionTrue : expressionFalse;
+	//Example:
+	time = 20;
+	String result = (time < 18) ? "Good day." : "Good evening.";
+	System.out.println(result);
+	
+  }
+}
+```
+
+**Switch, break and default:**
+
+Use the switch statement to select one of many code blocks to be executed:
+```
+//This is a script to make a simple Switch script test.
+
+class SwitchTests {
+  public static void main(String[] args){
+	int day = 4;
+	switch (day) {
+		case 1:
+			System.out.println("Monday");
+			break;
+		case 2:
+			System.out.println("Tuesday");
+			break;
+		case 3:
+			System.out.println("Wednesday");
+			break;
+		case 4:
+			System.out.println("Thursday");
+			break;
+		case 5:
+			System.out.println("Friday");
+			break;
+		case 6:
+			System.out.println("Saturday");
+			break;
+		case 7:
+			System.out.println("Sunday");
+			break;
+		default:
+			System.out.println("The day variable was not found, try a number from 1 to 7.");
+}
+
+	/*
+	OBSERVATION: break
+	When Java reaches a break keyword, it breaks out of the switch block.
+	This will stop the execution of more code and case testing inside the block.
+	When a match is found, and the job is done, it's time for a break. There is no need for more testing.
+	
+	OBSERVATION: default
+	The default keyword specifies some code to run if there is no case match.
+	*/
+  }
+}
+```
+
+
+**While loop:**
+
+The while loop loops through a block of code as long as a specified condition is true:
+```
+//This is a script to test the While loop.
+
+class WhileLoop {
+  public static void main(String[] args){
+    //In the example below, the code in the loop will run, over and over again, as long as a variable (i) is less than 5:
+	int i = 0;
+	while (i < 5) {
+		System.out.println(i);
+		i++;
+	}
+	
+	
+	//The example below uses a do/while loop. The loop will always be executed at least once, even if the condition is false, because the code block is executed before the condition is tested:
+	i = 0;
+	do {
+		System.out.println(i);
+		i++;
+	}
+	while (i < 5);
+	
+  }
+}
+```
+
+**For Loop:**
+
+When you know exactly how many times you want to loop through a block of code, use the for loop instead of a while loop:
+```
+//This is a script to test the for loop.
+
+class ForLoop {
+  public static void main(String[] args){
+    
+	//Example 1:
+	System.out.println("This is the output of Example 1:");
+	for (int i = 0; i < 5; i++) {
+		System.out.println(i);
+	}
+	
+	//Example 2:
+	System.out.println("This is the output of Example 2:");
+	for (int i = 0; i <= 10; i = i + 2) {
+		System.out.println(i);
+	}
+	
+	//Example 3 (For-each loop):
+	System.out.println("This is the output of Example 3:");
+	String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+	for (String i : cars) {
+		System.out.println(i);
+	}
+	
+	//Example 4 (continue):
+	System.out.println("This is the output of Example 4:");
+	for (int i = 0; i < 10; i++) {
+		if (i == 4) {
+			continue;
+		}
+		System.out.println(i);
+	}
+	//The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop. This example skips the value of 4.
+  }
+}
+```
+
+**Arrays:**
+
+Arrays are used to store multiple values in a single variable, instead of declaring separate variables for each value:
+```
+//This is a script to test Arrays.
+
+class ArrayTests {
+  public static void main(String[] args){
+    //To declare an array, define the variable type with square brackets:
+	String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+	
+	//To create an array of integers, you could write:
+	int[] myNum = {10, 20, 30, 40};
+	
+	//You access an array element by referring to the index number:
+	System.out.println(cars[0]);
+	System.out.println(myNum[2]);
+	
+	//To change the value of a specific element, refer to the index number:
+	cars[0] = "Opel";
+	System.out.println(cars[0]);
+	
+	//To find out how many elements an array has, use the length property:
+	System.out.println(cars.length);
+	
+	//Loop Through an Array:
+	for (int i = 0; i < cars.length; i++) {
+		System.out.println(cars[i]);
+	}
+	
+	//Loop Through an Array with For-Each:
+	for (String i : cars) {
+		System.out.println(i);
+	}
+	
+	//A multidimensional array is an array containing one or more arrays:
+	int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7} };
+	int x = myNumbers[1][2];
+	System.out.println(x);
+	
+	//Loop through a multidimensional array:
+	for (int i = 0; i < myNumbers.length; ++i) {
+      for(int j = 0; j < myNumbers[i].length; ++j) {
+        System.out.println(myNumbers[i][j]);
+      }
+    }
+	
+  }
+}
+```
+
+**Exceptions:**
+
+When executing Java code, different errors can occur: coding errors made by the programmer, errors due to wrong input, or other unforeseeable things. When an error occurs, Java will normally stop and generate an error message. The technical term for this is: Java will throw an exception (throw an error):
+```
+//This is a script to test Exceptions.
+
+class ExceptionTests {
+  public static void main(String[] args){
+	//If an error occurs, we can use try...catch to catch the error and execute some code to handle it:
+    try {
+		//Block of code to try:
+		int[] myNumbers = {1, 2, 3};
+		System.out.println(myNumbers[10]);
+		
+    } catch (Exception e) {
+		//Block of code to handle errors:
+		System.out.println("Something went wrong.");
+		
+    } finally {
+		//The finally statement lets you execute code, after try...catch, regardless of the result:
+		System.out.println("The 'try catch' is finished.");
+    }
+  }
+}
+```
+
+**Custom Exception Throw:**
+
+The throw statement allows you to create a custom error.
+```
+//This is a script to test Custom Exceptions Throws.
+
+class ExceptionThrowTests {
+	/*
+	The throw statement is used together with an exception type. There are many exception types available in Java: ArithmeticException, ClassNotFoundException, ArrayIndexOutOfBoundsException, SecurityException, etc.
+	*/
+	static void checkAge(int age) { 
+		if (age < 18) {
+			throw new ArithmeticException("Access denied - You must be at least 18 years old."); 
+		}
+		else {
+			System.out.println("Access granted - You are old enough!"); 
+		}
+	} 
+	
+  public static void main(String[] args){
+	checkAge(15); // Set age to 15 (which is below 18...)
+  }
+}
+```
+
+**Methods:**
+A method is a block of code which only runs when it is called. You can pass data, known as parameters, into a method. Methods are used to perform certain actions, and they are also known as functions.
+
+Syntax:
+
+* myMethod(int par1, String par2): Name of the method, accepting parameters 1 (integer) and 2 (String)
+* static means that the method belongs to the MyClass class and not an object of the MyClass class.
+* void means that this method does not have a return value.
+```
+//This is a script to test Java Methods.
+
+class Methods {
+	//Method 1 (No return, no parameters):
+	static void myMethod_1() {
+		System.out.println("Just executed method 1.");
+	}
+	
+	//Method 2 (No return, 1 parameter):
+	static void myMethod_2(String arg1) {
+		System.out.println("Argument received: " + arg1);
+	}
+	
+	//Method 3 (With return, 2 parameters):
+	static int myMethod_3(int x, int y) {
+		int z = x + y - 5;
+		return z;
+	}
+	
+  public static void main(String[] args){
+	//Call method 1:
+	myMethod_1();
+	//Call method 2:
+	myMethod_2("Testing Argument");
+	//Call method 3:
+	int response = myMethod_3(7, 3);
+	System.out.println("Return from method 3: " + response);
+  }
+}
+```
 
 **USEFULL LINKS**
 

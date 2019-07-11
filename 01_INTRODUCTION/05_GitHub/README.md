@@ -24,3 +24,7 @@ https://desktop.github.com/
 **Basic writing and formatting syntax:**
 
 https://help.github.com/en/articles/basic-writing-and-formatting-syntax
+
+**Organizing information with tables:**
+
+https://help.github.com/en/articles/organizing-information-with-tables
