@@ -13,7 +13,7 @@ Where you can easily:
 **4.** Commit to selected branch.
 **5.** Check file changes.
 
-
+After commiting to your local machine, the GUI also allows you to push the changes directly to your GitHub repository by clicking on Push orign.
 
 **USEFULL LINKS**
 
