@@ -7,11 +7,13 @@ The GitHub Desktop version comes with the intuitive GUI shown below:
 ![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/GitHub_Desktop_GUI.png)
 
 Where you can easily:
-1. Check which files have been changed.
-2. Write a summary of the changes.
-3. Write a description of the changes.
-4. Commit to selected branch.
-5. Check file changes.
+**1.** Check which files have been changed.
+**2.** Write a summary of the changes.
+**3.** Write a description of the changes.
+**4.** Commit to selected branch.
+**5.** Check file changes.
+
+
 
 **USEFULL LINKS**
 
