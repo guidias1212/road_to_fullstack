@@ -6,9 +6,17 @@ MySQL is an open-source relational database management system (RDBMS). Its name 
 
 **USEFULL LINKS**
 
-**Installation and Setup:**
+**Installation and Setup (Java):**
 
 https://stackoverflow.com/questions/2839321/connect-java-to-a-mysql-database
+
+**MySQL Tutorial:**
+
+http://www.mysqltutorial.org/
+
+**MySQL Workbench Documentation:**
+
+https://dev.mysql.com/doc/workbench/en/
 
 **History:**
 
