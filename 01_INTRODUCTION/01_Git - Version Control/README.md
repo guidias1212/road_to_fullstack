@@ -65,6 +65,6 @@ https://git-scm.com/docs
 
 https://git-scm.com/videos
 
-**History - Wikipedia**
+**History - Wikipedia:**
 
 https://en.wikipedia.org/wiki/Git

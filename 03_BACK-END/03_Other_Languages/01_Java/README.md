@@ -562,6 +562,7 @@ class ExceptionThrowTests {
 ```
 
 **Methods:**
+
 A method is a block of code which only runs when it is called. You can pass data, known as parameters, into a method. Methods are used to perform certain actions, and they are also known as functions.
 
 Syntax:
@@ -601,26 +602,344 @@ class Methods {
 }
 ```
 
+**Classes and Objects:**
+
+Java is an object-oriented programming language.
+
+Everything in Java is associated with classes and objects, along with its attributes and methods. For example: in real life, a car is an object. The car has attributes, such as weight and color, and methods, such as drive and brake.
+```
+//This is a script to test Classes and Object creation in Java
+
+//To create a class, use the keyword class:
+public class MyFirstClass {
+  int x = 5;
+  
+  public static void main(String[] args) {
+	//Create an object called "myObject_1" and print the value of x:
+	MyFirstClass myObject_1 = new MyFirstClass();
+	System.out.println(myObject_1.x);
+	
+	//Create an object called "myObject_2" and print the value of x:
+	MyFirstClass myObject_2 = new MyFirstClass();
+	System.out.println(myObject_2.x);
+  } 
+}
+```
+
+**Using Multiple Classes:**
+
+Create an object of a class and access it in another class.
+
+- Create two files in the same directory/folder:
+
+* MyClass.java
+* OtherClass.java
+
+This is often used for better organization of classes (one class has all the attributes and methods, while the other class holds the main() method (code to be executed)).
+
+MyClass.java:
+```
+//File MyClass.java
+
+public class MyClass {
+  int x = 5;
+}
+```
+
+OtherClass.java:
+```
+//File OtherClass.java
+
+public class OtherClass {
+  public static void main(String[] args) {
+	  
+	MyClass myObject = new MyClass();
+	System.out.println(myObject.x);
+	
+  } 
+}
+```
+
+**Class Attributes:**
+
+Class attributes are variables within a class.
+```
+//This is a script to test class attributes.
+
+public class Dog {
+	//Attribute 1 (name):
+	String name = "Harry"; 
+	
+	//Attribute 2 (fur size):
+	int furSize = 5; 
+	
+	//If you don't want the ability to override existing values, declare the attribute as final:
+	//Attribute 3 (color):
+	final String color = "White"; 
+	
+	public static void main(String[] args) {
+		
+		//Accessing Attributes:
+		Dog dog_1 = new Dog();
+		System.out.println(dog_1.name);
+		System.out.println(dog_1.furSize);
+		System.out.println(dog_1.color);
+		
+		//Modifying Attributes:
+		dog_1.name = "Harryson";
+		System.out.println(dog_1.name);
+		dog_1.furSize = 6;
+		System.out.println(dog_1.furSize);
+  }
+} 
+```
+
+**Class Methods:**
+
+Methods are used to perform certain actions.
+```
+//This is a script to test methods in Java
+
+//To create a class, use the keyword class:
+public class Bird {
+  
+  //static method creation: 
+  //Can be accessed without creating an object of the class:
+  static void fly(){
+	  System.out.println("I am flying!!");
+  }
+  
+  //public method creation: 
+  //Needs an object of the class to be accessed:
+  public void eat(){
+	  System.out.println("I am eating now...");
+  }
+  
+  
+  //Method with argument:
+  public String sing(String birdType){
+	  if (birdType == "duck"){
+		  return "Quack! Quack!";
+	  } else {
+		  return "Pew pew!";
+	  }
+  }
+  
+  
+  public static void main(String[] args) {
+	  
+	  //static method calling:
+	  fly();
+	  
+	  //public method calling:
+	  Bird dave = new Bird();
+	  dave.eat();
+	  
+	  //Passing arguments to methods:
+	  System.out.println(dave.sing("duck"));
+	  System.out.println(dave.sing("not a duck"));
+	
+  } 
+}
+```
+
+**Class Constructors:**
+
+A constructor in Java is a special method that is used to initialize objects. The constructor is called when an object of a class is created.
+```
+//Script to test Class constructors.
+
+public class ClassConstructor {
+  //Define class attributes:
+  int attribute_1;
+  String attribute_2;
+
+  //This method will be called when the object is created:
+  public ClassConstructor(int attr_1, String attr_2) {
+    attribute_1 = attr_1;
+    attribute_2 = attr_2;
+  }
+
+  public static void main(String[] args) {
+	//Create the object passing constructor arguments:
+    ClassConstructor myObject = new ClassConstructor(1969, "Mustang");
+    System.out.println(myObject.attribute_1 + " " + myObject.attribute_2);
+  }
+}
+```
+
+**Modifiers:**
+
+* **Access Modifiers** - Controls the access level:
+
+For Classes:
+| **Modifier** | **Description** |
+| --- | --- |
+| public | The class is accessible by any other class. |
+| default | The class is only accessible by classes in the same package. This is used when you don't specify a modifier. |
+
+For attributes, methods and constructors:
+| **Modifier** | **Description** |
+| --- | --- |
+| public | 	The code is accessible for all classes. |
+| private | The code is only accessible within the declared class. |
+| default | The code is only accessible in the same package. This is used when you don't specify a modifier. |
+| protected | The code is accessible in the same package and subclasses. |
+
+* **Non-Access Modifiers** - Do not control access level, but provides other functionality:
+
+For Classes:
+| **Modifier** | **Description** |
+| --- | --- |
+| final | The class cannot be inherited by other classes. |
+| abstract | The class cannot be used to create objects. |
+
+For attributes, methods and constructors:
+| **Modifier** | **Description** |
+| --- | --- |
+| final | 	Attributes and methods cannot be overridden/modified. |
+| static | Attributes and methods belongs to the class, rather than an object. |
+| abstract | Can only be used in an abstract class, and can only be used on methods. The method does not have a body, for example abstract void run();. The body is provided by the subclass (inherited from). |
+| transient | Attributes and methods are skipped when serializing the object containing them. |
+| synchronized | Methods can only be accessed by one thread at a time. |
+| volatile | The value of an attribute is not cached thread-locally, and is always read from the "main memory". |
+
+**Encapsulation:**
+
+The meaning of Encapsulation, is to make sure that "sensitive" data is hidden from users. To achieve this, you must:
+
+* Declare class variables/attributes as private (only accessible within the same class).
+* Provide public setter and getter methods to access and update the value of a private variable.
+```
+//Script to test encapsulation.
+
+public class Person {
+	// private = restricted access
+	private String name; 
+
+	// Getter
+	public String getName() {
+		return name;
+	}
+
+	// Setter
+	public void setName(String newName) {
+		//The `this` keyword is used to refer to the current object.
+		this.name = newName;
+	}
+	
+	public static void main(String[] args) {
+		Person myObj = new Person();
+		
+		//Set the value of the name variable to "John"
+		myObj.setName("John");
+		System.out.println(myObj.getName());
+
+	}
+}
+```
+
+Why Encapsulation?
+- Better control of class attributes and methods.
+- Class variables can be made read-only (if you omit the set method), or write-only (if you omit the get method).
+- Flexible: the programmer can change one part of the code without affecting other parts
+Increased security of data.
+
+**Java Packages:**
+
+A package in Java is used to group related classes. 
+
+General packages import syntax:
+```
+import package.name.Class; // Import a single class 
+import package.name.*; // Import the whole package
+```
+
+Think of package as a folder in a file directory. We use packages to avoid name conflicts, and to write a better maintainable code. Packages are divided into two categories:
+
+* Built-in Packages (packages from the Java API): The Java API is a library of prewritten classes, that are free to use, included in the Java Development Environment:
+```
+import java.util.Scanner;
+
+class UserInput {
+  public static void main(String[] args) {
+    Scanner myObj = new Scanner(System.in);
+    System.out.println("Enter username");
+
+    String userName = myObj.nextLine(); 
+    System.out.println("Username is: " + userName); 
+  }
+}
+```
+
+* User-defined Packages (create your own packages):
+
+To create your own package, Java uses a file system directory to store them. Just like folders on the computer:
+
+![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/java_package_structure.png)
+
+To create a package, use the package keyword:
+```
+//File MyPackageClass.java
+//Testing Java package creation
+
+package mypack;
+
+class MyPackageClass { 
+  public static void main(String[] args) { 
+    System.out.println("This is my package!"); 
+  } 
+}
+```
+Save the file as MyPackageClass.java, and compile it:
+```
+C:\Users\Your Name>javac MyPackageClass.java
+```
+
+Then compile the package:
+```
+C:\Users\Your Name>javac -d . MyPackageClass.java
+```
+
+This forces the compiler to create the "mypack" package.
+
+The -d keyword specifies the destination for where to save the class file. You can use any directory name, like c:/user (windows), or, if you want to keep the package within the same directory, you can use the dot sign ".", like in the example above.
+
+Note: The package name should be written in lower case to avoid conflict with class names.
+
+To run the MyPackageClass.java file, write the following:
+```
+C:\Users\Your Name>java mypack.MyPackageClass
+```
+
+The output will be:
+```
+This is my package!
+```
+
 **USEFULL LINKS**
 
-**Local Java Setup**
+**Local Java Setup:**
 
 https://www.oracle.com/technetwork/java/javase/overview/index-jsp-138218.html
 
-**Java Tutorial and Documentation**
+**Java Tutorial and Documentation:**
 
 https://www.w3schools.com/java/default.asp
 
-**Adding a path to system environment variables (Windows 10)**
+**Adding a path to system environment variables (Windows 10):**
 
 https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/
 
-**History**
+**History:**
 
 https://en.wikipedia.org/wiki/Java_(programming_language)
 
 
-**Java Tutorials**
+**Java Tutorials:**
 
 https://www.oracle.com/technetwork/java/index-138747.html
 
+**Java API:**
+
+https://docs.oracle.com/javase/8/docs/api/
