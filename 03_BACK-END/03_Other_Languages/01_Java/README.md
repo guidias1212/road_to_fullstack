@@ -773,12 +773,14 @@ public class ClassConstructor {
 * **Access Modifiers** - Controls the access level:
 
 For Classes:
+
 | **Modifier** | **Description** |
 | --- | --- |
 | public | The class is accessible by any other class. |
 | default | The class is only accessible by classes in the same package. This is used when you don't specify a modifier. |
 
 For attributes, methods and constructors:
+
 | **Modifier** | **Description** |
 | --- | --- |
 | public | 	The code is accessible for all classes. |
@@ -789,12 +791,14 @@ For attributes, methods and constructors:
 * **Non-Access Modifiers** - Do not control access level, but provides other functionality:
 
 For Classes:
+
 | **Modifier** | **Description** |
 | --- | --- |
 | final | The class cannot be inherited by other classes. |
 | abstract | The class cannot be used to create objects. |
 
 For attributes, methods and constructors:
+
 | **Modifier** | **Description** |
 | --- | --- |
 | final | 	Attributes and methods cannot be overridden/modified. |
