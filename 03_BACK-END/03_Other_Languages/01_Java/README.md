@@ -921,6 +921,530 @@ The output will be:
 This is my package!
 ```
 
+**Inheritance (Subclass and Superclass)**
+
+In Java, it is possible to inherit attributes and methods from one class to another. We group the "inheritance concept" into two categories:
+
+* **subclass (child):** The class that inherits from another class.
+* **superclass (parent):** The class being inherited from.
+
+To inherit from a class, use the extends keyword:
+```
+//This is a script to test class inheritance.
+
+class Vehicle {
+  protected String brand = "Ford";         // Vehicle attribute
+  public void honk() {                     // Vehicle method
+    System.out.println("Tuut, tuut!");
+  }
+}
+
+class Car extends Vehicle {
+  private String modelName = "Mustang";    // Car attribute
+  public static void main(String[] args) {
+
+    // Create a myCar object
+    Car myCar = new Car();
+
+    // Call the honk() method (from the Vehicle class) on the myCar object
+    myCar.honk();
+
+    // Display the value of the brand attribute (from the Vehicle class) and the value of the modelName from the Car class
+    System.out.println(myCar.brand + " " + myCar.modelName); 
+  }
+}
+```
+
+**Polymorphism:**
+
+Polymorphism means "many forms", and it occurs when we have many classes that are related to each other by inheritance.
+
+For example, think of a superclass called Animal that has a method called animalSound(). Subclasses of Animals could be Pigs, Cats, Dogs, Birds - And they also have their own implementation of an animal sound (the pig oinks, and the cat meows, etc.):
+```
+class Animal {
+  public void animalSound() {
+    System.out.println("The animal makes a sound");
+  }
+}
+
+class Pig extends Animal {
+  public void animalSound() {
+    System.out.println("The pig says: wee wee");
+  }
+}
+
+class Dog extends Animal {
+  public void animalSound() {
+    System.out.println("The dog says: bow wow");
+  }
+}
+
+class AnimalMainClass {
+  public static void main(String[] args) {
+    Animal myAnimal = new Animal();  // Create a Animal object
+    Animal myPig = new Pig();  // Create a Pig object
+    Animal myDog = new Dog();  // Create a Dog object
+
+    myAnimal.animalSound();
+    myPig.animalSound();
+    myDog.animalSound();
+  }
+}
+```
+
+**Inner Classes:**
+
+In Java, it is also possible to nest classes (a class within a class). The purpose of nested classes is to group classes that belong together, which makes your code more readable and maintainable.
+
+To access the inner class, create an object of the outer class, and then create an object of the inner class:
+```
+//This is a script to test inner classes.
+
+class OuterClass {
+  int x = 10;
+
+  class InnerClass {
+    int y = 5;
+  }
+}
+
+public class InnerClasses {
+  public static void main(String[] args) {
+	  
+    OuterClass myOuter = new OuterClass();
+    OuterClass.InnerClass myInner = myOuter.new InnerClass();
+    System.out.println(myInner.y + myOuter.x);
+	
+  }
+}
+
+//*OBS.: Unlike a "regular" class, an inner class can be private or protected. If you don't want outside objects to access the inner class, declare the class as private.
+```
+
+**Abstraction:**
+
+Data abstraction is the process of hiding certain details and showing only essential information to the user.
+Abstraction can be achieved with either abstract classes or interfaces.
+```
+//Script to test abstraction.
+
+// Abstract class
+abstract class Animal {
+  // Abstract method (does not have a body)
+  public abstract void animalSound();
+  // Regular method
+  public void sleep() {
+    System.out.println("Zzz");
+  }
+}
+
+// Subclass (inherit from Animal)
+class Pig extends Animal {
+  public void animalSound() {
+    // The body of animalSound() is provided here
+    System.out.println("The pig says: wee wee");
+  }
+}
+
+class AbstractionMain {
+  public static void main(String[] args) {
+    Pig myPig = new Pig(); // Create a Pig object
+    myPig.animalSound();
+    myPig.sleep();
+  }
+}
+```
+
+**Interfaces:**
+
+An interface is a completely "abstract class" that is used to group related methods with empty bodies:
+```
+//Script to test Java interfaces.
+
+interface FirstInterface {
+  public void myMethod(); // interface method
+}
+
+interface SecondInterface {
+  public void myOtherMethod(); // interface method
+}
+
+// DemoClass "implements" FirstInterface and SecondInterface
+class DemoClass implements FirstInterface, SecondInterface {
+  public void myMethod() {
+    System.out.println("Some text..");
+  }
+  public void myOtherMethod() {
+    System.out.println("Some other text...");
+  }
+}
+
+class MainClassInterfaces {
+  public static void main(String[] args) {
+	  
+    DemoClass myObj = new DemoClass();
+    myObj.myMethod();
+    myObj.myOtherMethod();
+	
+  }
+}
+```
+Notes on Interfaces:
+* Like abstract classes, interfaces cannot be used to create objects.
+* Interface methods do not have a body - the body is provided by the "implement" class.
+* On implementation of an interface, you must override all of its methods.
+* Interface methods are by default abstract and public.
+* Interface attributes are by default public, static and final.
+* An interface cannot contain a constructor (as it cannot be used to create objects).
+
+Why And When To Use Interfaces?
+
+* To achieve security - hide certain details and only show the important details of an object (interface).
+
+* Java does not support "multiple inheritance" (a class can only inherit from one superclass). However, it can be achieved with interfaces, because the class can implement multiple interfaces. To implement multiple interfaces, separate them with a comma.
+
+**Enums:**
+
+An enum is a special "class" that represents a group of constants (unchangeable variables, like final variables).
+
+To create an enum, use the enum keyword (instead of class or interface), and separate the constants with a comma. Note that they should be in uppercase letters:
+
+```
+//Script to test enums.
+
+public class EnumMain { 
+
+  //Create the enum:
+  enum Level {
+    LOW,
+    MEDIUM,
+    HIGH
+  }
+
+  public static void main(String[] args) { 
+	
+	//Calling the enum:
+    Level myVar = Level.MEDIUM; 
+    System.out.println(myVar); 
+	
+	//Calling enum on a swicth/case:
+	switch(myVar) {
+      case LOW:
+        System.out.println("Low level");
+        break;
+      case MEDIUM:
+         System.out.println("Medium level");
+        break;
+      case HIGH:
+        System.out.println("High level");
+        break;
+    }
+	
+	//Loop through an enum:
+	for (Level myVar_2 : Level.values()) {
+		System.out.println(myVar_2);
+	}
+  } 
+}
+```
+
+Why And When To Use Enums?
+
+- Use enums when you have values that you know aren't going to change, like month days, days, colors, deck of cards, etc.
+
+**User Input - Types:**
+
+The `Scanner` class is used to get user input, and it is found in the `java.util` package.
+
+* Input Types:
+
+| **Method** | **Description** |
+| --- | --- |
+| nextBoolean() | Reads a boolean value from the user |
+| nextByte() | Reads a byte value from the user |
+| nextDouble() | Reads a double value from the user |
+| nextFloat() | Reads a float value from the user |
+| nextInt() | Reads a int value from the user |
+| nextLine() | Reads a String value from the user |
+| nextLong() | Reads a long value from the user |
+| nextShort() | Reads a short value from the user |
+
+**Date and Time:**
+
+Java does not have a built-in Date class, but we can import the java.time package to work with the date and time API. The package includes many date and time classes.
+```
+//Script to test date and time in Java
+
+//Import the LocalDate class:
+import java.time.LocalDate; 
+//Import the LocalTime class:
+import java.time.LocalTime;
+//Import the LocalDateTime class:
+import java.time.LocalDateTime;
+//Import the DateTimeFormatter class
+import java.time.format.DateTimeFormatter;
+
+public class DateTimeTests { 
+  public static void main(String[] args) { 
+	
+	//DATE
+	//Create a date object:
+    LocalDate dateObj = LocalDate.now();
+	//Display the current date:
+	System.out.println("Date:"); 
+    System.out.println(dateObj);
+	
+	//TIME
+	//Create a time object:
+	LocalTime timeObj = LocalTime.now();
+	//Display the current time:
+	System.out.println("Time:"); 
+    System.out.println(timeObj);
+	
+	//DATETIME
+	//Create a datetime object:
+	LocalDateTime datetimeObj = LocalDateTime.now();
+	//Display the current datetime:
+	System.out.println("DateTime:"); 
+    System.out.println(datetimeObj);
+	
+	
+	//DATETIME Formatting
+	//Create a datetime object:
+	LocalDateTime datetimeObj2 = LocalDateTime.now(); 
+    System.out.println("Before formatting: " + datetimeObj2); 
+	//Create a format pattern object:
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"); 
+	//Format previous datetime object:
+    String formattedDateTime = datetimeObj2.format(myFormatObj); 
+    System.out.println("After formatting: " + formattedDateTime); 
+	
+  } 
+}
+```
+
+**Array List:**
+
+The difference between a built-in array and an ArrayList in Java, is that the size of an array cannot be modified (if you want to add or remove elements to/from an array, you have to create a new one). While elements can be added and removed from an ArrayList whenever you want. The syntax is also slightly different:
+```
+//This is a script to test array lists.
+
+//Import the ArrayList class:
+import java.util.ArrayList;
+//Import the Collections class:
+import java.util.Collections;
+
+public class ArrayListTests {
+	public static void main(String[] args) {
+		
+	//Create an ArrayList object:
+	ArrayList<String> cars = new ArrayList<String>();
+	
+	//Add items:
+	System.out.println("Adding items to array:");
+	cars.add("Volvo");
+    cars.add("BMW");
+    cars.add("Ford");
+    cars.add("Mazda");
+    System.out.println(cars);
+	
+	//Access an item:
+	System.out.println("Access second item:");
+	System.out.println(cars.get(1));
+	
+	//Change an item:
+	cars.set(1, "Opel");
+	System.out.println("Change second item:");
+	System.out.println(cars);
+	
+	//Remove an item:
+	cars.remove(1);
+	System.out.println("Remove second item:");
+	System.out.println(cars);
+	
+	//Remove all items:
+	cars.clear();
+	System.out.println("Remove all items:");
+	System.out.println(cars);
+	
+	//Check ArrayList size:
+	System.out.println("The array size is:");
+	System.out.println(cars.size());
+	
+	//Working with numbers:
+	ArrayList<Integer> vectorA = new ArrayList<Integer>();
+	vectorA.add(33);
+	vectorA.add(13);
+	vectorA.add(32);
+	vectorA.add(5);
+	System.out.println("Vector A:");
+	System.out.println(vectorA);
+	
+	ArrayList<Integer> vectorB = new ArrayList<Integer>();
+	vectorB.add(3);
+	vectorB.add(1);
+	vectorB.add(9);
+	vectorB.add(32);
+	System.out.println("Vector B:");
+	System.out.println(vectorB);
+	
+	//Concatenating two arrays:
+	vectorB.addAll(vectorA);
+	System.out.println("Vector B after add Vector A:");
+	System.out.println(vectorB);
+	
+	//Sorting array:
+	Collections.sort(vectorB);
+	System.out.println("Vector B after sorting:");
+	System.out.println(vectorB);
+  }
+} 
+```
+
+**HashMap:**
+
+One object is used as a key (index) to another object (value). It can store different types: String keys and Integer values, or the same type, like: String keys and String values:
+```
+//This is a script to test HashMaps.
+
+//Import the HashMap class:
+import java.util.HashMap; 
+
+class HashMapTests {
+	public static void main(String[] args) {
+	  
+		//Create HashMap:
+		HashMap<String, String> capitalCities = new HashMap<String, String>();
+		
+		//Add keys and values (Country, City):
+		capitalCities.put("England", "London");
+		capitalCities.put("Germany", "Berlin");
+		capitalCities.put("Norway", "Oslo");
+		capitalCities.put("USA", "Washington DC");
+		System.out.println("Hash Map:");
+		System.out.println(capitalCities); 
+		
+		//Access an item:
+		System.out.println("Access an item:");
+		System.out.println(capitalCities.get("Germany")); 
+		
+		//Remove an item:
+		System.out.println("Remove an item:");
+		capitalCities.remove("England");
+		System.out.println(capitalCities);
+
+	}
+}
+```
+
+**Wrapper Classes:**
+
+Wrapper classes provide a way to use primitive data types (int, boolean, etc..) as objects.
+
+| **Primitive Data Type** | **Wrapper Class** |
+| --- | --- |
+| byte | Byte |
+| short | Short |
+| int | Integer |
+| long | Long |
+| float | Float |
+| double | Double |
+| boolean | Boolean |
+| char | Character |
+
+Sometimes you must use wrapper classes, for example when working with Collection objects, such as ArrayList, where primitive types cannot be used (the list can only store objects).
+
+An useful method is the toString() method, which is used to convert wrapper objects to strings.
+
+**Files:**
+
+The File class from the java.io package, allows us to work with files.
+
+| **Method** | **Type** | **Description** |
+| --- | --- | --- |
+| canRead() | Boolean | Tests whether the file is readable or not |
+| canWrite() | Boolean | Tests whether the file is writable or not |
+| createNewFile() | Boolean | Creates an empty file |
+| delete() | Boolean | Deletes a file |
+| exists() | Boolean | Tests whether the file exists |
+| getName() | String | Returns the name of the file |
+| getAbsolutePath() | String | Returns the absolute pathname of the file |
+| length() | Long | Returns the size of the file in bytes |
+| list() | String[] | Returns an array of the files in the directory |
+| mkdir() | Boolean | Creates a directory |
+
+To use the File class, create an object of the class, and specify the filename or directory name:
+```
+//Script to test working with Files.
+
+//Import the File class:
+import java.io.File;
+//Import the FileWriter class:
+import java.io.FileWriter;
+//Import the Scanner class to read text files:
+import java.util.Scanner; 
+//Import the IOException class to handle errors:
+import java.io.IOException;
+//Import this class to handle errors:
+import java.io.FileNotFoundException;  
+
+
+public class FilesTests { 
+  public static void main(String[] args) { 
+  
+	//Creating a file:
+	File myObj = new File("test_file.txt"); 
+    try { 
+      if (myObj.createNewFile()) { 
+        System.out.println("File created: " + myObj.getName()); 
+      } else { 
+        System.out.println("File already exists."); 
+      } 
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace(); 
+    }
+
+	//Get File Information:
+	if (myObj.exists()) {
+      System.out.println("File name: " + myObj.getName()); 
+      System.out.println("Absolute path: " + myObj.getAbsolutePath()); 
+      System.out.println("Writeable: " + myObj.canWrite()); 
+      System.out.println("Readable " + myObj.canRead()); 
+      System.out.println("File size in bytes " + myObj.length());
+    } else {
+      System.out.println("The file does not exist.");
+    }
+
+	//Write to a File:
+	try { 
+      FileWriter myWriter = new FileWriter("test_file.txt");
+      myWriter.write("Files in Java might be tricky, but it is fun enough!");
+      myWriter.close();
+      System.out.println("Successfully wrote to the file.");
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    } 
+	
+	//Read a File:
+	try {
+      Scanner myReader = new Scanner(myObj); 
+      while (myReader.hasNextLine()) {
+        String data = myReader.nextLine();
+        System.out.println(data);
+      }
+      myReader.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    } 
+  } 
+}
+```
+
+There are many available classes in the Java API that can be used to read and write files in Java: FileReader, BufferedReader, Files, Scanner, FileInputStream, FileWriter, BufferedWriter, FileOutputStream, etc. Which one to use depends on the Java version you're working with and whether you need to read bytes or characters, and the size of the file/lines etc.
+
 **USEFULL LINKS**
 
 **Local Java Setup:**
