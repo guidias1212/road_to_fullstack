@@ -17,6 +17,7 @@ In object-oriented computer programming, SOLID is a mnemonic acronym for five de
 - High-level modules should not depend on low-level modules. Both should depend on abstractions (e.g. interfaces).
 - Abstractions should not depend on details. Details (concrete implementations) should depend on abstractions.
 
+
 * **KISS**
 
 Keep it Simple, Stupid: The KISS principle is about striving for simplicity. Modern programming languages, frameworks and APIs have powerful means to create sophisticated solutions for various kinds of problems. Sometimes developers might feel tempted to write “clever” solutions that use all these complex features. The KISS principle states that a solution is better when it uses less inheritance, less polymorphism, fewer classes, etc
