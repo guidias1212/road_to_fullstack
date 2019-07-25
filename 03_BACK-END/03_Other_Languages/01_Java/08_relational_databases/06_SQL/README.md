@@ -10,6 +10,9 @@ The following SQL code examples were tested using MySQL Workbench and its defaul
 | country | Code, Name, Continent, Region, SurfaceArea, IndepYear, Population, LifeExpectancy, GNP, GNPOId, LocalName, GovernmentForm, HeadOfState, Capital, Code2 |
 | countrylanguage | CountryCode, Language, IsOfficial, Percentage |
 
+
+Some important SQL command lines are given by:
+
 **SELECT:**
 
 The SELECT statement is used to select data from a database. The data returned is stored in a result table, called the result-set.
