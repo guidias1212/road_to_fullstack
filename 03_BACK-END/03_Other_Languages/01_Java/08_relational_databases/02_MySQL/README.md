@@ -6,7 +6,7 @@ MySQL is an open-source relational database management system (RDBMS). Its name 
 
 Here's a step by step explanation how to install MySQL and JDBC and how to use it:
 
-**1)**Download and install the MySQL server. Just do it the usual way. Remember the port number whenever you've changed it. It's by default 3306.
+**1)** Download and install the MySQL server. Just do it the usual way. Remember the port number whenever you've changed it. It's by default 3306.
 
 https://dev.mysql.com/downloads/mysql/
 
