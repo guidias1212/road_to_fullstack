@@ -257,6 +257,142 @@ Wildcard Characters in SQL Server:
 | ^ | Represents any character not in the brackets | h[^oa]t finds hit, but not hot and hat |
 | - | Represents a range of characters | c[a-b]t finds cat and cbt |
 
+**IN:**
+
+The IN operator allows you to specify multiple values in a WHERE clause. The IN operator is a shorthand for multiple OR conditions:
+```
+SELECT column_name(s)
+FROM table_name
+WHERE column_name IN (value1, value2, ...);
+```
+
+or:
+```
+SELECT column_name(s)
+FROM table_name
+WHERE column_name IN (SELECT STATEMENT);
+```
+
+**BETWEEN:**
+
+The BETWEEN operator selects values within a given range. The values can be numbers, text, or dates. The BETWEEN operator is inclusive: begin and end values are included:
+```
+SELECT column_name(s)
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+```
+
+**Aliases:**
+
+SQL aliases are used to give a table, or a column in a table, a temporary name. Aliases are often used to make column names more readable. An alias only exists for the duration of the query:
+```
+SELECT column_name AS column_alias_name
+FROM table_name AS table_alias_name;
+```
+
+**INNER JOIN:**
+
+The INNER JOIN keyword selects records that have matching values in both tables:
+```
+SELECT city.Name, country.Name, city.Population
+FROM city
+INNER JOIN country 
+ON city.CountryCode=country.Code
+```
+
+**LEFT JOIN:**
+
+The LEFT JOIN keyword returns all records from the left table (city), and the matched records from the right table (countrylanguage). The result is NULL from the right side, if there is no match.
+
+The following SQL statement will select all cities, and any languages they might have:
+```
+SELECT city.Name, countrylanguage.Language
+FROM city
+LEFT JOIN countrylanguage
+ON city.CountryCode = countrylanguage.CountryCode;
+```
+
+**RIGHT JOIN:**
+
+The RIGHT JOIN keyword returns all records from the right table (table2), and the matched records from the left table (table1). The result is NULL from the left side, when there is no match.
+
+The following SQL statement will return all languages, and any city they might belong:
+```
+SELECT city.Name, countrylanguage.Language
+FROM city
+RIGHT JOIN countrylanguage
+ON city.CountryCode = countrylanguage.CountryCode;
+```
+
+**FULL OUTER JOIN:**
+
+The FULL OUTER JOIN keyword return all records when there is a match in either left (table1) or right (table2) table records.
+```
+SELECT column_name(s)
+FROM table1
+FULL OUTER JOIN table2
+ON table1.column_name = table2.column_name
+WHERE condition;
+```
+
+**Self JOIN:**
+
+A self JOIN is a regular join, but the table is joined with itself.
+
+The following SQL statement matches cities that are from the same country:
+```
+SELECT A.Name AS CityName1, B.Name AS CityName2, A.Population
+FROM city A, city B
+WHERE A.ID <> B.ID
+AND A.CountryCode = B.CountryCode 
+ORDER BY A.CountryCode;
+```
+
+A and B are different table aliases for the same table.
+
+**UNION:**
+
+The UNION operator is used to combine the result-set of two or more SELECT statements.
+
+* Each SELECT statement within UNION must have the same number of columns
+* The columns must also have similar data types
+* The columns in each SELECT statement must also be in the same order
+
+UNION Syntax:
+```
+SELECT column_name(s) FROM table1
+UNION
+SELECT column_name(s) FROM table2;
+```
+
+The UNION operator selects only distinct values by default. To allow duplicate values, use UNION ALL:
+
+UNION ALL Syntax:
+```
+SELECT column_name(s) FROM table1
+UNION ALL
+SELECT column_name(s) FROM table2;
+```
+
+This is used for equivalent tables (same columns) but with diferent records.
+
+**GROUP BY:**
+
+The GROUP BY statement group rows that have the same values into summary rows, like "find the number of customers in each country".
+
+The GROUP BY statement is often used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns.
+```
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+ORDER BY column_name(s);
+```
+
+The following SQL statement lists the number of customers in each country:
+```
+```
+
 
 **USEFULL LINKS**
 
