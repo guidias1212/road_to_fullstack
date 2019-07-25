@@ -1471,3 +1471,7 @@ https://www.oracle.com/technetwork/java/index-138747.html
 **Java API:**
 
 https://docs.oracle.com/javase/8/docs/api/
+
+**Eclipse IDE:**
+
+https://www.eclipse.org/ide/
