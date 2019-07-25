@@ -139,6 +139,112 @@ The DELETE statement is used to delete existing records in a table.
 DELETE FROM table_name WHERE condition;
 ```
 
+**SELECT TOP:**
+
+The SELECT TOP clause is used to specify the number of records to return. The SELECT TOP clause is useful on large tables with thousands of records. Returning a large number of records **can impact on performance**.
+
+MySQL Syntax:
+```
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+LIMIT number;
+```
+
+SQL Server / MS Access Syntax:
+```
+SELECT TOP number|percent column_name(s)
+FROM table_name
+WHERE condition;
+```
+
+Oracle Syntax:
+```
+SELECT column_name(s)
+FROM table_name
+WHERE ROWNUM <= number;
+```
+
+**MIN() and MAX() Functions:**
+
+The MIN() function returns the smallest value of the selected column.
+
+The MAX() function returns the largest value of the selected column.
+
+MIN() Syntax:
+```
+SELECT MIN(column_name)
+FROM table_name
+WHERE condition;
+```
+
+MAX() Syntax
+```
+SELECT MAX(column_name)
+FROM table_name
+WHERE condition;
+```
+
+**COUNT(), AVG() and SUM() Functions:**
+
+The COUNT() function returns the number of rows that matches a specified criteria.
+
+The AVG() function returns the average value of a numeric column.
+
+The SUM() function returns the total sum of a numeric column.
+
+COUNT() Syntax:
+```
+SELECT COUNT(column_name)
+FROM table_name
+WHERE condition;
+```
+
+AVG() Syntax:
+```
+SELECT AVG(column_name)
+FROM table_name
+WHERE condition;
+```
+
+SUM() Syntax:
+```
+SELECT SUM(column_name)
+FROM table_name
+WHERE condition;
+```
+
+**LIKE:**
+
+The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+
+There are two wildcards often used in conjunction with the LIKE operator:
+
+* % - The percent sign represents zero, one, or multiple characters
+* _ - The underscore represents a single character
+
+Obs.: MS Access uses an asterisk (*) instead of the percent sign (%), and a question mark (?) instead of the underscore (_).
+
+LIKE Syntax:
+```
+SELECT column1, column2, ...
+FROM table_name
+WHERE columnN LIKE pattern;
+```
+
+Here are some examples showing different LIKE operators with '%' and '_' wildcards:
+
+| **LIKE Operator** | **Description** |
+| --- | --- |
+| WHERE CustomerName LIKE 'a%' | Finds any values that start with "a" |
+| WHERE CustomerName LIKE '%a' | Finds any values that end with "a" |
+| WHERE CustomerName LIKE '%or%' | Finds any values that have "or" in any position |
+| WHERE CustomerName LIKE '_r%' | Finds any values that have "r" in the second position |
+| WHERE CustomerName LIKE 'a__%' | Finds any values that start with "a" and are at least 3 characters in length |
+| WHERE ContactName LIKE 'a%o' | Finds any values that start with "a" and ends with "o" |
+
+
+
 
 
 **USEFULL LINKS**
