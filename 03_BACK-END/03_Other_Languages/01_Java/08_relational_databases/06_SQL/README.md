@@ -6,7 +6,6 @@ The following SQL code examples were tested using MySQL Workbench and its defaul
 
 | **Table** | **Columns** |
 | --- | --- |
-| **Table** | **Columns** |
 | city | ID, Name, CountryCode, District, Population |
 | country | Code, Name, Continent, Region, SurfaceArea, IndepYear, Population, LifeExpectancy, GNP, GNPOId, LocalName, GovernmentForm, HeadOfState, Capital, Code2 |
 | countrylanguage | CountryCode, Language, IsOfficial, Percentage |
