@@ -15,7 +15,7 @@ Some important SQL command lines are given by:
 
 **SELECT:**
 
-The SELECT statement is used to select data from a database. The data returned is stored in a result table, called the result-set.
+The SELECT statement is used to select data from a database. The data returned is stored in a result table, called the result-set:
 ```
 SELECT column1, column2, ...
 FROM table_name;
@@ -28,7 +28,7 @@ SELECT * FROM table_name;
 
 **SELECT DISTINCT:**
 
-The SELECT DISTINCT statement is used to return only distinct (different) values. Inside a table, a column often contains many duplicate values; and sometimes you only want to list the different (distinct) values.
+The SELECT DISTINCT statement is used to return only distinct (different) values. Inside a table, a column often contains many duplicate values; and sometimes you only want to list the different (distinct) values:
 ```
 SELECT DISTINCT column1, column2, ...
 FROM table_name;
@@ -36,7 +36,7 @@ FROM table_name;
 
 **WHERE:**
 
-The WHERE clause is used to filter records. The WHERE clause is used to extract only those records that fulfill a specified condition.
+The WHERE clause is used to filter records. The WHERE clause is used to extract only those records that fulfill a specified condition:
 ```
 SELECT column1, column2, ...
 FROM table_name
@@ -84,7 +84,7 @@ WHERE NOT condition;
 
 **ORDER BY:**
 
-The ORDER BY keyword is used to sort the result-set in ascending or descending order. The ORDER BY keyword sorts the records in ascending order by default. To sort the records in descending order, use the DESC keyword. It can be used to order multiple columns at the same time.
+The ORDER BY keyword is used to sort the result-set in ascending or descending order. The ORDER BY keyword sorts the records in ascending order by default. To sort the records in descending order, use the DESC keyword. It can be used to order multiple columns at the same time:
 ```
 SELECT column1, column2, ...
 FROM table_name
@@ -93,7 +93,7 @@ ORDER BY column1, column2, ... ASC|DESC;
 
 **INSERT INTO:**
 
-The INSERT INTO statement is used to insert new records in a table.
+The INSERT INTO statement is used to insert new records in a table:
 ```
 INSERT INTO table_name (column1, column2, column3, ...)
 VALUES (value1, value2, value3, ...);
@@ -125,7 +125,7 @@ WHERE column_name IS NOT NULL;
 
 **UPDATE:**
 
-The UPDATE statement is used to modify the existing records in a table.
+The UPDATE statement is used to modify the existing records in a table:
 ```
 UPDATE table_name
 SET column1 = value1, column2 = value2, ...
@@ -134,7 +134,7 @@ WHERE condition;
 
 **DELETE:**
 
-The DELETE statement is used to delete existing records in a table.
+The DELETE statement is used to delete existing records in a table:
 ```
 DELETE FROM table_name WHERE condition;
 ```
@@ -178,7 +178,7 @@ FROM table_name
 WHERE condition;
 ```
 
-MAX() Syntax
+MAX() Syntax:
 ```
 SELECT MAX(column_name)
 FROM table_name
@@ -243,8 +243,19 @@ Here are some examples showing different LIKE operators with '%' and '_' wildcar
 | WHERE CustomerName LIKE 'a__%' | Finds any values that start with "a" and are at least 3 characters in length |
 | WHERE ContactName LIKE 'a%o' | Finds any values that start with "a" and ends with "o" |
 
+**Wildcards:**
 
+A wildcard character is used to substitute one or more characters in a string. Wildcard characters are used with the SQL LIKE operator. The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
 
+Wildcard Characters in SQL Server:
+
+| Symbol | Symbol | Example |
+| --- | --- | --- |
+| % | Represents zero or more characters | bl% finds bl, black, blue, and blob |
+| _ | Represents a single character | h_t finds hot, hat, and hit |
+| [] | Represents any single character within the brackets | h[oa]t finds hot and hat, but not hit |
+| ^ | Represents any character not in the brackets | h[^oa]t finds hit, but not hot and hat |
+| - | Represents a range of characters | c[a-b]t finds cat and cbt |
 
 
 **USEFULL LINKS**
