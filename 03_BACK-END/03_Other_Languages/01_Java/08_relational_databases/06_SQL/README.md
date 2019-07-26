@@ -50,6 +50,21 @@ FROM city
 WHERE CountryCode='NLD'
 ```
 
+Operators:
+
+| **Operator** | **Description** |
+| --- | --- |
+| = | Equal |
+| > | Greater than |
+| < | Less than |
+| >= | 	Greater than or equal |
+| <= | 	Less than or equal |
+| <> | 	Not equal, may be != in some versions|
+| BETWEEN | Between a certain range |
+| LIKE | Search for a pattern |
+| IN | 	To specify multiple possible values for a column |
+
+
 **AND, OR and NOT:**
 
 The WHERE clause can be combined with AND, OR, and NOT operators.
@@ -389,10 +404,161 @@ GROUP BY column_name(s)
 ORDER BY column_name(s);
 ```
 
-The following SQL statement lists the number of customers in each country:
+The following SQL statement lists the number of cities in each country, sorted high to low:
 ```
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country;
+ORDER BY COUNT(CustomerID) DESC;
 ```
 
+**HAVING:**
+
+The HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate functions:
+```
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+HAVING condition
+ORDER BY column_name(s);
+```
+
+The following SQL statement lists the number of cities in each country. Only include countries with more than 200 cities:
+```
+SELECT COUNT(ID), CountryCode
+FROM city
+GROUP BY CountryCode
+HAVING COUNT(CustomerID) > 200
+ORDER BY COUNT(ID) DESC;
+```
+
+**EXISTS:**
+
+The EXISTS operator is used to test for the existence of any record in a subquery. The EXISTS operator returns true if the subquery returns one or more records:
+```
+SELECT column_name(s)
+FROM table_name
+WHERE EXISTS
+(SELECT column_name FROM table_name WHERE condition);
+```
+
+**ANY and ALL:**
+
+The ANY and ALL operators are used with a WHERE or HAVING clause.
+
+* The ANY operator returns true if any of the subquery values meet the condition.
+
+* The ALL operator returns true if all of the subquery values meet the condition.
+
+ANY Syntax:
+```
+SELECT column_name(s)
+FROM table_name
+WHERE column_name operator ANY
+(SELECT column_name FROM table_name WHERE condition);
+```
+
+ALL Syntax:
+```
+SELECT column_name(s)
+FROM table_name
+WHERE column_name operator ALL
+(SELECT column_name FROM table_name WHERE condition);
+```
+
+**SELECT INTO:**
+
+The SELECT INTO statement copies data from one table into a new table:
+```
+SELECT column1, column2, column3, ...
+INTO newtable [IN externaldb]
+FROM oldtable
+WHERE condition;
+```
+
+Good for creating backup tables.
+
+**INSERT INTO SELECT:**
+
+The INSERT INTO SELECT statement copies data from one table and inserts it into another table.
+
+* INSERT INTO SELECT requires that data types in source and target tables match
+* The existing records in the target table are unaffected
+
+```
+INSERT INTO table2
+SELECT * FROM table1
+WHERE condition;
+```
+
+**CASE:**
+
+The CASE statement goes through conditions and returns a value when the first condition is met (like an IF-THEN-ELSE statement). So, once a condition is true, it will stop reading and return the result. If no conditions are true, it returns the value in the ELSE clause:
+```
+SELECT Name, CountryCode, Population,
+CASE
+    WHEN Population > 1000000 THEN "The population is greater than a million"
+    WHEN Quantity < 100000 THEN "The population is lesser than 100k"
+    ELSE "The population is between 10k and 1M"
+END AS PopulationText
+FROM city;
+```
+
+If there is no ELSE part and no conditions are true, it returns NULL.
+
+**IFNULL():**
+
+The MySQL IFNULL() function lets you return an alternative value if an expression is NULL:
+```
+SELECT ProductName, UnitPrice * (UnitsInStock + IFNULL(UnitsOnOrder, 0))
+FROM Products;
+```
+
+The syntax change for other database types (Oracle and so on...).
+
+**Stored Procedures (MySQL):**
+
+A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again.
+
+So if you have an SQL query that you write over and over again, save it as a stored procedure, and then just call it to execute it.
+
+You can also pass parameters to a stored procedure, so that the stored procedure can act based on the parameter value(s) that is passed.
+
+Stored Procedure Syntax (Passing 1 parameter):
+```
+DELIMITER //
+
+CREATE PROCEDURE procedure_name(parameter_1 INT)
+BEGIN
+  ...SQL code goes here...
+END //
+
+DELIMITER ;
+```
+
+Execute a Stored Procedure:
+```
+CALL procedure_name(1);
+```
+
+**SQL Comments:**
+
+Comments are used to explain sections of SQL statements, or to prevent execution of SQL statements.
+
+Single Line Comments:
+```
+--Select all:
+SELECT * FROM Customers;
+```
+
+**Multi-line Comments:**
+```
+/*Select all the columns
+of all the records
+in the Customers table:*/
+SELECT * FROM Customers;
+```
 
 **USEFULL LINKS**
 
@@ -401,6 +567,10 @@ The following SQL statement lists the number of customers in each country:
 https://en.wikipedia.org/wiki/SQL
 
 
-** SQL tutorial:**
+**SQL tutorial:**
 
 https://www.w3schools.com/sql/default.asp
+
+**MySQL DELIMITER:**
+
+https://www.quackit.com/mysql/tutorial/mysql_stored_procedures.cfm
