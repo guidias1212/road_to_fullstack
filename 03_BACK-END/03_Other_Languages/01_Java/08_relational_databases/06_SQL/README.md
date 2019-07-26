@@ -552,7 +552,7 @@ Single Line Comments:
 SELECT * FROM Customers;
 ```
 
-**Multi-line Comments:**
+Multi-line Comments:
 ```
 /*Select all the columns
 of all the records
