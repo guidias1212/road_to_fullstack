@@ -5,15 +5,18 @@ Git is a distributed version-control system for tracking changes in source code 
 Here is a list of the most common commands used on Git.
 
 ### Table of Contents
-[Clone a repository into a new directory](#clone) 
+[Clone a repository into a new directory](#h1) 
+[Change directory](#h2)
 
-<a name="clone"/>
 
-#### Clone a repository into a new directory:
+<a name="h1"/>
 
+**Clone a repository into a new directory:**
 ```
 git clone <url>
 ```
+
+<a name="h2"/>
 
 **Change directory:**
 ```
