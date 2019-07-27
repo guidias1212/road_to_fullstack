@@ -9,6 +9,21 @@ Here is a list of the most common commands used on Git.
  
 [Change directory](#h2)
 
+[Switch branches or restore working tree files](#h3)
+
+[Show the working tree status](#h4)
+
+[Show changes between commits, commit and working tree, etc](#h5)
+
+[Add file contents to the index](#h6)
+
+[Record changes to the repository](#h7)
+
+[Update remote refs along with associated objects](#h8)
+
+[Fetch from and integrate with another repository or a local branch](#h9)
+
+[USEFULL LINKS](#h10)
 
 <a name="h1"/>
 
@@ -24,40 +39,56 @@ git clone <url>
 cd <>
 ```
 
+<a name="h3"/>
+
 **Switch branches or restore working tree files:**
 ```
 git checkout -b <branch-name>
 ```
+
+<a name="h4"/>
 
 **Show the working tree status:**
 ```
 git status
 ```
 
+<a name="h5"/>
+
 **Show changes between commits, commit and working tree, etc:**
 ```
 git diff
 ```
+
+<a name="h6"/>
 
 **Add file contents to the index:**
 ```
 git add
 ```
 
+<a name="h7"/>
+
 **Record changes to the repository:**
 ```
 git commit
 ```
+
+<a name="h8"/>
 
 **Update remote refs along with associated objects:**
 ```
 git push
 ```
 
+<a name="h9"/>
+
 **Fetch from and integrate with another repository or a local branch:**
 ```
 git pull
 ```
+
+<a name="h10"/>
 
 **USEFULL LINKS**
 
