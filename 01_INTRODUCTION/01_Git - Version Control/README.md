@@ -8,7 +8,9 @@ Here is a list of the most common commands used on Git.
 [Clone a repository into a new directory](#clone) 
 
 <a name="clone"/>
-## **Clone a repository into a new directory:**
+
+## Clone a repository into a new directory:
+
 ```
 git clone <url>
 ```
