@@ -10,8 +10,85 @@ The following SQL code examples were tested using MySQL Workbench and its defaul
 | country | Code, Name, Continent, Region, SurfaceArea, IndepYear, Population, LifeExpectancy, GNP, GNPOId, LocalName, GovernmentForm, HeadOfState, Capital, Code2 |
 | countrylanguage | CountryCode, Language, IsOfficial, Percentage |
 
+<details open>
+<summary>Table of Contents</summary>
+<br>
+
+[SELECT](#h1)
+
+[SELECT DISTINCT](#h2)
+
+[WHERE](#h3)
+
+[Operators](#h4)
+
+[AND, OR and NOT](#h5)
+
+[ORDER BY](#h6)
+
+[INSERT INTO](#h7)
+
+[NULL Values](#h8)
+
+[UPDATE](#h9)
+
+[DELETE](#h10)
+
+[SELECT TOP](#h11)
+
+[MIN() and MAX() Functions](#h12)
+
+[COUNT(), AVG() and SUM() Functions](#h13)
+
+[LIKE](#h14)
+
+[Wildcards](#h15)
+
+[IN](#h16)
+
+[BETWEEN](#h17)
+
+[Aliases](#h18)
+
+[INNER JOIN](#h19)
+
+[LEFT JOIN](#h20)
+
+[RIGHT JOIN](#h21)
+
+[FULL OUTER JOIN](#h22)
+
+[Self JOIN](#h23)
+
+[UNION](#h24)
+
+[GROUP BY](#h25)
+
+[HAVING](#h26)
+
+[EXISTS](#h27)
+
+[ANY and ALL](#h28)
+
+[SELECT INTO](#h29)
+
+[INSERT INTO SELECT](#h30)
+
+[CASE](#h31)
+
+[IFNULL()](#h32)
+
+[Stored Procedures (MySQL)](#h33)
+
+[SQL Comments](#h34)
+
+[USEFULL LINKS](#h35)
+
+</details>
 
 Some important SQL command lines are given by:
+
+<a name="h1"/>
 
 **SELECT:**
 
@@ -26,6 +103,8 @@ Here, column1, column2, ... are the field names of the table you want to select 
 SELECT * FROM table_name;
 ```
 
+<a name="h2"/>
+
 **SELECT DISTINCT:**
 
 The SELECT DISTINCT statement is used to return only distinct (different) values. Inside a table, a column often contains many duplicate values; and sometimes you only want to list the different (distinct) values:
@@ -33,6 +112,8 @@ The SELECT DISTINCT statement is used to return only distinct (different) values
 SELECT DISTINCT column1, column2, ...
 FROM table_name;
 ```
+
+<a name="h3"/>
 
 **WHERE:**
 
@@ -50,7 +131,9 @@ FROM city
 WHERE CountryCode='NLD'
 ```
 
-Operators:
+<a name="h4"/>
+
+**Operators:**
 
 | **Operator** | **Description** |
 | --- | --- |
@@ -64,6 +147,8 @@ Operators:
 | LIKE | Search for a pattern |
 | IN | 	To specify multiple possible values for a column |
 
+
+<a name="h5"/>
 
 **AND, OR and NOT:**
 
@@ -97,6 +182,8 @@ FROM table_name
 WHERE NOT condition;
 ```
 
+<a name="h6"/>
+
 **ORDER BY:**
 
 The ORDER BY keyword is used to sort the result-set in ascending or descending order. The ORDER BY keyword sorts the records in ascending order by default. To sort the records in descending order, use the DESC keyword. It can be used to order multiple columns at the same time:
@@ -106,6 +193,8 @@ FROM table_name
 ORDER BY column1, column2, ... ASC|DESC;
 ```
 
+<a name="h7"/>
+
 **INSERT INTO:**
 
 The INSERT INTO statement is used to insert new records in a table:
@@ -113,6 +202,8 @@ The INSERT INTO statement is used to insert new records in a table:
 INSERT INTO table_name (column1, column2, column3, ...)
 VALUES (value1, value2, value3, ...);
 ```
+
+<a name="h8"/>
 
 **NULL Values:**
 
@@ -138,6 +229,8 @@ FROM table_name
 WHERE column_name IS NOT NULL;
 ```
 
+<a name="h9"/>
+
 **UPDATE:**
 
 The UPDATE statement is used to modify the existing records in a table:
@@ -147,12 +240,16 @@ SET column1 = value1, column2 = value2, ...
 WHERE condition;
 ```
 
+<a name="h10"/>
+
 **DELETE:**
 
 The DELETE statement is used to delete existing records in a table:
 ```
 DELETE FROM table_name WHERE condition;
 ```
+
+<a name="h11"/>
 
 **SELECT TOP:**
 
@@ -180,6 +277,8 @@ FROM table_name
 WHERE ROWNUM <= number;
 ```
 
+<a name="h12"/>
+
 **MIN() and MAX() Functions:**
 
 The MIN() function returns the smallest value of the selected column.
@@ -199,6 +298,8 @@ SELECT MAX(column_name)
 FROM table_name
 WHERE condition;
 ```
+
+<a name="h13"/>
 
 **COUNT(), AVG() and SUM() Functions:**
 
@@ -229,6 +330,8 @@ FROM table_name
 WHERE condition;
 ```
 
+<a name="h14"/>
+
 **LIKE:**
 
 The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
@@ -258,6 +361,8 @@ Here are some examples showing different LIKE operators with '%' and '_' wildcar
 | WHERE CustomerName LIKE 'a__%' | Finds any values that start with "a" and are at least 3 characters in length |
 | WHERE ContactName LIKE 'a%o' | Finds any values that start with "a" and ends with "o" |
 
+<a name="h15"/>
+
 **Wildcards:**
 
 A wildcard character is used to substitute one or more characters in a string. Wildcard characters are used with the SQL LIKE operator. The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
@@ -271,6 +376,8 @@ Wildcard Characters in SQL Server:
 | [] | Represents any single character within the brackets | h[oa]t finds hot and hat, but not hit |
 | ^ | Represents any character not in the brackets | h[^oa]t finds hit, but not hot and hat |
 | - | Represents a range of characters | c[a-b]t finds cat and cbt |
+
+<a name="h16"/>
 
 **IN:**
 
@@ -288,6 +395,8 @@ FROM table_name
 WHERE column_name IN (SELECT STATEMENT);
 ```
 
+<a name="h17"/>
+
 **BETWEEN:**
 
 The BETWEEN operator selects values within a given range. The values can be numbers, text, or dates. The BETWEEN operator is inclusive: begin and end values are included:
@@ -297,6 +406,8 @@ FROM table_name
 WHERE column_name BETWEEN value1 AND value2;
 ```
 
+<a name="h18"/>
+
 **Aliases:**
 
 SQL aliases are used to give a table, or a column in a table, a temporary name. Aliases are often used to make column names more readable. An alias only exists for the duration of the query:
@@ -304,6 +415,8 @@ SQL aliases are used to give a table, or a column in a table, a temporary name. 
 SELECT column_name AS column_alias_name
 FROM table_name AS table_alias_name;
 ```
+
+<a name="h19"/>
 
 **INNER JOIN:**
 
@@ -314,6 +427,8 @@ FROM city
 INNER JOIN country 
 ON city.CountryCode=country.Code
 ```
+
+<a name="h20"/>
 
 **LEFT JOIN:**
 
@@ -327,6 +442,8 @@ LEFT JOIN countrylanguage
 ON city.CountryCode = countrylanguage.CountryCode;
 ```
 
+<a name="h21"/>
+
 **RIGHT JOIN:**
 
 The RIGHT JOIN keyword returns all records from the right table (table2), and the matched records from the left table (table1). The result is NULL from the left side, when there is no match.
@@ -339,6 +456,8 @@ RIGHT JOIN countrylanguage
 ON city.CountryCode = countrylanguage.CountryCode;
 ```
 
+<a name="h22"/>
+
 **FULL OUTER JOIN:**
 
 The FULL OUTER JOIN keyword return all records when there is a match in either left (table1) or right (table2) table records.
@@ -349,6 +468,8 @@ FULL OUTER JOIN table2
 ON table1.column_name = table2.column_name
 WHERE condition;
 ```
+
+<a name="h23"/>
 
 **Self JOIN:**
 
@@ -364,6 +485,8 @@ ORDER BY A.CountryCode;
 ```
 
 A and B are different table aliases for the same table.
+
+<a name="h24"/>
 
 **UNION:**
 
@@ -391,6 +514,8 @@ SELECT column_name(s) FROM table2;
 
 This is used for equivalent tables (same columns) but with diferent records.
 
+<a name="h25"/>
+
 **GROUP BY:**
 
 The GROUP BY statement group rows that have the same values into summary rows, like "find the number of customers in each country".
@@ -411,6 +536,8 @@ FROM Customers
 GROUP BY Country;
 ORDER BY COUNT(CustomerID) DESC;
 ```
+
+<a name="h26"/>
 
 **HAVING:**
 
@@ -433,6 +560,8 @@ HAVING COUNT(CustomerID) > 200
 ORDER BY COUNT(ID) DESC;
 ```
 
+<a name="h27"/>
+
 **EXISTS:**
 
 The EXISTS operator is used to test for the existence of any record in a subquery. The EXISTS operator returns true if the subquery returns one or more records:
@@ -442,6 +571,8 @@ FROM table_name
 WHERE EXISTS
 (SELECT column_name FROM table_name WHERE condition);
 ```
+
+<a name="h28"/>
 
 **ANY and ALL:**
 
@@ -467,6 +598,8 @@ WHERE column_name operator ALL
 (SELECT column_name FROM table_name WHERE condition);
 ```
 
+<a name="h29"/>
+
 **SELECT INTO:**
 
 The SELECT INTO statement copies data from one table into a new table:
@@ -478,6 +611,8 @@ WHERE condition;
 ```
 
 Good for creating backup tables.
+
+<a name="h30"/>
 
 **INSERT INTO SELECT:**
 
@@ -491,6 +626,8 @@ INSERT INTO table2
 SELECT * FROM table1
 WHERE condition;
 ```
+
+<a name="h31"/>
 
 **CASE:**
 
@@ -507,6 +644,8 @@ FROM city;
 
 If there is no ELSE part and no conditions are true, it returns NULL.
 
+<a name="h32"/>
+
 **IFNULL():**
 
 The MySQL IFNULL() function lets you return an alternative value if an expression is NULL:
@@ -516,6 +655,8 @@ FROM Products;
 ```
 
 The syntax change for other database types (Oracle and so on...).
+
+<a name="h33"/>
 
 **Stored Procedures (MySQL):**
 
@@ -542,6 +683,8 @@ Execute a Stored Procedure:
 CALL procedure_name(1);
 ```
 
+<a name="h34"/>
+
 **SQL Comments:**
 
 Comments are used to explain sections of SQL statements, or to prevent execution of SQL statements.
@@ -559,6 +702,8 @@ of all the records
 in the Customers table:*/
 SELECT * FROM Customers;
 ```
+
+<a name="h35"/>
 
 **USEFULL LINKS**
 
