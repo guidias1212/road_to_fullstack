@@ -2,6 +2,20 @@
 
 GitHub is an American company that provides hosting for software development version control using Git.
 
+<details open>
+<summary>Table of Contents</summary>
+<br>
+
+[GitHub Desktop](#h1)
+
+[USEFULL LINKS](#h2)
+
+</details>
+
+<a name="h1"/>
+
+**GitHub Desktop:**
+
 The GitHub Desktop version comes with the intuitive GUI shown below:
 
 ![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/GitHub_Desktop_GUI.png)
@@ -14,6 +28,8 @@ Where you can easily:
 5. Check file changes.
 
 After commiting to your local machine, the GUI also allows you to push the changes directly to your GitHub repository by clicking on Push orign.
+
+<a name="h2"/>
 
 **USEFULL LINKS**
 
