@@ -3,7 +3,7 @@
 Some usefull terminal commands used on LINUX.
 
 <details open>
-<summary>**Table of Contents**</summary>
+<summary> **Table of Contents** </summary>
 <br>
 
 [Open terminal](#h1)
