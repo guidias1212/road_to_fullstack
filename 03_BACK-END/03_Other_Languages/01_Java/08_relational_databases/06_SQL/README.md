@@ -741,7 +741,7 @@ SELECT * FROM Customers;
 
 <a name="h35"/>
 
-**CREATE DATABASE**
+**CREATE DATABASE:**
 
 The CREATE DATABASE statement is used to create a new SQL database:
 ```
@@ -755,7 +755,7 @@ SHOW DATABASES;
 
 <a name="h36"/>
 
-**DROP DATABASE**
+**DROP DATABASE:**
 
 The DROP DATABASE statement is used to drop an existing SQL database:
 ```
@@ -764,7 +764,7 @@ DROP DATABASE databasename;
 
 <a name="h37"/>
 
-**BACKUP DATABASE**
+**BACKUP DATABASE:**
 
 The BACKUP DATABASE statement is used in SQL Server to create a full back up of an existing SQL database:
 ```
@@ -776,7 +776,7 @@ For doing this in MySQL, use the **mysqldump utility**.
 
 <a name="h38"/>
 
-**CREATE TABLE**
+**CREATE TABLE:**
 
 The CREATE TABLE statement is used to create a new table in a database:
 ```
@@ -790,7 +790,7 @@ CREATE TABLE table_name (
 
 <a name="h39"/>
 
-**DROP TABLE**
+**DROP TABLE:**
 
 The DROP TABLE statement is used to drop an existing table in a database:
 ```
@@ -799,7 +799,7 @@ DROP TABLE table_name;
 
 <a name="h40"/>
 
-**ALTER TABLE**
+**ALTER TABLE:**
 
 The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.
 
@@ -825,7 +825,7 @@ MODIFY COLUMN column_name datatype;
 
 <a name="h41"/>
 
-**Create Constraints**
+**Create Constraints:**
 
 SQL constraints are used to specify rules for data in a table:
 ```
@@ -851,7 +851,7 @@ The following constraints are commonly used in SQL:
 
 <a name="h42"/>
 
-**NOT NULL Constraint**
+**NOT NULL Constraint:**
 
 The NOT NULL constraint enforces a column to NOT accept NULL values:
 ```
@@ -865,7 +865,7 @@ CREATE TABLE Persons (
 
 <a name="h43"/>
 
-**UNIQUE Constraint**
+**UNIQUE Constraint:**
 
 The UNIQUE constraint ensures that all values in a column are different.
 
@@ -888,7 +888,7 @@ CREATE TABLE Persons (
 
 <a name="h44"/>
 
-**PRIMARY KEY Constraint**
+**PRIMARY KEY Constraint:**
 
 The PRIMARY KEY constraint uniquely identifies each record in a table.
 
@@ -909,7 +909,7 @@ CREATE TABLE Persons (
 
 <a name="h45"/>
 
-**FOREIGN KEY Constraint**
+**FOREIGN KEY Constraint:**
 
 A FOREIGN KEY is a key used to link two tables together.
 
@@ -930,7 +930,7 @@ CREATE TABLE Orders (
 
 <a name="h46"/>
 
-**CHECK Constraint**
+**CHECK Constraint:**
 
 The CHECK constraint is used to limit the value range that can be placed in a column.
 
@@ -951,7 +951,7 @@ CREATE TABLE Persons (
 
 <a name="h47"/>
 
-**DEFAULT Constraint**
+**DEFAULT Constraint:**
 
 The DEFAULT constraint is used to provide a default value for a column.
 
@@ -970,7 +970,7 @@ CREATE TABLE Persons (
 
 <a name="h48"/>
 
-**CREATE INDEX**
+**CREATE INDEX:**
 
 The CREATE INDEX statement is used to create indexes in tables.
 
@@ -982,7 +982,7 @@ ON table_name (column1, column2, ...);
 
 <a name="h49"/>
 
-**AUTO INCREMENT Field**
+**AUTO INCREMENT Field:**
 
 Auto-increment allows a unique number to be generated automatically when a new record is inserted into a table.
 
@@ -1001,7 +1001,7 @@ CREATE TABLE Persons (
 
 <a name="h50"/>
 
-**Dates
+**Dates:**
 
 The most difficult part when working with dates is to be sure that the format of the date you are trying to insert, matches the format of the date column in the database.
 
@@ -1016,7 +1016,7 @@ MySQL comes with the following data types for storing a date or a date/time valu
 
 <a name="h51"/>
 
-**CREATE VIEW**
+**CREATE VIEW:**
 
 In SQL, a view is a virtual table based on the result-set of an SQL statement.
 
@@ -1039,7 +1039,7 @@ SELECT * FROM [view_name];
 
 <a name="h52"/>
 
-**SQL Hosting**
+**SQL Hosting:**
 
 If you want your web site to be able to store and retrieve data from a database, your web server should have access to a database-system that uses the SQL language.
 
