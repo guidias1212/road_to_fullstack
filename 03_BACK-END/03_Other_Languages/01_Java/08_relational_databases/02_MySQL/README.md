@@ -2,6 +2,18 @@
 
 MySQL is an open-source relational database management system (RDBMS). Its name is a combination of "My", the name of co-founder Michael Widenius's daughter, and "SQL", the abbreviation for Structured Query Language.
 
+<details open>
+<summary>Table of Contents</summary>
+<br>
+
+[Setup: Connect Java to a MySQL database](#h1)
+
+[USEFULL LINKS](#h2)
+
+</details>
+
+<a name="h1"/>
+
 **Setup: Connect Java to a MySQL database**
 
 Here's a step by step explanation how to install MySQL and JDBC and how to use it:
@@ -131,6 +143,8 @@ public class QueryTests {
 	}
 }
 ```
+
+<a name="h2"/>
 
 **USEFULL LINKS**
 
