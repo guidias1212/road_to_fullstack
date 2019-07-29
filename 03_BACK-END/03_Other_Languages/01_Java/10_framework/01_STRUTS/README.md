@@ -2,7 +2,15 @@
 
 Struts is a free, open-source framework that is used to create elegant, aesthetically pleasing Java applications. It is used to develop the foundation of a web application, and it functions on a pattern known as “MVC,” which means Model-View-Controller.
 
+<details open>
+<summary>Table of Contents</summary>
+<br>
 
+[USEFULL LINKS](#h1)
+
+</details>
+
+<a name="h1"/>
 
 **USEFULL LINKS**
 
