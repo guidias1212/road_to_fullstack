@@ -4,7 +4,95 @@ Java is a general-purpose programming language that is class-based, object-orien
 
 Java programs are run (or interpreted) by another program called the Java VM. Rather than running directly on the native operating system, the program is interpreted by the Java VM for the native operating system. This means that any computer system with the Java VM installed can run Java programs regardless of the computer system on which the applications were originally developed.
 
+<details open>
+<summary>Table of Contents</summary>
+<br>
+
+[Writing a Program](#h1)
+
+[Compiling the Program](#h2)
+
+[Interpreting and Running the Program](#h3)
+
+[The main Method](#h4)
+
+[Print](#h5)
+
+[Comments](#h6)
+
+[Variables](#h7)
+
+[Data Types](#h8)
+
+[Operators](#h9)
+
+[String Manipulation](#h10)
+
+[Math Class](#h11)
+
+[If...Else](#h12)
+
+[Switch, break and default](#h13)
+
+[While loop](#h14)
+
+[For Loop](#h15)
+
+[Arrays](#h16)
+
+[Exceptions](#h17)
+
+[Custom Exception Throw](#h18)
+
+[Methods](#h19)
+
+[Classes and Objects](#h20)
+
+[Using Multiple Classes](#h21)
+
+[Class Attributes](#h22)
+
+[Class Methods](#h23)
+
+[Class Constructors](#h24)
+
+[Modifiers](#h25)
+
+[Encapsulation](#h26)
+
+[Java Packages](#h27)
+
+[Inheritance (Subclass and Superclass)](#h28)
+
+[Polymorphism](#h29)
+
+[Inner Classes](#h30)
+
+[Abstraction](#h31)
+
+[Interfaces](#h32)
+
+[Enums](#h33)
+
+[User Input - Types](#h34)
+
+[Date and Time](#h35)
+
+[Array List](#h36)
+
+[HashMap](#h37)
+
+[Wrapper Classes](#h38)
+
+[Files](#h39)
+
+[USEFULL LINKS](#h40)
+
+</details>
+
 ### Getting Started
+
+<a name="h1"/>
 
 **Writing a Program:**
 
@@ -18,6 +106,8 @@ class ExampleProgram {
 }
 ```
 
+<a name="h2"/>
+
 **Compiling the Program:**
 
 A program has to be converted to a form the Java VM can understand so any computer with a Java VM can interpret and run the program. Compiling a Java program means taking the programmer-readable text in your program file (also called source code) and converting it to bytecodes, which are platform-independent instructions for the Java VM.
@@ -28,6 +118,8 @@ The Java compiler is invoked at the command line on Unix and DOS shell operating
  
  *Obs: In order to execute commands on the CMD, add the java binary installation path to your system environment variables (See USEFULL LINKS section).
 ```
+
+<a name="h3"/>
 
 **Interpreting and Running the Program:**
 
@@ -47,6 +139,8 @@ I'm a Simple Program
 
 ### Java Coding
 
+<a name="h4"/>
+
 **The main Method:**
 
 Every Java program has a **class** name which must match the filename, and that every program must contain the main() method:
@@ -57,12 +151,16 @@ public static void main(String[] args) {
 }
 ```
 
+<a name="h5"/>
+
 **Print:**
 
 Print a line of text to the screen:
 ```
 System.out.println("Hello World");
 ```
+
+<a name="h6"/>
 
 **Comments:**
 
@@ -87,6 +185,8 @@ C-style comments
 */
 ```
 
+<a name="h7"/>
+
 **Variables:**
 
 * **String:** Stores text, such as "Hello". String values are surrounded by double quotes.
@@ -103,6 +203,8 @@ float myFloatNum = 5.99f;
 char myLetter = 'D';
 boolean myBool = true;
 ```
+
+<a name="h8"/>
 
 **Data Types:**
 
@@ -164,6 +266,8 @@ public class MyClass {
 }
 ```
 
+<a name="h9"/>
+
 **Operators:**
 
 Operators are used to perform operations on variables and values.
@@ -218,6 +322,7 @@ Operators are used to perform operations on variables and values.
 | \|\| | Logical or | Returns true if one of the statements is true | x < 5 \|\| x < 4 |
 | ! | Logical not | Reverse the result, returns false if the result is true | !(x < 5 && x < 10) |
 
+<a name="h10"/>
 
 **String Manipulation:**
 
@@ -275,6 +380,8 @@ class StringManipulation {
 | \b | Backspace | \- |
 | \f | Form Feed | \- |
 
+<a name="h11"/>
+
 **Math Class:**
 
 The Java Math class has many methods that allows you to perform mathematical tasks on numbers:
@@ -309,6 +416,8 @@ class MathClassTests {
 }
 ```
 
+<a name="h12"/>
+
 **If...Else:**
 
 Use the if statement to specify a block of Java code to be executed if a condition is true:
@@ -340,6 +449,8 @@ class IfElseTests {
   }
 }
 ```
+
+<a name="h13"/>
 
 **Switch, break and default:**
 
@@ -389,6 +500,7 @@ class SwitchTests {
 }
 ```
 
+<a name="h14"/>
 
 **While loop:**
 
@@ -417,6 +529,8 @@ class WhileLoop {
   }
 }
 ```
+
+<a name="h15"/>
 
 **For Loop:**
 
@@ -458,6 +572,8 @@ class ForLoop {
   }
 }
 ```
+
+<a name="h16"/>
 
 **Arrays:**
 
@@ -510,6 +626,8 @@ class ArrayTests {
 }
 ```
 
+<a name="h17"/>
+
 **Exceptions:**
 
 When executing Java code, different errors can occur: coding errors made by the programmer, errors due to wrong input, or other unforeseeable things. When an error occurs, Java will normally stop and generate an error message. The technical term for this is: Java will throw an exception (throw an error):
@@ -536,6 +654,8 @@ class ExceptionTests {
 }
 ```
 
+<a name="h18"/>
+
 **Custom Exception Throw:**
 
 The throw statement allows you to create a custom error.
@@ -560,6 +680,8 @@ class ExceptionThrowTests {
   }
 }
 ```
+
+<a name="h19"/>
 
 **Methods:**
 
@@ -602,6 +724,8 @@ class Methods {
 }
 ```
 
+<a name="h20"/>
+
 **Classes and Objects:**
 
 Java is an object-oriented programming language.
@@ -625,6 +749,8 @@ public class MyFirstClass {
   } 
 }
 ```
+
+<a name="h21"/>
 
 **Using Multiple Classes:**
 
@@ -660,6 +786,8 @@ public class OtherClass {
 }
 ```
 
+<a name="h22"/>
+
 **Class Attributes:**
 
 Class attributes are variables within a class.
@@ -693,6 +821,8 @@ public class Dog {
   }
 } 
 ```
+
+<a name="h23"/>
 
 **Class Methods:**
 
@@ -743,6 +873,8 @@ public class Bird {
 }
 ```
 
+<a name="h24"/>
+
 **Class Constructors:**
 
 A constructor in Java is a special method that is used to initialize objects. The constructor is called when an object of a class is created.
@@ -767,6 +899,8 @@ public class ClassConstructor {
   }
 }
 ```
+
+<a name="h25"/>
 
 **Modifiers:**
 
@@ -808,6 +942,8 @@ For attributes, methods and constructors:
 | synchronized | Methods can only be accessed by one thread at a time. |
 | volatile | The value of an attribute is not cached thread-locally, and is always read from the "main memory". |
 
+<a name="h26"/>
+
 **Encapsulation:**
 
 The meaning of Encapsulation, is to make sure that "sensitive" data is hidden from users. To achieve this, you must:
@@ -848,6 +984,8 @@ Why Encapsulation?
 - Class variables can be made read-only (if you omit the set method), or write-only (if you omit the get method).
 - Flexible: the programmer can change one part of the code without affecting other parts
 Increased security of data.
+
+<a name="h27"/>
 
 **Java Packages:**
 
@@ -921,6 +1059,8 @@ The output will be:
 This is my package!
 ```
 
+<a name="h28"/>
+
 **Inheritance (Subclass and Superclass)**
 
 In Java, it is possible to inherit attributes and methods from one class to another. We group the "inheritance concept" into two categories:
@@ -954,6 +1094,8 @@ class Car extends Vehicle {
   }
 }
 ```
+
+<a name="h29"/>
 
 **Polymorphism:**
 
@@ -992,6 +1134,8 @@ class AnimalMainClass {
 }
 ```
 
+<a name="h30"/>
+
 **Inner Classes:**
 
 In Java, it is also possible to nest classes (a class within a class). The purpose of nested classes is to group classes that belong together, which makes your code more readable and maintainable.
@@ -1020,6 +1164,8 @@ public class InnerClasses {
 
 //*OBS.: Unlike a "regular" class, an inner class can be private or protected. If you don't want outside objects to access the inner class, declare the class as private.
 ```
+
+<a name="h31"/>
 
 **Abstraction:**
 
@@ -1054,6 +1200,8 @@ class AbstractionMain {
   }
 }
 ```
+
+<a name="h32"/>
 
 **Interfaces:**
 
@@ -1102,6 +1250,8 @@ Why And When To Use Interfaces?
 * To achieve security - hide certain details and only show the important details of an object (interface).
 
 * Java does not support "multiple inheritance" (a class can only inherit from one superclass). However, it can be achieved with interfaces, because the class can implement multiple interfaces. To implement multiple interfaces, separate them with a comma.
+
+<a name="h33"/>
 
 **Enums:**
 
@@ -1152,6 +1302,8 @@ Why And When To Use Enums?
 
 - Use enums when you have values that you know aren't going to change, like month days, days, colors, deck of cards, etc.
 
+<a name="h34"/>
+
 **User Input - Types:**
 
 The `Scanner` class is used to get user input, and it is found in the `java.util` package.
@@ -1168,6 +1320,8 @@ The `Scanner` class is used to get user input, and it is found in the `java.util
 | nextLine() | Reads a String value from the user |
 | nextLong() | Reads a long value from the user |
 | nextShort() | Reads a short value from the user |
+
+<a name="h35"/>
 
 **Date and Time:**
 
@@ -1222,6 +1376,8 @@ public class DateTimeTests {
   } 
 }
 ```
+
+<a name="h36"/>
 
 **Array List:**
 
@@ -1301,6 +1457,8 @@ public class ArrayListTests {
 } 
 ```
 
+<a name="h37"/>
+
 **HashMap:**
 
 One object is used as a key (index) to another object (value). It can store different types: String keys and Integer values, or the same type, like: String keys and String values:
@@ -1337,6 +1495,8 @@ class HashMapTests {
 }
 ```
 
+<a name="h38"/>
+
 **Wrapper Classes:**
 
 Wrapper classes provide a way to use primitive data types (int, boolean, etc..) as objects.
@@ -1355,6 +1515,8 @@ Wrapper classes provide a way to use primitive data types (int, boolean, etc..) 
 Sometimes you must use wrapper classes, for example when working with Collection objects, such as ArrayList, where primitive types cannot be used (the list can only store objects).
 
 An useful method is the toString() method, which is used to convert wrapper objects to strings.
+
+<a name="h39"/>
 
 **Files:**
 
@@ -1444,6 +1606,8 @@ public class FilesTests {
 ```
 
 There are many available classes in the Java API that can be used to read and write files in Java: FileReader, BufferedReader, Files, Scanner, FileInputStream, FileWriter, BufferedWriter, FileOutputStream, etc. Which one to use depends on the Java version you're working with and whether you need to read bytes or characters, and the size of the file/lines etc.
+
+<a name="h40"/>
 
 **USEFULL LINKS**
 
