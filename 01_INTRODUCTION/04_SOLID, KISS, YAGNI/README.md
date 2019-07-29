@@ -1,5 +1,21 @@
 # 1.4) SOLID, KISS, YAGNI
 
+<details open>
+<summary>Table of Contents</summary>
+<br>
+
+[SOLID](#h1)
+
+[KISS](#h2)
+
+[YAGNI](#h3)
+
+[USEFULL LINKS](#h4)
+
+</details>
+
+<a name="h1"/>
+
 * **SOLID**
 
 In object-oriented computer programming, SOLID is a mnemonic acronym for five design principles intended to make software designs more understandable, flexible and maintainable.
@@ -17,14 +33,19 @@ In object-oriented computer programming, SOLID is a mnemonic acronym for five de
 - High-level modules should not depend on low-level modules. Both should depend on abstractions (e.g. interfaces).
 - Abstractions should not depend on details. Details (concrete implementations) should depend on abstractions.
 
+<a name="h2"/>
 
 * **KISS**
 
 Keep it Simple, Stupid: The KISS principle is about striving for simplicity. Modern programming languages, frameworks and APIs have powerful means to create sophisticated solutions for various kinds of problems. Sometimes developers might feel tempted to write “clever” solutions that use all these complex features. The KISS principle states that a solution is better when it uses less inheritance, less polymorphism, fewer classes, etc
 
+<a name="h3"/>
+
 * **YAGNI**
 
 "You aren't gonna need it" is a principle of extreme programming (XP) that states a programmer should not add functionality until deemed necessary. XP co-founder Ron Jeffries has written: "Always implement things when you actually need them, never when you just foresee that you need them." Other forms of the phrase include "You aren't going to need it" and "You ain't gonna need it".
+
+<a name="h4"/>
 
 **USEFULL LINKS**
 
