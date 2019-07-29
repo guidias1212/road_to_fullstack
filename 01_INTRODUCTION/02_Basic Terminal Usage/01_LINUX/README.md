@@ -2,7 +2,9 @@
 
 Some usefull terminal commands used on LINUX.
 
-### Table of Contents
+<details open>
+<summary>**Table of Contents**</summary>
+<br>
 
 [Open terminal](#h1)
 
@@ -181,7 +183,8 @@ background. To get the process back, type fg](#h36)
 
 [USEFULL LINKS](#h88)
 
--------------------------------------------------------------------------------------------------------------------------------------------------
+</details>
+
 <a name="h1"/>
 
 **Open terminal:**

@@ -4,21 +4,12 @@ Git is a distributed version-control system for tracking changes in source code 
 
 Here is a list of the most common commands used on Git.
 
-### Table of Contents
-
 <details open>
-<summary>Table of Contents</summary>
+<summary>**Table of Contents**</summary>
 <br>
 
 [Clone a repository into a new directory](#h1)
 
-[Change directory](#h2)
-
-</details>
-
-
-[Clone a repository into a new directory](#h1)
- 
 [Change directory](#h2)
 
 [Switch branches or restore working tree files](#h3)
@@ -36,6 +27,8 @@ Here is a list of the most common commands used on Git.
 [Fetch from and integrate with another repository or a local branch](#h9)
 
 [USEFULL LINKS](#h10)
+
+</details>
 
 <a name="h1"/>
 
