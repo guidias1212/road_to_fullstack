@@ -2,8 +2,6 @@
 
 Data Structures are the programmatic way of storing data so that data can be used efficiently.
 
-### Data Structures
-
 <details open>
 <summary>Table of Contents</summary>
 <br>
@@ -35,6 +33,8 @@ Data Structures are the programmatic way of storing data so that data can be use
 </details>
 
 <a name="h1"/>
+
+### Data Structures
 
 **Data Definition:**
 
