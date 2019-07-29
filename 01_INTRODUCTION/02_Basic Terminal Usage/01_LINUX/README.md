@@ -66,7 +66,7 @@ Some usefull terminal commands used on LINUX.
 
 [Paste back what you removed with Ctrl+U, Ctrl+K or Ctrl+W or Alt+Backspace](#h30)
 
-[Somekind of undo, like Ctrl+Y but more accurate (but very unconsistent). Handy to use if you removed characters too much from your command)](#h31)
+[Somekind of undo, like Ctrl+Y but more accurate (but very unconsistent)](#h31)
 
 [Backspace](#h32)
 
@@ -76,8 +76,7 @@ Some usefull terminal commands used on LINUX.
 
 [Search text from the whole history (even after reset)](#h35)
 
-[This will zombie an application. If you have a process running in a terminal and you want the terminal back but don’t want to kill the application, you can hit Ctrl + z to send the process to the 
-background. To get the process back, type fg](#h36)
+[Zombify an application.](#h36)
 
 [Search text from the terminal window scrollback history](#h37)
 
@@ -87,7 +86,7 @@ background. To get the process back, type fg](#h36)
 
 [Clear bash history (clear all the commands in history)](#h40)
 
-[Sometimes you might want to do Ctrl+L+L to make a nice little gap (the vertical size of your terminal window) to see where your previous command started to give input. For example](#h41)
+[Sometimes you might want to do Ctrl+L+L to make a nice little gap (the vertical size of your terminal window) to see where your previous command started to give input](#h41)
 
 [And you can't really scroll up and quickly see where you typed the command second or third time.](#h42)
 
