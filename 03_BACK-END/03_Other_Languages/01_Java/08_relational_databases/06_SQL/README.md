@@ -82,7 +82,43 @@ The following SQL code examples were tested using MySQL Workbench and its defaul
 
 [SQL Comments](#h34)
 
-[USEFULL LINKS](#h35)
+[CREATE DATABASE](#h35)
+
+[DROP DATABASE](#h36)
+
+[BACKUP DATABASE](#h37)
+
+[CREATE TABLE](#h38)
+
+[DROP TABLE](#h39)
+
+[ALTER TABLE](#h40)
+
+[Create Constraints](#h41)
+
+[NOT NULL Constraint](#h42)
+
+[UNIQUE Constraint](#h43)
+
+[PRIMARY KEY Constraint](#h44)
+
+[FOREIGN KEY Constraint](#h45)
+
+[CHECK Constraint](#h46)
+
+[DEFAULT Constraint](#h47)
+
+[CREATE INDEX](#h48)
+
+[AUTO INCREMENT Field](#h49)
+
+[Dates](#h50)
+
+[CREATE VIEW](#h51)
+
+[SQL Hosting](#h52)
+
+[USEFULL LINKS](#h53)
 
 </details>
 
@@ -705,6 +741,336 @@ SELECT * FROM Customers;
 
 <a name="h35"/>
 
+**CREATE DATABASE**
+
+The CREATE DATABASE statement is used to create a new SQL database:
+```
+CREATE DATABASE databasename;
+```
+
+Obs.: Make sure you have admin privilege before creating any database. Once a database is created, you can check it in the list of databases with the following SQL command: 
+```
+SHOW DATABASES;
+```
+
+<a name="h36"/>
+
+**DROP DATABASE**
+
+The DROP DATABASE statement is used to drop an existing SQL database:
+```
+DROP DATABASE databasename;
+```
+
+<a name="h37"/>
+
+**BACKUP DATABASE**
+
+The BACKUP DATABASE statement is used in SQL Server to create a full back up of an existing SQL database:
+```
+BACKUP DATABASE databasename
+TO DISK = 'filepath';
+```
+
+For doing this in MySQL, use the **mysqldump utility**.
+
+<a name="h38"/>
+
+**CREATE TABLE**
+
+The CREATE TABLE statement is used to create a new table in a database:
+```
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    column3 datatype,
+   ....
+);
+```
+
+<a name="h39"/>
+
+**DROP TABLE**
+
+The DROP TABLE statement is used to drop an existing table in a database:
+```
+DROP TABLE table_name;
+```
+
+<a name="h40"/>
+
+**ALTER TABLE**
+
+The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.
+
+The ALTER TABLE statement is also used to add and drop various constraints on an existing table.
+
+ADD Column:
+```
+ALTER TABLE table_name
+ADD column_name datatype;
+```
+
+DROP COLUMN:
+```
+ALTER TABLE table_name
+DROP COLUMN column_name;
+```
+
+ALTER/MODIFY COLUMN (MySQL):
+```
+ALTER TABLE table_name
+MODIFY COLUMN column_name datatype;
+```
+
+<a name="h41"/>
+
+**Create Constraints**
+
+SQL constraints are used to specify rules for data in a table:
+```
+CREATE TABLE table_name (
+    column1 datatype constraint,
+    column2 datatype constraint,
+    column3 datatype constraint,
+    ....
+);
+```
+
+Constraints are used to limit the type of data that can go into a table. This ensures the accuracy and reliability of the data in the table. If there is any violation between the constraint and the data action, the action is aborted.
+
+The following constraints are commonly used in SQL:
+
+* **NOT NULL** - Ensures that a column cannot have a NULL value
+* **UNIQUE** - Ensures that all values in a column are different
+* **PRIMARY KEY** - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+* **FOREIGN KEY** - Uniquely identifies a row/record in another table
+* **CHECK** - Ensures that all values in a column satisfies a specific condition
+* **DEFAULT** - Sets a default value for a column when no value is specified
+* **INDEX** - Used to create and retrieve data from the database very quickly
+
+<a name="h42"/>
+
+**NOT NULL Constraint**
+
+The NOT NULL constraint enforces a column to NOT accept NULL values:
+```
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255) NOT NULL,
+    Age int
+);
+```
+
+<a name="h43"/>
+
+**UNIQUE Constraint**
+
+The UNIQUE constraint ensures that all values in a column are different.
+
+Both the UNIQUE and PRIMARY KEY constraints provide a guarantee for uniqueness for a column or set of columns.
+
+A PRIMARY KEY constraint automatically has a UNIQUE constraint.
+
+However, you can have many UNIQUE constraints per table, but only one PRIMARY KEY constraint per table.
+
+In MySQL:
+```
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    UNIQUE (ID)
+);
+```
+
+<a name="h44"/>
+
+**PRIMARY KEY Constraint**
+
+The PRIMARY KEY constraint uniquely identifies each record in a table.
+
+Primary keys must contain UNIQUE values, and cannot contain NULL values.
+
+A table can have only ONE primary key; and in the table, this primary key can consist of single or multiple columns (fields).
+
+In MySQL:
+```
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (ID)
+);
+```
+
+<a name="h45"/>
+
+**FOREIGN KEY Constraint**
+
+A FOREIGN KEY is a key used to link two tables together.
+
+A FOREIGN KEY is a field (or collection of fields) in one table that refers to the PRIMARY KEY in another table.
+
+The table containing the foreign key is called the child table, and the table containing the candidate key is called the referenced or parent table.
+
+In MySQL:
+```
+CREATE TABLE Orders (
+    OrderID int NOT NULL,
+    OrderNumber int NOT NULL,
+    PersonID int,
+    PRIMARY KEY (OrderID),
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+);
+```
+
+<a name="h46"/>
+
+**CHECK Constraint**
+
+The CHECK constraint is used to limit the value range that can be placed in a column.
+
+If you define a CHECK constraint on a single column it allows only certain values for this column.
+
+If you define a CHECK constraint on a table it can limit the values in certain columns based on values in other columns in the row.
+
+In MySQL:
+```
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    CHECK (Age>=18)
+);
+```
+
+<a name="h47"/>
+
+**DEFAULT Constraint**
+
+The DEFAULT constraint is used to provide a default value for a column.
+
+The default value will be added to all new records IF no other value is specified.
+
+In MySQL:
+```
+CREATE TABLE Persons (
+    ID int NOT NULL,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    City varchar(255) DEFAULT 'Sandnes'
+);
+```
+
+<a name="h48"/>
+
+**CREATE INDEX**
+
+The CREATE INDEX statement is used to create indexes in tables.
+
+Indexes are used to retrieve data from the database very fast. The users cannot see the indexes, they are just used to speed up searches/queries:
+```
+CREATE INDEX index_name
+ON table_name (column1, column2, ...);
+```
+
+<a name="h49"/>
+
+**AUTO INCREMENT Field**
+
+Auto-increment allows a unique number to be generated automatically when a new record is inserted into a table.
+
+Often this is the primary key field that we would like to be created automatically every time a new record is inserted.
+
+In MySQL:
+```
+CREATE TABLE Persons (
+    Personid int NOT NULL AUTO_INCREMENT,
+    LastName varchar(255) NOT NULL,
+    FirstName varchar(255),
+    Age int,
+    PRIMARY KEY (Personid)
+);
+```
+
+<a name="h50"/>
+
+**Dates
+
+The most difficult part when working with dates is to be sure that the format of the date you are trying to insert, matches the format of the date column in the database.
+
+As long as your data contains only the date portion, your queries will work as expected. However, if a time portion is involved, it gets more complicated.
+
+MySQL comes with the following data types for storing a date or a date/time value in the database:
+
+* **DATE** - format YYYY-MM-DD
+* **DATETIME** - format: YYYY-MM-DD HH:MI:SS
+* **TIMESTAMP** - format: YYYY-MM-DD HH:MI:SS
+* **YEAR** - format YYYY or YY
+
+<a name="h51"/>
+
+**CREATE VIEW**
+
+In SQL, a view is a virtual table based on the result-set of an SQL statement.
+
+A view contains rows and columns, just like a real table. The fields in a view are fields from one or more real tables in the database.
+
+You can add SQL functions, WHERE, and JOIN statements to a view and present the data as if the data were coming from one single table:
+```
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+
+Obs.: A view always shows up-to-date data! The database engine recreates the data, using the view's SQL statement, every time a user queries a view.
+
+We can query the view above as follows:
+```
+SELECT * FROM [view_name];
+```
+
+<a name="h52"/>
+
+**SQL Hosting**
+
+If you want your web site to be able to store and retrieve data from a database, your web server should have access to a database-system that uses the SQL language.
+
+If your web server is hosted by an Internet Service Provider (ISP), you will have to look for SQL hosting plans.
+
+The most common SQL hosting databases are MS SQL Server, Oracle, MySQL, and MS Access.
+
+* MS SQL Server:
+Microsoft's SQL Server is a popular database software for database-driven web sites with high traffic.
+
+SQL Server is a very powerful, robust and full featured SQL database system.
+
+* Oracle:
+Oracle is also a popular database software for database-driven web sites with high traffic.
+
+Oracle is a very powerful, robust and full featured SQL database system.
+
+* MySQL:
+MySQL is also a popular database software for web sites.
+
+MySQL is a very powerful, robust and full featured SQL database system.
+
+MySQL is an inexpensive alternative to the expensive Microsoft and Oracle solutions.
+
+* Access:
+When a web site requires only a simple database, Microsoft Access can be a solution.
+
+Access is not well suited for very high-traffic, and not as powerful as MySQL, SQL Server, or Oracle.
+
+<a name="h53"/>
+
 **USEFULL LINKS**
 
 **History:**
@@ -719,3 +1085,7 @@ https://www.w3schools.com/sql/default.asp
 **MySQL DELIMITER:**
 
 https://www.quackit.com/mysql/tutorial/mysql_stored_procedures.cfm
+
+**SQL Injection:**
+
+https://www.w3schools.com/sql/sql_injection.asp
