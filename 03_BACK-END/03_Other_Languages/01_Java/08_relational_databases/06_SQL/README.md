@@ -10,8 +10,6 @@ The following SQL code examples were tested using MySQL Workbench and its defaul
 | country | Code, Name, Continent, Region, SurfaceArea, IndepYear, Population, LifeExpectancy, GNP, GNPOId, LocalName, GovernmentForm, HeadOfState, Capital, Code2 |
 | countrylanguage | CountryCode, Language, IsOfficial, Percentage |
 
-
-
 <details open>
 <summary>Table of Contents</summary>
 <br>
