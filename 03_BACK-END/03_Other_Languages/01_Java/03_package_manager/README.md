@@ -11,12 +11,19 @@ The most upvoted answer is: **Maven**!
 <br>
 
 [Maven](#h1)
+
 [Creating a Project](#h2)
+
 [The POM](#h3)
+
 [Build the Project](#h4)
+
 [Compile the Project](#h5)
+
 [Running Maven Tools](#h6)
+
 [Generating the Site](#h7)
+
 [USEFULL LINKS](#h8)
 
 </details>
