@@ -9,12 +9,19 @@ Following the answer from this Quora question: **Which are the most common desig
 <br>
 
 [MVC](#h1)
+
 [ActiveRecord](#h2)
+
 [IoC](#h3)
+
 [Singleton](#h4)
+
 [Facade](#h5)
+
 [Adapter](#h6)
+
 [Mediator Pattern](#h7)
+
 [USEFULL LINKS](#h8)
 
 </details>
