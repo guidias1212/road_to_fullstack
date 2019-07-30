@@ -23,3 +23,8 @@ For a complete list of Standards and best practices suggested by Google, check t
 **Google's standards and best practices for Java:**
 
 https://google.github.io/styleguide/javaguide.html
+
+
+**Wikipedia:**
+
+https://en.wikipedia.org/wiki/Best_coding_practices
