@@ -32,7 +32,7 @@ Some usefull terminal commands used on MAC OS.
 
 [Hide non-active apps in your Dock](#h13)
 
-[USEFUULL LINKS](#h14)
+[USEFULL LINKS](#h14)
 
 </details>
 
@@ -137,7 +137,7 @@ killall Dock
 
 <a name="h14"/>
 
-**USEFUULL LINKS**
+**USEFULL LINKS**
 
 **MAC OS basic commands list:**
 
