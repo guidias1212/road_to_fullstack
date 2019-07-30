@@ -12,11 +12,21 @@ For a complete list of Standards and best practices suggested by Google, check t
 <summary>Table of Contents</summary>
 <br>
 
-[USEFULL LINKS](#h1)
+[OWASP Secure Coding Practices](#h1)
+
+[OWASP Secure Coding Practices](#h2)
 
 </details>
 
 <a name="h1"/>
+
+**OWASP Secure Coding Practices:**
+
+OWASP - The Open Source Web Application Security Project. The Secure Coding Practices Quick Reference Guide is a technology agnostic set of general software security coding practices, in a comprehensive checklist format, that can be integrated into the development lifecycle.
+
+For a Quick Reference Guide check the session on USEFULL LINKS.
+
+<a name="h2"/>
 
 **USEFUL LINKS**
 
@@ -28,3 +38,7 @@ https://google.github.io/styleguide/javaguide.html
 **Wikipedia:**
 
 https://en.wikipedia.org/wiki/Best_coding_practices
+
+**OWASP:**
+
+https://www.owasp.org/index.php/OWASP_Secure_Coding_Practices_-_Quick_Reference_Guide
