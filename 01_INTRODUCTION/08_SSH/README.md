@@ -26,7 +26,9 @@ Secure Shell (SSH) is a cryptographic network protocol for operating network ser
 
 [Conclusion](#h10)
 
-[USEFULL LINKS](#h11)
+[Testing SSH](#h11)
+
+[USEFULL LINKS](#h12)
 
 </details>
 
@@ -170,6 +172,45 @@ Hopefully, this SSH tutorial has helped you see the way different technologies c
 
 <a name="h11"/>
 
+**Testing SSH:**
+
+In order to test a SSH connection and send command messages to a server, quick create a 30 day free account on Digital Ocean:
+
+https://www.digitalocean.com/
+
+Create a new droplet:
+
+![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/ssh6.png)
+
+Select the default options and click on Create Droplet.
+
+After a few seconds, you will receive an Email with your droplet credentials:
+
+![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/ssh7.png)
+
+(The droplet in the images above was deleted, of course)
+
+After that, to connect to your newly created server, on your command prompt:
+```
+ssh root@165.22.210.160
+```
+
+And insert the password given in the Email.
+
+You can test the connection passing simple commands like:
+
+For Linux:
+```
+pwd
+```
+
+For Windows:
+```
+dir
+```
+
+<a name="h12"/>
+
 **USEFULL LINKS**
 
 **History and information:**
@@ -179,3 +220,11 @@ https://en.wikipedia.org/wiki/Secure_Shell
 **Tutorial:**
 
 https://www.hostinger.com/tutorials/ssh-tutorial-how-does-ssh-work
+
+**Putty Setup:**
+
+https://www.hostinger.com/tutorials/how-to-connect-to-your-account-using-putty
+
+**Digital Ocean:**
+
+https://www.digitalocean.com/
