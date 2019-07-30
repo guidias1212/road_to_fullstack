@@ -6,7 +6,7 @@ Secure Shell (SSH) is a cryptographic network protocol for operating network ser
 <summary>Table of Contents</summary>
 <br>
 
-[USEFULL LINKS](#h1)
+[What is SSH](#h1)
 
 [How Does SSH Work](#h2)
 
