@@ -1,7 +1,7 @@
 # 1.7) Semantic Versioning
 
 Semantic versioning (also referred as SemVer) is a versioning system that has been on the rise over the last few years. It has always been a problem for software developers, release managers and consumers. Having a universal way of versioning the software development projects is the best way to track what is going on with the software as new plugins, addons, libraries and extensions are being built almost everyday.
-Semantic Versioning is a 3-component number in the format of X.Y.Z, where :
+Semantic Versioning is a 3-component number in the format of X.Y.Z, where:
 
 * X stands for a major version.
 * Y stands for a minor version.
