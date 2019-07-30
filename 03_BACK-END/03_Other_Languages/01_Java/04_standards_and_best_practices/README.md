@@ -14,7 +14,7 @@ For a complete list of Standards and best practices suggested by Google, check t
 
 [OWASP Secure Coding Practices](#h1)
 
-[OWASP Secure Coding Practices](#h2)
+[USEFUL LINKS](#h2)
 
 </details>
 
