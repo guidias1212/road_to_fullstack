@@ -24,7 +24,9 @@ The most upvoted answer is: **Maven**!
 
 [Generating the Site](#h7)
 
-[USEFULL LINKS](#h8)
+[Testing the Site](#h8)
+
+[USEFULL LINKS](#h9)
 
 </details>
 
@@ -134,6 +136,16 @@ This phase generates a site based upon information on the project's pom. You can
 
 <a name="h8"/>
 
+**Testing the Site:**
+
+To try out the generated site, create a free account at Netlify:
+
+https://www.netlify.com/
+
+Then drag and drop the "site" folder to it (Located at my-app\target\site).
+
+<a name="h9"/>
+
 **USEFUL LINKS**
 
 **Maven:**
@@ -147,3 +159,7 @@ https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
 **Recomended package manager for Java:**
 
 https://stackoverflow.com/questions/2710266/is-there-a-package-manager-for-java-like-easy-install-for-python
+
+**Netlify:**
+
+https://www.netlify.com/
