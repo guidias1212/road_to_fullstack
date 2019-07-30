@@ -107,7 +107,7 @@ Once a secured symmetric communication has been established, the server uses the
 
 One-way hashing is another form of cryptography used in Secure Shell Connections. One-way-hash functions differ from the above two forms of encryption in the sense that they are never meant to be decrypted. They generate a unique value of a fixed length for each input that shows no clear trend which can exploited. This makes them practically impossible to reverse.
 
-![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/ssh3.png)
+![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/ssh31.png)
 
 It is easy to generate a cryptographic hash from a given input, but impossible to generate the input from the hash. This means that if a client holds the correct input, they can generate the crypto-graphic hash and compare its value to verify whether they possess the correct input.
 
