@@ -17,9 +17,9 @@ Software testing involves the execution of a software component or system compon
 
 [Unit Testing](#h1)
 
-[Integration Testing](#h1)
+[Integration Testing](#h2)
 
-[USEFUL LINKS](#h1)
+[USEFUL LINKS](#h3)
 
 </details>
 
