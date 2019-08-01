@@ -218,7 +218,7 @@ If this test is run, it will comprove that the objects are correctly integrated.
 
 <a name="h4"/>
 
-**Test Coverage:*
+**Test Coverage:**
 
 Test coverage is defined as a metric in Software Testing that measures the amount of testing performed by a set of test. It will include gathering information about which parts of a program are executed when running the test suite to determine which branches of conditional statements have been taken.
 
