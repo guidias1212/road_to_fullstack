@@ -114,3 +114,7 @@ https://en.wikipedia.org/wiki/Adapter_pattern
 
 https://en.wikipedia.org/wiki/Front_controller
 
+**Nice repository with Java design pattern examples:**
+
+https://github.com/iluwatar/java-design-patterns
+
