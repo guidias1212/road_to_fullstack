@@ -239,6 +239,10 @@ https://en.wikipedia.org/wiki/Software_testing
 
 https://en.wikipedia.org/wiki/Unit_testing
 
+**Integration Testing:**
+
+https://jrebel.com/rebellabs/the-correct-way-to-use-integration-tests-in-your-build-process/
+
 **How to write an Unit test in Java + Eclipse + Junit:**
 
 https://stackoverflow.com/questions/8751553/how-to-write-a-unit-test
