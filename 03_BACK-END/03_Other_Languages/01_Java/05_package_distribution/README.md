@@ -18,7 +18,7 @@ This package distribution example will be a Java usage with an Free API that sho
 
 The app distribution can be found under:
 
-
+https://github.com/guidias1212/Get-IP-Location-App
 
 <a name="h2"/>
 
