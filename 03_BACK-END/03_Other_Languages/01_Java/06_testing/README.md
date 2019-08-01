@@ -29,6 +29,8 @@ Software testing involves the execution of a software component or system compon
 
 In computer programming, unit testing is a software testing method by which individual units of source code, sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures, are tested to determine whether they are fit for use.
 
+The following example will test if the Dog objects are barking correctly and the Duck objects can fly and make quack correclty.
+
 To run an Unit test using Eclipse and the framework Junit (check link for full documentation below), create a new Java project in Eclipse:
 
 ![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/junit1.png)
