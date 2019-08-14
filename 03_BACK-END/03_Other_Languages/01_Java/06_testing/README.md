@@ -258,3 +258,7 @@ https://stackoverflow.com/questions/2665812/what-is-mocking
 **Stubs:**
 
 https://stackoverflow.com/questions/463278/what-is-a-stub
+
+**Web Application Testing:**
+
+https://examples.javacodegeeks.com/core-java/junit/junit-test-case-example-for-web-application/
