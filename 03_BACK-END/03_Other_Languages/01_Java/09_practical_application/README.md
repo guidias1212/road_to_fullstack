@@ -2,6 +2,14 @@
 
 Practical Application using the knowledge acquired so far: A simple E-Commerce platform.
 
+* **Source code:**
+
+https://github.com/guidias1212/Gui-Commerce
+
+* **Application:**
+
+https://gui-commerce.herokuapp.com
+
 <details open>
 <summary>Table of Contents</summary>
 <br>
@@ -16,7 +24,7 @@ Practical Application using the knowledge acquired so far: A simple E-Commerce p
 
 **Introduction:**
 
-To develop a practical application, the following components were previously configured, installed and integrated:
+To develop the practical application, the following components were previously configured, installed and integrated:
 
 * Eclipse IDE;
 
