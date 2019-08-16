@@ -20,7 +20,37 @@ Spring framework is an open source Java platform that provides comprehensive inf
 
 [Bean life cycle](#h7)
 
-[USEFUL LINKS](#hx)
+[Bean post processors](#h8)
+
+[Bean definition inheritance](#h9)
+
+[Dependency injection](#h10)
+
+[Injecting inner Beans](#h11)
+
+[Injecting collection](#h12)
+
+[Beans auto-wiring](#h13)
+
+[Annotation based configuration](#h14)
+
+[Java based configuration](#h15)
+
+[Event handling in Spring](#h16)
+
+[Custom events in Spring](#h17)
+
+[AOP with Spring Framework](#h18)
+
+[JDBC Framework](#h19)
+
+[Transaction management](#h20)
+
+[Web MVC Framework](#h21)
+
+[Logging with Log4J](#h22)
+
+[USEFUL LINKS](#h23)
 
 </details>
 
@@ -336,7 +366,879 @@ Your Message : null
 
 **Bean life cycle:**
 
-<a name="hx"/>
+The life cycle of a Spring bean is easy to understand. When a bean is instantiated, it may be required to perform some initialization to get it into a usable state. Similarly, when the bean is no longer required and is removed from the container, some cleanup may be required.
+
+To define setup and teardown for a bean, we simply declare the <bean> with **initmethod** and/or **destroy-method** parameters. The init-method attribute specifies a method that is to be called on the bean immediately upon instantiation. Similarly, destroymethod specifies a method that is called just before a bean is removed from the container.
+
+**Initialization callbacks**
+
+The org.springframework.beans.factory.InitializingBean interface specifies a single method:
+```
+void afterPropertiesSet() throws Exception;
+```
+
+Thus, you can simply implement the above interface and initialization work can be done inside afterPropertiesSet() method as follows:
+```
+public class ExampleBean implements InitializingBean {
+   public void afterPropertiesSet() {
+      // do some initialization work
+   }
+}
+```
+
+In the case of XML-based configuration metadata, you can use the init-method attribute to specify the name of the method that has a void no-argument signature:
+```
+<bean id = "exampleBean" class = "examples.ExampleBean" init-method = "init"/>
+```
+
+Following is the class definition:
+```
+public class ExampleBean {
+   public void init() {
+      // do some initialization work
+   }
+}
+```
+
+**Destruction callbacks**
+
+The org.springframework.beans.factory.DisposableBean interface specifies a single method:
+```
+void destroy() throws Exception;
+```
+
+Thus, you can simply implement the above interface and finalization work can be done inside destroy() method as follows:
+```
+public class ExampleBean implements DisposableBean {
+   public void destroy() {
+      // do some destruction work
+   }
+}
+```
+
+In the case of XML-based configuration metadata, you can use the destroy-method attribute to specify the name of the method that has a void no-argument signature. For example:
+```
+<bean id = "exampleBean" class = "examples.ExampleBean" destroy-method = "destroy"/>
+```
+
+Following is the class definition:
+```
+public class ExampleBean {
+   public void destroy() {
+      // do some destruction work
+   }
+}
+```
+
+It is recommended that you do not use the InitializingBean or DisposableBean callbacks, because XML configuration gives much flexibility in terms of naming your method.
+
+To test the Bean lifecycle, create a Spring project with the following files:
+
+HelloWorld.java
+```
+package com.LifeCycleExample;
+
+public class HelloWorld {
+   private String message;
+
+   public void setMessage(String message){
+      this.message = message;
+   }
+   public void getMessage(){
+      System.out.println("Your Message : " + message);
+   }
+   public void init(){
+      System.out.println("Bean is going through init.");
+   }
+   public void destroy() {
+      System.out.println("Bean will destroy now.");
+   }
+}
+```
+
+MainApp.java
+```
+package com.LifeCycleExample;
+
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      AbstractApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+
+      HelloWorld obj = (HelloWorld) context.getBean("helloWorld");
+      obj.getMessage();
+      context.registerShutdownHook();
+   }
+}
+```
+
+Beans.xml
+```
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <bean id = "helloWorld" class = "com.LifeCycleExample.HelloWorld" init-method = "init" 
+      destroy-method = "destroy">
+      <property name = "message" value = "Hello World!"/>
+   </bean>
+
+</beans>
+```
+
+Once you are done creating the source and bean configuration files, let us run the application. If everything is fine with your application, it will print the following message:
+```
+Bean is going through init.
+Your Message : Hello World!
+Bean will destroy now.
+```
+
+**Default initialization and destroy methods**
+
+If you have too many beans having initialization and/or destroy methods with the same name, you don't need to declare init-method and destroy-method on each individual bean. Instead, the framework provides the flexibility to configure such situation using default-init-method and default-destroy-method attributes on the <beans> element as follows:
+```
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+   default-init-method = "init" 
+   default-destroy-method = "destroy">
+
+   <bean id = "..." class = "...">
+      <!-- collaborators and configuration for this bean go here -->
+   </bean>
+   
+</beans>
+```
+
+<a name="h8"/>
+
+**Bean post processors:**
+
+The BeanPostProcessor interface defines callback methods that you can implement to provide your own instantiation logic, dependency-resolution logic, etc. You can also implement some custom logic after the Spring container finishes instantiating, configuring, and initializing a bean by plugging in one or more BeanPostProcessor implementations.
+
+You can configure multiple BeanPostProcessor interfaces and you can control the order in which these BeanPostProcessor interfaces execute by setting the order property provided the BeanPostProcessor implements the Ordered interface.
+
+The BeanPostProcessors operate on bean (or object) instances, which means that the Spring IoC container instantiates a bean instance and then BeanPostProcessor interfaces do their work.
+
+An ApplicationContext automatically detects any beans that are defined with the implementation of the BeanPostProcessor interface and registers these beans as postprocessors, to be then called appropriately by the container upon bean creation.
+
+To test the Bean post processor, create a Spring project with the following files:
+
+HelloWorld.java
+```
+package com.PostProcessorExample;
+
+public class HelloWorld {
+   private String message;
+
+   public void setMessage(String message){
+      this.message  = message;
+   }
+   public void getMessage(){
+      System.out.println("Your Message : " + message);
+   }
+   public void init(){
+      System.out.println("Bean is going through init.");
+   }
+   public void destroy(){
+      System.out.println("Bean will destroy now.");
+   }
+}
+```
+
+InitHelloWorld.java
+```
+package com.PostProcessorExample;
+
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.beans.BeansException;
+
+public class InitHelloWorld implements BeanPostProcessor {
+   public Object postProcessBeforeInitialization(Object bean, String beanName) 
+      throws BeansException {
+      
+      System.out.println("BeforeInitialization : " + beanName);
+      return bean;  // you can return any other object as well
+   }
+   public Object postProcessAfterInitialization(Object bean, String beanName) 
+      throws BeansException {
+      
+      System.out.println("AfterInitialization : " + beanName);
+      return bean;  // you can return any other object as well
+   }
+}
+```
+
+MainApp.java
+```
+package com.PostProcessorExample;
+
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      AbstractApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+
+      HelloWorld obj = (HelloWorld) context.getBean("helloWorld");
+      obj.getMessage();
+      context.registerShutdownHook();
+   }
+}
+```
+
+Beans.xml
+```
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <bean id = "helloWorld" class = "com.PostProcessorExample.HelloWorld"
+      init-method = "init" destroy-method = "destroy">
+      <property name = "message" value = "Hello World!"/>
+   </bean>
+
+   <bean class = "com.PostProcessorExample.InitHelloWorld" />
+
+</beans>
+```
+
+Once you are done with creating the source and bean configuration files, let us run the application. If everything is fine with your application, it will print the following message:
+```
+BeforeInitialization : helloWorld
+Bean is going through init.
+AfterInitialization : helloWorld
+Your Message : Hello World!
+Bean will destroy now.
+```
+
+<a name="h9"/>
+
+**Bean definition inheritance:**
+
+A bean definition can contain a lot of configuration information, including constructor arguments, property values, and container-specific information such as initialization method, static factory method name, and so on.
+
+A child bean definition inherits configuration data from a parent definition. The child definition can override some values, or add others, as needed.
+
+Spring Bean definition inheritance has nothing to do with Java class inheritance but the inheritance concept is same. You can define a parent bean definition as a template and other child beans can inherit the required configuration from the parent bean.
+
+When you use XML-based configuration metadata, you indicate a child bean definition by using the parent attribute, specifying the parent bean as the value of this attribute.
+
+To test the Bean definition inheritance, create a Spring project with the following files:
+
+Beans.xml
+```
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <bean id = "helloWorld" class = "com.DefinitionInheritanceExample.HelloWorld">
+      <property name = "message1" value = "Hello World!"/>
+      <property name = "message2" value = "Hello Second World!"/>
+   </bean>
+
+   <bean id ="helloBrazil" class = "com.DefinitionInheritanceExample.HelloBrazil" parent = "helloWorld">
+      <property name = "message1" value = "Hello Brazil"/>
+      <property name = "message3" value = "Samba!"/>
+   </bean>
+</beans>
+```
+
+HelloWorld.java
+```
+package com.DefinitionInheritanceExample;
+
+public class HelloWorld {
+	   private String message1;
+	   private String message2;
+
+	   public void setMessage1(String message){
+	      this.message1 = message;
+	   }
+	   public void setMessage2(String message){
+	      this.message2 = message;
+	   }
+	   public void getMessage1(){
+	      System.out.println("World Message1 : " + message1);
+	   }
+	   public void getMessage2(){
+	      System.out.println("World Message2 : " + message2);
+	   }
+	}
+```
+
+HelloBrazil.java
+```
+package com.DefinitionInheritanceExample;
+
+public class HelloBrazil {
+	   private String message1;
+	   private String message2;
+	   private String message3;
+
+	   public void setMessage1(String message){
+	      this.message1 = message;
+	   }
+	   public void setMessage2(String message){
+	      this.message2 = message;
+	   }
+	   public void setMessage3(String message){
+	      this.message3 = message;
+	   }
+	   public void getMessage1(){
+	      System.out.println("Brazil Message1 : " + message1);
+	   }
+	   public void getMessage2(){
+	      System.out.println("Brazil Message2 : " + message2);
+	   }
+	   public void getMessage3(){
+	      System.out.println("Brazil Message3 : " + message3);
+	   }
+	}
+```
+
+MainApp.java
+```
+package com.DefinitionInheritanceExample;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+      
+      HelloWorld objA = (HelloWorld) context.getBean("helloWorld");
+      objA.getMessage1();
+      objA.getMessage2();
+
+      HelloBrazil objB = (HelloBrazil) context.getBean("helloBrazil");
+      objB.getMessage1();
+      objB.getMessage2();
+      objB.getMessage3();
+   }
+}
+```
+
+Once you are done creating the source and bean configuration files, let us run the application. If everything is fine with your application, it will print the following message:
+```
+World Message1 : Hello World!
+World Message2 : Hello Second World!
+Brazil Message1 : Hello Brazil
+Brazil Message2 : Hello Second World!
+Brazil Message3 : Samba!
+```
+
+**Bean definition template**
+
+You can create a Bean definition template, which can be used by other child bean definitions without putting much effort. While defining a Bean Definition Template, you should not specify the class attribute and should specify abstract attribute and should specify the abstract attribute with a value of true:
+
+Bean.xml
+```
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <bean id = "beanTeamplate" abstract = "true">
+      <property name = "message1" value = "Hello World!"/>
+      <property name = "message2" value = "Hello Second World!"/>
+      <property name = "message3" value = "Samba!"/>
+   </bean>
+
+   <bean id = "helloBrazil" class = "com.DefinitionInheritanceExample.HelloBrazil" parent = "beanTeamplate">
+      <property name = "message1" value = "Hello Brazil!"/>
+      <property name = "message3" value = "Samba!"/>
+   </bean>
+   
+</beans>
+```
+
+The parent bean cannot be instantiated on its own because it is incomplete, and it is also explicitly marked as abstract. When a definition is abstract like this, it is usable only as a pure template bean definition that serves as a parent definition for child definitions.
+
+<a name="h10"/>
+
+**Dependency injection:**
+
+Every Java-based application has a few objects that work together to present what the end-user sees as a working application. When writing a complex Java application, application classes should be as independent as possible of other Java classes to increase the possibility to reuse these classes and to test them independently of other classes while unit testing. Dependency Injection (or sometime called wiring) helps in gluing these classes together and at the same time keeping them independent.
+
+Consider you have an application which has a text editor component and you want to provide a spell check. Your standard code would look something like this:
+```
+public class TextEditor {
+   private SpellChecker spellChecker;
+   
+   public TextEditor() {
+      spellChecker = new SpellChecker();
+   }
+}
+```
+
+What we've done here is, create a dependency between the TextEditor and the SpellChecker. In an inversion of control scenario, we would instead do something like this:
+```
+public class TextEditor {
+   private SpellChecker spellChecker;
+   
+   public TextEditor(SpellChecker spellChecker) {
+      this.spellChecker = spellChecker;
+   }
+}
+```
+
+Here, the TextEditor should not worry about SpellChecker implementation. The SpellChecker will be implemented independently and will be provided to the TextEditor at the time of TextEditor instantiation. This entire procedure is controlled by the Spring Framework.
+
+Here, we have removed total control from the TextEditor and kept it somewhere else (i.e. XML configuration file) and the dependency (i.e. class SpellChecker) is being injected into the class TextEditor through a Class Constructor. Thus the flow of control has been "inverted" by Dependency Injection (DI) because you have effectively delegated dependances to some external system.
+
+The second method of injecting dependency is through Setter Methods of the TextEditor class where we will create a SpellChecker instance. This instance will be used to call setter methods to initialize TextEditor's properties.
+
+DI exists in two major variants:
+
+* Constructor-based dependency injection - Constructor-based DI is accomplished when the container invokes a class constructor with a number of arguments, each representing a dependency on the other class.
+
+* Setter-based dependency injection - Setter-based DI is accomplished by the container calling setter methods on your beans after invoking a no-argument constructor or no-argument static factory method to instantiate your bean.
+
+The code is cleaner with the DI principle and decoupling is more effective when objects are provided with their dependencies. The object does not look up its dependencies and does not know the location or class of the dependencies, rather everything is taken care by the Spring Framework.
+
+<a name="h11"/>
+
+**Injecting inner Beans:**
+
+As you know Java inner classes are defined within the scope of other classes, similarly, inner beans are beans that are defined within the scope of another bean. A <bean/> element inside the <property/> or <constructor-arg/> elements is called inner bean:
+```
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <bean id = "outerBean" class = "...">
+      <property name = "target">
+         <bean id = "innerBean" class = "..."/>
+      </property>
+   </bean>
+
+</beans>
+```
+
+To test the injecting inner Beans, create a Spring project with the following files:
+
+TextEditor.java
+```
+package com.InnerInjectionExample;
+
+public class TextEditor {
+	   private SpellChecker spellChecker;
+	   
+	   // a setter method to inject the dependency.
+	   public void setSpellChecker(SpellChecker spellChecker) {
+	      System.out.println("Inside setSpellChecker." );
+	      this.spellChecker = spellChecker;
+	   }
+	   
+	   // a getter method to return spellChecker
+	   public SpellChecker getSpellChecker() {
+	      return spellChecker;
+	   }
+	   public void spellCheck() {
+	      spellChecker.checkSpelling();
+	   }
+	}
+
+```
+
+SpellChecker.java
+```
+package com.InnerInjectionExample;
+
+public class SpellChecker {
+	   public SpellChecker(){
+	      System.out.println("Inside SpellChecker constructor." );
+	   }
+	   public void checkSpelling(){
+	      System.out.println("Inside checkSpelling." );
+	   }
+	}
+```
+
+MainApp.java
+```
+package com.InnerInjectionExample;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+      TextEditor te = (TextEditor) context.getBean("textEditor");
+      te.spellCheck();
+   }
+}
+
+```
+
+Beans.xml
+```
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <!-- Definition for textEditor bean using inner bean -->
+   <bean id = "textEditor" class = "com.InnerInjectionExample.TextEditor">
+      <property name = "spellChecker">
+         <bean id = "spellChecker" class = "com.InnerInjectionExample.SpellChecker"/>
+      </property>
+   </bean>
+
+</beans>
+```
+
+Once you are done creating the source and bean configuration files, let us run the application. If everything is fine with your application, it will print the following message:
+```
+Inside SpellChecker constructor.
+Inside setSpellChecker.
+Inside checkSpelling.
+```
+
+<a name="h12"/>
+
+**Injecting collection:**
+
+You have seen how to configure primitive data type using value attribute and object references using ref attribute of the <property> tag in your Bean configuration file. Both the cases deal with passing singular value to a bean.
+
+Now what if you want to pass multiple values like Java Collection types such as List, Set, Map, and Properties. To handle the situation, Spring offers four types of collection configuration elements which are as follows:
+
+* <list> - This helps in wiring ie injecting a list of values, allowing duplicates.
+
+* <set> - This helps in wiring a set of values but without any duplicates.
+
+* <map> - This can be used to inject a collection of name-value pairs where name and value can be of any type.
+
+* <props> - This can be used to inject a collection of name-value pairs where the name and value are both Strings.
+
+
+You can use either <list> or <set> to wire any implementation of java.util.Collection or an array.
+
+You will come across two situations (a) Passing direct values of the collection and (b) Passing a reference of a bean as one of the collection elements.
+
+To test injecting collection, create a Spring project with the following files:
+
+JavaCollection.java
+```
+package com.InjectingCollectionExample;
+
+import java.util.*;
+
+public class JavaCollection {
+   List addressList;
+   Set  addressSet;
+   Map  addressMap;
+   Properties addressProp;
+
+   // a setter method to set List
+   public void setAddressList(List addressList) {
+      this.addressList = addressList;
+   }
+   
+   // prints and returns all the elements of the list.
+   public List getAddressList() {
+      System.out.println("List Elements :"  + addressList);
+      return addressList;
+   }
+   
+   // a setter method to set Set
+   public void setAddressSet(Set addressSet) {
+      this.addressSet = addressSet;
+   }
+   
+   // prints and returns all the elements of the Set.
+   public Set getAddressSet() {
+      System.out.println("Set Elements :"  + addressSet);
+      return addressSet;
+   }
+   
+   // a setter method to set Map
+   public void setAddressMap(Map addressMap) {
+      this.addressMap = addressMap;
+   }
+   
+   // prints and returns all the elements of the Map.
+   public Map getAddressMap() {
+      System.out.println("Map Elements :"  + addressMap);
+      return addressMap;
+   }
+   
+   // a setter method to set Property
+   public void setAddressProp(Properties addressProp) {
+      this.addressProp = addressProp;
+   }
+   
+   // prints and returns all the elements of the Property.
+   public Properties getAddressProp() {
+      System.out.println("Property Elements :"  + addressProp);
+      return addressProp;
+   }
+}
+```
+
+MainApp.java
+```
+package com.InjectingCollectionExample;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+      JavaCollection jc=(JavaCollection)context.getBean("javaCollection");
+
+      jc.getAddressList();
+      jc.getAddressSet();
+      jc.getAddressMap();
+      jc.getAddressProp();
+   }
+}
+```
+
+Beans.xml
+```
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <!-- Definition for javaCollection -->
+   <bean id = "javaCollection" class = "com.InjectingCollectionExample.JavaCollection">
+      
+      <!-- results in a setAddressList(java.util.List) call -->
+      <property name = "addressList">
+         <list>
+            <value>Address 1</value>
+            <value>Address 2</value>
+            <value>Address 3</value>
+            <value>Address 3</value>
+         </list>
+      </property>
+
+      <!-- results in a setAddressSet(java.util.Set) call -->
+      <property name = "addressSet">
+         <set>
+            <value>Address 1</value>
+            <value>Address 2</value>
+            <value>Address 3</value>
+            <value>Address 3</value>
+         </set>
+      </property>
+
+      <!-- results in a setAddressMap(java.util.Map) call -->
+      <property name = "addressMap">
+         <map>
+            <entry key = "1" value = "Address 1"/>
+            <entry key = "2" value = "Address 2"/>
+            <entry key = "3" value = "Address 3"/>
+            <entry key = "4" value = "Address 4"/>
+         </map>
+      </property>
+      
+      <!-- results in a setAddressProp(java.util.Properties) call -->
+      <property name = "addressProp">
+         <props>
+            <prop key = "one">Address 1</prop>
+            <prop key = "one">Address 1</prop>
+            <prop key = "two">Address 2</prop>
+            <prop key = "three">Address 3</prop>
+            <prop key = "four">Address 4</prop>
+         </props>
+      </property>
+   </bean>
+
+</beans>
+```
+
+Once you are done creating the source and bean configuration files, let us run the application. If everything is fine with your application, it will print the following message:
+```
+List Elements :[Address 1, Address 2, Address 3, Address 3]
+Set Elements :[Address 1, Address 2, Address 3]
+Map Elements :{1=Address 1, 2=Address 2, 3=Address 3, 4=Address 4}
+Property Elements :{four=Address 4, one=Address 1, two=Address 2, three=Address 3}
+```
+
+**Injecting Bean references**
+
+The following Bean definition will help you understand how to inject bean references as one of the collection's element. You can mix references and values:
+```
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <!-- Bean Definition to handle references and values -->
+   <bean id = "..." class = "...">
+
+      <!-- Passing bean reference  for java.util.List -->
+      <property name = "addressList">
+         <list>
+            <ref bean = "address1"/>
+            <ref bean = "address2"/>
+            <value>Brazil</value>
+         </list>
+      </property>
+      
+      <!-- Passing bean reference  for java.util.Set -->
+      <property name = "addressSet">
+         <set>
+            <ref bean = "address1"/>
+            <ref bean = "address2"/>
+            <value>Brazil</value>
+         </set>
+      </property>
+      
+      <!-- Passing bean reference  for java.util.Map -->
+      <property name = "addressMap">
+         <map>
+            <entry key = "one" value = "Brazil"/>
+            <entry key = "two" value-ref = "address1"/>
+            <entry key = "three" value-ref = "address2"/>
+         </map>
+      </property>
+   </bean>
+
+</beans>
+```
+
+To use the above bean definition, you need to define your setter methods to handle references as well.
+
+**Injecting null and empty string values**
+
+empty string
+```
+<bean id = "..." class = "exampleBean">
+   <property name = "email" value = ""/>
+</bean>
+```
+
+The preceding example is equivalent to the Java code: exampleBean.setEmail("")
+
+Null
+```
+<bean id = "..." class = "exampleBean">
+   <property name = "email"><null/></property>
+</bean>
+```
+
+The preceding example is equivalent to the Java code: exampleBean.setEmail(null)
+
+<a name="h13"/>
+
+**Beans auto-wiring:**
+
+You have learnt how to declare beans using the <bean> element and inject <bean> using <constructor-arg> and <property> elements in XML configuration file.
+
+The Spring container can autowire relationships between collaborating beans without using <constructor-arg> and <property> elements, which helps cut down on the amount of XML configuration you write for a big Spring-based application.
+
+**Autowiring Modes**
+
+* no - This is default setting which means no autowiring and you should use explicit bean reference for wiring. You have nothing to do special for this wiring. This is what you already have seen in Dependency Injection chapter.
+
+* byName - Autowiring by property name. Spring container looks at the properties of the beans on which autowire attribute is set to byName in the XML configuration file. It then tries to match and wire its properties with the beans defined by the same names in the configuration file.
+
+* byType - Autowiring by property datatype. Spring container looks at the properties of the beans on which autowire attribute is set to byType in the XML configuration file. It then tries to match and wire a property if its type matches with exactly one of the beans name in configuration file. If more than one such beans exists, a fatal exception is thrown.
+
+* constructor - Similar to byType, but type applies to constructor arguments. If there is not exactly one bean of the constructor argument type in the container, a fatal error is raised.
+
+* autodetect - Spring first tries to wire using autowire by constructor, if it does not work, Spring tries to autowire by byType.
+
+<a name="h14"/>
+
+**Annotation based configuration:**
+
+Starting from Spring 2.5 it became possible to configure the dependency injection using annotations. So instead of using XML to describe a bean wiring, you can move the bean configuration into the component class itself by using annotations on the relevant class, method, or field declaration.
+
+Annotation injection is performed before XML injection. The later configuration will override the former properties wired.
+
+Annotation wiring is not turned on in the Spring container by default. So, before we can use annotation-based wiring, we will need to enable it in our Spring configuration file. So consider the following configuration file in case you want to use any annotation in your Spring application:
+```
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context = "http://www.springframework.org/schema/context"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+   <context:annotation-config/>
+   <!-- bean definitions go here -->
+
+</beans>
+```
+
+Once <context:annotation-config/> is configured, you can start annotating your code to indicate that Spring should automatically wire values into properties, methods, and constructors:
+
+* @Required - The @Required annotation applies to bean property setter methods.
+
+* @Autowired - The @Autowired annotation can apply to bean property setter methods, non-setter methods, constructor and properties.
+
+* @Qualifier - The @Qualifier annotation along with @Autowired can be used to remove the confusion by specifiying which exact bean will be wired.
+
+* JSR-250 Annotations - Spring supports JSR-250 based annotations which include @Resource, @PostConstruct and @PreDestroy annotations.
+
+<a name="h15"/>
+
+**Java based configuration:**
+
+<a name="h16"/>
+
+**Event handling in Spring:**
+
+<a name="h17"/>
+
+**Custom events in Spring:**
+
+<a name="h18"/>
+
+**AOP with Spring Framework:**
+
+<a name="h19"/>
+
+**JDBC Framework:
+
+<a name="h20"/>
+
+**Transaction management:**
+
+<a name="h21"/>
+
+**Web MVC Framework:**
+
+<a name="h22"/>
+
+**Logging with Log4J:**
+
+<a name="h23"/>
 
 **USEFUL LINKS**
 
