@@ -7,8 +7,8 @@ https://github.com/kamranahmedse/developer-roadmap
 
 ![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/intro.png)
 
-![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/frontend.png)
-
 ![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/backend.png)
+
+![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/frontend.png)
 
 ![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/devops.png)
