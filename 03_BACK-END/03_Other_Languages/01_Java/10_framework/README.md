@@ -135,7 +135,7 @@ Beans.xml
    xsi:schemaLocation = "http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-   <bean id = "helloWorld" class = "com.tutorialspoint.HelloWorld">
+   <bean id = "helloWorld" class = "com.package.HelloWorld">
       <property name = "message" value = "Hello World!"/>
    </bean>
 
@@ -278,7 +278,7 @@ Beans.xml
    xsi:schemaLocation = "http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-   <bean id = "helloWorld" class = "com.tutorialspoint.HelloWorld" scope = "singleton">
+   <bean id = "helloWorld" class = "com.singletonExample.HelloWorld" scope = "singleton">
    </bean>
 
 </beans>
@@ -1210,17 +1210,538 @@ Once <context:annotation-config/> is configured, you can start annotating your c
 
 **Java based configuration:**
 
+Java-based configuration option enables you to write most of your Spring configuration without XML but with the help of few Java-based annotations explained in this chapter.
+
+@Configuration & @Bean Annotations
+
+Annotating a class with the @Configuration indicates that the class can be used by the Spring IoC container as a source of bean definitions. The @Bean annotation tells Spring that a method annotated with @Bean will return an object that should be registered as a bean in the Spring application context:
+```
+import org.springframework.context.annotation.*;
+
+@Configuration
+public class HelloWorldConfig {
+   @Bean 
+   public HelloWorld helloWorld(){
+      return new HelloWorld();
+   }
+}
+```
+
+The above code will be equivalent to the following XML configuration:
+```
+<beans>
+   <bean id = "helloWorld" class = "com.package.HelloWorld" />
+</beans>
+```
+
+Here, the method name is annotated with @Bean works as bean ID and it creates and returns the actual bean. Your configuration class can have a declaration for more than one @Bean. Once your configuration classes are defined, you can load and provide them to Spring container using AnnotationConfigApplicationContext as follows:
+```
+public static void main(String[] args) {
+   ApplicationContext ctx = new AnnotationConfigApplicationContext(HelloWorldConfig.class);
+   
+   HelloWorld helloWorld = ctx.getBean(HelloWorld.class);
+   helloWorld.setMessage("Hello World!");
+   helloWorld.getMessage();
+}
+```
+
+You can load various configuration:
+```
+public static void main(String[] args) {
+   AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+
+   ctx.register(AppConfig.class, OtherConfig.class);
+   ctx.register(AdditionalConfig.class);
+   ctx.refresh();
+
+   MyService myService = ctx.getBean(MyService.class);
+   myService.doStuff();
+}
+```
+
+To test Java based configuration, create a Spring project with the following files:
+
+HelloWorldConfig.java
+```
+package com.JavaBasedConfig;
+import org.springframework.context.annotation.*;
+
+@Configuration
+public class HelloWorldConfig {
+   @Bean 
+   public HelloWorld helloWorld(){
+      return new HelloWorld();
+   }
+}
+```
+
+HelloWorld.java
+```
+package com.JavaBasedConfig;
+
+public class HelloWorld {
+   private String message;
+
+   public void setMessage(String message){
+      this.message  = message;
+   }
+   public void getMessage(){
+      System.out.println("Your Message : " + message);
+   }
+}
+```
+
+MainApp.java
+```
+package com.JavaBasedConfig;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.*;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext ctx = 
+         new AnnotationConfigApplicationContext(HelloWorldConfig.class);
+   
+      HelloWorld helloWorld = ctx.getBean(HelloWorld.class);
+      helloWorld.setMessage("Hello World!");
+      helloWorld.getMessage();
+   }
+}
+```
+
+Once you have done creating all the source files and adding the required additional libraries, let us run the application. You should note that there is no configuration file required. If everything is fine with your application, it will print the following message:
+```
+Your Message : Hello World!
+```
+
+**Injecting bean dependencies**
+
+When @Beans have dependencies on one another, expressing that the dependency is as simple as having one bean method calling another:
+```
+import org.springframework.context.annotation.*;
+
+@Configuration
+public class AppConfig {
+   @Bean
+   public Foo foo() {
+      return new Foo(bar());
+   }
+   @Bean
+   public Bar bar() {
+      return new Bar();
+   }
+}
+```
+
+Here, the foo bean receives a reference to bar via the constructor injection.
+
+To test Java based configuration with Bean dependency injections, create a Spring project with the following files:
+
+TextEditorConfig.java
+```
+package com.DependencyInjection;
+import org.springframework.context.annotation.*;
+
+@Configuration
+public class TextEditorConfig {
+   @Bean 
+   public TextEditor textEditor(){
+      return new TextEditor( spellChecker() );
+   }
+
+   @Bean 
+   public SpellChecker spellChecker(){
+      return new SpellChecker( );
+   }
+}
+```
+
+TextEditor.java
+```
+package com.DependencyInjection;
+
+public class TextEditor {
+   private SpellChecker spellChecker;
+
+   public TextEditor(SpellChecker spellChecker){
+      System.out.println("Inside TextEditor constructor." );
+      this.spellChecker = spellChecker;
+   }
+   public void spellCheck(){
+      spellChecker.checkSpelling();
+   }
+}
+```
+
+SpellChecker.java
+```
+package com.DependencyInjection;
+
+public class SpellChecker {
+   public SpellChecker(){
+      System.out.println("Inside SpellChecker constructor." );
+   }
+   public void checkSpelling(){
+      System.out.println("Inside checkSpelling." );
+   }
+}
+```
+
+MainApp.java
+```
+package com.DependencyInjection;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.*;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext ctx = 
+         new AnnotationConfigApplicationContext(TextEditorConfig.class);
+
+      TextEditor te = ctx.getBean(TextEditor.class);
+      te.spellCheck();
+   }
+}
+```
+
+Once you have done creating all the source files and adding the required additional libraries, let us run the application. You should note that there is no configuration file required. If everything is fine with your application, it will print the following message:
+```
+Inside SpellChecker constructor.
+Inside TextEditor constructor.
+Inside checkSpelling.
+```
+
+**The @Import annotation**
+
+The @Import annotation allows for loading @Bean definitions from another configuration class. Consider a ConfigA class as follows:
+```
+@Configuration
+public class ConfigA {
+   @Bean
+   public A a() {
+      return new A(); 
+   }
+}
+```
+
+You can import above Bean declaration in another Bean Declaration:
+```
+@Configuration
+@Import(ConfigA.class)
+public class ConfigB {
+   @Bean
+   public B b() {
+      return new B(); 
+   }
+}
+```
+
+Now, rather than needing to specify both ConfigA.class and ConfigB.class when instantiating the context, only ConfigB needs to be supplied:
+```
+public static void main(String[] args) {
+   ApplicationContext ctx = new AnnotationConfigApplicationContext(ConfigB.class);
+   
+   // now both beans A and B will be available...
+   A a = ctx.getBean(A.class);
+   B b = ctx.getBean(B.class);
+}
+```
+
+**Lifecycle Callbacks**
+
+The @Bean annotation supports specifying arbitrary initialization and destruction callback methods, much like Spring XML's init-method and destroy-method attributes on the bean element:
+```
+public class Foo {
+   public void init() {
+      // initialization logic
+   }
+   public void cleanup() {
+      // destruction logic
+   }
+}
+@Configuration
+public class AppConfig {
+   @Bean(initMethod = "init", destroyMethod = "cleanup" )
+   public Foo foo() {
+      return new Foo();
+   }
+}
+```
+
+**Specifying Bean scope**
+
+The default scope is singleton, but you can override this with the @Scope annotation as follows:
+```
+@Configuration
+public class AppConfig {
+   @Bean
+   @Scope("prototype")
+   public Foo foo() {
+      return new Foo();
+   }
+}
+```
+
 <a name="h16"/>
 
 **Event handling in Spring:**
+
+The core of Spring is the ApplicationContext, which manages the complete life cycle of the beans. The ApplicationContext publishes certain types of events when loading the beans. For example, a ContextStartedEvent is published when the context is started and ContextStoppedEvent is published when the context is stopped.
+
+Event handling in the ApplicationContext is provided through the ApplicationEvent class and ApplicationListener interface. Hence, if a bean implements the ApplicationListener, then every time an ApplicationEvent gets published to the ApplicationContext, that bean is notified.
+
+Spring provides the following standard events:
+
+**ContextRefreshedEvent** - This event is published when the ApplicationContext is either initialized or refreshed. This can also be raised using the refresh() method on the ConfigurableApplicationContext interface.
+
+**ContextStartedEvent** - This event is published when the ApplicationContext is started using the start() method on the ConfigurableApplicationContext interface. You can poll your database or you can restart any stopped application after receiving this event.
+
+**ContextStoppedEvent** - This event is published when the ApplicationContext is stopped using the stop() method on the ConfigurableApplicationContext interface. You can do required housekeep work after receiving this event.
+
+**ContextClosedEvent** - This event is published when the ApplicationContext is closed using the close() method on the ConfigurableApplicationContext interface. A closed context reaches its end of life; it cannot be refreshed or restarted.
+
+**RequestHandledEvent** - This is a web-specific event telling all beans that an HTTP request has been serviced.
+
+Spring's event handling is single-threaded so if an event is published, until and unless all the receivers get the message, the processes are blocked and the flow will not continue. Hence, care should be taken when designing your application if the event handling is to be used.
+
+To test Event Handling, create a Spring project with the following files:
+
+HelloWorld.java
+```
+package com.ContextEvents;
+
+public class HelloWorld {
+   private String message;
+
+   public void setMessage(String message){
+      this.message  = message;
+   }
+   public void getMessage(){
+      System.out.println("Your Message : " + message);
+   }
+}
+```
+
+CStartEventHandler.java
+```
+package com.ContextEvents;
+
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextStartedEvent;
+
+public class CStartEventHandler 
+   implements ApplicationListener<ContextStartedEvent>{
+
+   public void onApplicationEvent(ContextStartedEvent event) {
+      System.out.println("ContextStartedEvent Received");
+   }
+}
+```
+
+CStopEventHandler.java
+```
+package com.ContextEvents;
+
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextStoppedEvent;
+
+public class CStopEventHandler 
+   implements ApplicationListener<ContextStoppedEvent>{
+
+   public void onApplicationEvent(ContextStoppedEvent event) {
+      System.out.println("ContextStoppedEvent Received");
+   }
+}
+```
+
+MainApp.java
+```
+package com.ContextEvents;
+
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ConfigurableApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+
+      // Let us raise a start event.
+      context.start();
+	  
+      HelloWorld obj = (HelloWorld) context.getBean("helloWorld");
+      obj.getMessage();
+
+      // Let us raise a stop event.
+      context.stop();
+   }
+}
+```
+
+Beans.xml
+```
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <bean id = "helloWorld" class = "com.ContextEvents.HelloWorld">
+      <property name = "message" value = "Hello World!"/>
+   </bean>
+
+   <bean id = "cStartEventHandler" class = "com.ContextEvents.CStartEventHandler"/>
+   <bean id = "cStopEventHandler" class = "com.ContextEvents.CStopEventHandler"/>
+
+</beans>
+```
+
+Once you are done creating the source and bean configuration files, let us run the application. If everything is fine with your application, it will print the following message:
+```
+ContextStartedEvent Received
+Your Message : Hello World!
+ContextStoppedEvent Received
+```
 
 <a name="h17"/>
 
 **Custom events in Spring:**
 
+To test Event Handling, create a Spring project with the following files:
+
+CustomEvent.java
+```
+package com.CustomEvents;
+
+import org.springframework.context.ApplicationEvent;
+
+public class CustomEvent extends ApplicationEvent{
+   public CustomEvent(Object source) {
+      super(source);
+   }
+   public String toString(){
+      return "My Custom Event";
+   }
+}
+```
+
+CustomEventPublisher.java
+```
+package com.CustomEvents;
+
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
+
+public class CustomEventPublisher implements ApplicationEventPublisherAware {
+   private ApplicationEventPublisher publisher;
+   
+   public void setApplicationEventPublisher (ApplicationEventPublisher publisher) {
+      this.publisher = publisher;
+   }
+   public void publish() {
+      CustomEvent ce = new CustomEvent(this);
+      publisher.publishEvent(ce);
+   }
+}
+```
+
+CustomEventHandler.java
+```
+package com.CustomEvents;
+
+import org.springframework.context.ApplicationListener;
+
+public class CustomEventHandler implements ApplicationListener<CustomEvent> {
+   public void onApplicationEvent(CustomEvent event) {
+      System.out.println(event.toString());
+   }
+}
+```
+
+MainApp.java
+```
+package com.CustomEvents;
+
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ConfigurableApplicationContext context = 
+         new ClassPathXmlApplicationContext("Beans.xml");
+	  
+      CustomEventPublisher cvp = 
+         (CustomEventPublisher) context.getBean("customEventPublisher");
+      
+      cvp.publish();  
+      cvp.publish();
+   }
+}
+```
+
+Beans.xml
+```
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <bean id = "customEventHandler" class = "com.CustomEvents.CustomEventHandler"/>
+   <bean id = "customEventPublisher" class = "com.CustomEvents.CustomEventPublisher"/>
+
+</beans>
+```
+
+Once you are done creating the source and bean configuration files, let us run the application. If everything is fine with your application, it will print the following message:
+```
+My Custom Event
+My Custom Event
+```
+
 <a name="h18"/>
 
 **AOP with Spring Framework:**
+
+One of the key components of Spring Framework is the Aspect oriented programming (AOP) framework. Aspect-Oriented Programming entails breaking down program logic into distinct parts called concerns. The functions that span multiple points of an application are called cross-cutting concerns and these cross-cutting concerns are conceptually separate from the application's business logic. There are various common good examples of aspects like logging, auditing, declarative transactions, security, caching, etc.
+
+The key unit of modularity in OOP is the class, whereas in AOP the unit of modularity is the aspect. Dependency Injection helps you decouple your application objects from each other and AOP helps you decouple cross-cutting concerns from the objects that they affect. AOP is like triggers in programming languages such as Perl, .NET, Java, and others.
+
+Spring AOP module provides interceptors to intercept an application. For example, when a method is executed, you can add extra functionality before or after the method execution.
+
+**AOP Terminologies**
+
+**Aspect** - This is a module which has a set of APIs providing cross-cutting requirements. For example, a logging module would be called AOP aspect for logging. An application can have any number of aspects depending on the requirement.
+
+**Join point** - This represents a point in your application where you can plug-in the AOP aspect. You can also say, it is the actual place in the application where an action will be taken using Spring AOP framework.
+
+**Advice** - This is the actual action to be taken either before or after the method execution. This is an actual piece of code that is invoked during the program execution by Spring AOP framework.
+
+**Pointcut** - This is a set of one or more join points where an advice should be executed. You can specify pointcuts using expressions or patterns as we will see in our AOP examples.
+
+**Introduction** - An introduction allows you to add new methods or attributes to the existing classes.
+
+**Target object** - The object being advised by one or more aspects. This object will always be a proxied object, also referred to as the advised object.
+
+**Weaving** - Weaving is the process of linking aspects with other application types or objects to create an advised object. This can be done at compile time, load time, or at runtime.
+
+**Types of Advice**
+
+Spring aspects can work with five kinds of advice:
+
+before - Run advice before the a method execution.
+
+after - Run advice after the method execution, regardless of its outcome.
+
+after-returning - Run advice after the a method execution only if method completes successfully.
+
+after-throwing - Run advice after the a method execution only if method exits by throwing an exception.
+
+around - Run advice before and after the advised method is invoked.
 
 <a name="h19"/>
 
