@@ -16,9 +16,9 @@ PostgreSQL is a powerful, open source object-relational database system with ove
 
 **Setup: Connect Java to a PostgreSQL database**
 
-Here's a step by step explanation how to install MySQL and JDBC and how to use it:
+Here's a step by step explanation how to install PostgreSQL and JDBC and how to use it:
 
-**1)** Download and install the MySQL server. Just do it the usual way. Remember the port number whenever you've changed it. It's by default 5432.
+**1)** Download and install the PostgreSQL server. Just do it the usual way. Remember the port number whenever you've changed it. It's by default 5432.
 
 https://www.postgresql.org/download/windows/
 
@@ -35,7 +35,7 @@ java -cp .;/path/to/postgreSQL_jdbc.jar com.example.YourClass
 
 **4)** On "pgAdmin" GUI, create an user for Java and grant it access.
 
-**5)** Determine the JDBC URL. To connect the MySQL database using Java you need an JDBC URL in the following syntax:
+**5)** Determine the JDBC URL. To connect the PostgreSQL database using Java you need an JDBC URL in the following syntax:
 ```
 jdbc:postgresql://hostname:port/databasename
 ```
@@ -48,7 +48,7 @@ Where:
 
 * databasename: The name of the database you'd like to connect to.
 
-**6)** Test the connection to MySQL using Java. Create a simple Java class with a main() method to test the connection.
+**6)** Test the connection to PostgreSQL using Java. Create a simple Java class with a main() method to test the connection.
 ```
 import java.sql.Connection;
 import java.sql.DriverManager;
