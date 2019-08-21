@@ -1877,7 +1877,7 @@ String SQL = "CREATE TABLE Student( " +
 jdbcTemplateObject.execute( SQL );
 ```
 
-To test Event Handling, create a Spring project with the following files:
+To test JDBC Framework, create a Spring project with the following files:
 
 Content of the Data Access Object interface file **StudentDAO.java**
 ```
@@ -1976,7 +1976,6 @@ public class StudentMapper implements RowMapper<Student> {
    }
 }
 ```
-
 
 Implementation class file **StudentJDBCTemplate.java** for the defined DAO interface StudentDAO
 ```
@@ -2116,6 +2115,88 @@ ID : 2, Name : Harry, Age : 20
 <a name="h20"/>
 
 **Transaction management:**
+
+A database transaction is a sequence of actions that are treated as a single unit of work. These actions should either complete entirely or take no effect at all. Transaction management is an important part of RDBMS-oriented enterprise application to ensure data integrity and consistency. The concept of transactions can be described with the following four key properties described as **ACID**:
+
+**Atomicity** − A transaction should be treated as a single unit of operation, which means either the entire sequence of operations is successful or unsuccessful.
+
+**Consistency** − This represents the consistency of the referential integrity of the database, unique primary keys in tables, etc.
+
+**Isolation** − There may be many transaction processing with the same data set at the same time. Each transaction should be isolated from others to prevent data corruption.
+
+**Durability** − Once a transaction has completed, the results of this transaction have to be made permanent and cannot be erased from the database due to system failure.
+
+A real RDBMS database system will guarantee all four properties for each transaction. The simplistic view of a transaction issued to the database using SQL is:
+
+1) Begin the transaction using begin transaction command.
+
+2) Perform various deleted, update or insert operations using SQL queries.
+
+3) If all the operation are successful then perform commit otherwise rollback all the operations.
+
+Spring supports two types of transaction management −
+
+* Declarative transaction management − This means you separate transaction management from the business code. You only use annotations or XML-based configuration to manage the transactions.
+
+* Programmatic transaction management − This means that you have to manage the transaction with the help of programming. That gives you extreme flexibility, but it is difficult to maintain.
+
+**Programmatic transaction management**
+
+To test Programatic Transaction Management, create a Spring project with the following files:
+
+It is important to have at least two database tables on which we can perform various CRUD operations with the help of transactions. Let us take a **Student** table, which can be created in PostgreSQL TEST database with the following DDL:
+```
+CREATE TABLE Student(
+   ID   INT NOT NULL AUTO_INCREMENT,
+   NAME VARCHAR(20) NOT NULL,
+   AGE  INT NOT NULL,
+   PRIMARY KEY (ID)
+);
+```
+
+Second table is **Marks** in which we will maintain marks for the students based on years. Here SID is the foreign key for the Student table.
+```
+CREATE TABLE Marks(
+   SID INT NOT NULL,
+   MARKS  INT NOT NULL,
+   YEAR   INT NOT NULL
+);
+```
+
+Use PlatformTransactionManager directly to implement the programmatic approach to implement transactions. To start a new transaction, you need to have a instance of TransactionDefinition with the appropriate transaction attributes. For this example, we will simply create an instance ofDefaultTransactionDefinition to use the default transaction attributes.
+
+Once the TransactionDefinition is created, you can start your transaction by calling getTransaction() method, which returns an instance of TransactionStatus. The TransactionStatus objects helps in tracking the current status of the transaction and finally, if everything goes fine, you can use commit() method of PlatformTransactionManager to commit the transaction, otherwise you can use rollback() to rollback the complete operation.
+
+Now, write a Spring JDBC application which will implement simple operations on the Student and Marks tables:
+
+Content of the Data Access Object interface file StudentDAO.java
+```
+```
+
+Content of the StudentMarks.java file
+```
+```
+
+Content of the StudentMarksMapper.java file
+```
+```
+
+Implementation class file StudentJDBCTemplate.java for the defined DAO interface StudentDAO
+```
+```
+
+MainApp.java
+```
+```
+
+Beans.xml
+```
+```
+
+Once you are done creating the source and bean configuration files, let us run the application. If everything is fine with your application, it will print the following exception. In this case, the transaction will be rolled back and no record will be created in the database table.
+```
+```
+
 
 <a name="h21"/>
 
