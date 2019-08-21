@@ -48,9 +48,10 @@ Spring framework is an open source Java platform that provides comprehensive inf
 
 [Web MVC Framework](#h21)
 
-[Logging with Log4J](#h22)
 
-[USEFUL LINKS](#h23)
+
+
+[USEFUL LINKS](#h22)
 
 </details>
 
@@ -2171,42 +2172,342 @@ Now, write a Spring JDBC application which will implement simple operations on t
 
 Content of the Data Access Object interface file StudentDAO.java
 ```
+package com.ProgramaticTransaction;
+
+import java.util.List;
+import javax.sql.DataSource;
+
+public interface StudentDAO {
+   /** 
+      * This is the method to be used to initialize
+      * database resources ie. connection.
+   */
+   public void setDataSource(DataSource ds);
+   
+   /** 
+      * This is the method to be used to create
+      * a record in the Student and Marks tables.
+   */
+   public void create(String name, Integer age, Integer marks, Integer year);
+   
+   /** 
+      * This is the method to be used to list down
+      * all the records from the Student and Marks tables.
+   */
+   public List<StudentMarks> listStudents();
+}
 ```
 
 Content of the StudentMarks.java file
 ```
+package com.ProgramaticTransaction;
+
+public class StudentMarks {
+	   private Integer age;
+	   private String name;
+	   private Integer id;
+	   private Integer marks;
+	   private Integer year;
+	   private Integer sid;
+
+	   public void setAge(Integer age) {
+	      this.age = age;
+	   }
+	   public Integer getAge() {
+	      return age;
+	   }
+	   public void setName(String name) {
+	      this.name = name;
+	   }
+	   public String getName() {
+	      return name;
+	   }
+	   public void setId(Integer id) {
+	      this.id = id;
+	   }
+	   public Integer getId() {
+	      return id;
+	   }
+	   public void setMarks(Integer marks) {
+	      this.marks = marks;
+	   }
+	   public Integer getMarks() {
+	      return marks;
+	   }
+	   public void setYear(Integer year) {
+	      this.year = year;
+	   }
+	   public Integer getYear() {
+	      return year;
+	   }
+	   public void setSid(Integer sid) {
+	      this.sid = sid;
+	   }
+	   public Integer getSid() {
+	      return sid;
+	   }
+	}
 ```
 
 Content of the StudentMarksMapper.java file
 ```
+package com.ProgramaticTransaction;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper;
+
+public class StudentMarksMapper implements RowMapper<StudentMarks> {
+   public StudentMarks mapRow(ResultSet rs, int rowNum) throws SQLException {
+      StudentMarks studentMarks = new StudentMarks();
+      studentMarks.setId(rs.getInt("id"));
+      studentMarks.setName(rs.getString("name"));
+      studentMarks.setAge(rs.getInt("age"));
+      studentMarks.setSid(rs.getInt("sid"));
+      studentMarks.setMarks(rs.getInt("marks"));
+      studentMarks.setYear(rs.getInt("year"));
+
+      return studentMarks;
+   }
+}
 ```
 
 Implementation class file StudentJDBCTemplate.java for the defined DAO interface StudentDAO
 ```
+package com.ProgramaticTransaction;
+
+import java.util.List;
+import javax.sql.DataSource;
+
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
+
+public class StudentJDBCTemplate implements StudentDAO {
+   private DataSource dataSource;
+   private JdbcTemplate jdbcTemplateObject;
+   private PlatformTransactionManager transactionManager;
+
+   public void setDataSource(DataSource dataSource) {
+      this.dataSource = dataSource;
+      this.jdbcTemplateObject = new JdbcTemplate(dataSource);
+   }
+   public void setTransactionManager(PlatformTransactionManager transactionManager) {
+      this.transactionManager = transactionManager;
+   }
+   public void create(String name, Integer age, Integer marks, Integer year){
+      TransactionDefinition def = new DefaultTransactionDefinition();
+      TransactionStatus status = transactionManager.getTransaction(def);
+
+      try {
+         String SQL1 = "INSERT INTO \"Student\" (\"NAME\", \"AGE\") VALUES (?, ?)";
+         jdbcTemplateObject.update( SQL1, name, age);
+
+         // Get the latest student id to be used in Marks table
+         String SQL2 = "SELECT MAX(\"ID\") FROM \"Student\"";
+         int sid = jdbcTemplateObject.queryForObject( SQL2, Integer.class );
+
+         String SQL3 = "INSERT INTO \"Marks\"(\"SID\", \"MARKS\", \"YEAR\") " + "VALUES (?, ?, ?)";
+         jdbcTemplateObject.update( SQL3, sid, marks, year);
+
+         System.out.println("Created Name = " + name + ", Age = " + age);
+         transactionManager.commit(status);
+      } 
+      catch (DataAccessException e) {
+         System.out.println("Error in creating record, rolling back");
+         transactionManager.rollback(status);
+         throw e;
+      }
+      return;
+   }
+   public List<StudentMarks> listStudents() {
+      String SQL = "SELECT * FROM \"Student\", \"Marks\" WHERE \"Student\".\"ID\"=\"Marks\".\"SID\"";
+      List <StudentMarks> studentMarks = jdbcTemplateObject.query(SQL, 
+         new StudentMarksMapper());
+      
+      return studentMarks;
+   }
+}
 ```
 
 MainApp.java
 ```
+package com.ProgramaticTransaction;
+
+import java.util.List;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.ProgramaticTransaction.StudentJDBCTemplate;
+
+public class MainApp {
+   public static void main(String[] args) {
+      ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+      StudentJDBCTemplate studentJDBCTemplate = 
+         (StudentJDBCTemplate)context.getBean("studentJDBCTemplate");
+      
+      System.out.println("------Records creation--------" );
+      studentJDBCTemplate.create("Guilherme", 11, 99, 2010);
+      studentJDBCTemplate.create("Harry", 20, 97, 2010);
+      studentJDBCTemplate.create("Harryson", 25, 100, 2011);
+
+      System.out.println("------Listing all the records--------" );
+      List<StudentMarks> studentMarks = studentJDBCTemplate.listStudents();
+      
+      for (StudentMarks record : studentMarks) {
+         System.out.print("ID : " + record.getId() );
+         System.out.print(", Name : " + record.getName() );
+         System.out.print(", Marks : " + record.getMarks());
+         System.out.print(", Year : " + record.getYear());
+         System.out.println(", Age : " + record.getAge());
+      }
+   }
+}
 ```
 
 Beans.xml
 ```
+<?xml version = "1.0" encoding = "UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd ">
+
+   <!-- Initialization for data source -->
+   <bean id = "dataSource" 
+	   class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+	   <property name = "driverClassName" value = "org.postgresql.Driver"/>
+	   <property name = "url" value = "jdbc:postgresql://localhost:5432/TEST"/>
+	   <property name = "username" value = "postgres"/>
+	   <property name = "password" value = "admin"/>
+	</bean>
+
+   <!-- Initialization for TransactionManager -->
+   <bean id = "transactionManager" 
+      class = "org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name = "dataSource"  ref = "dataSource" />    
+   </bean>
+
+   <!-- Definition for studentJDBCTemplate bean -->
+   <bean id = "studentJDBCTemplate"
+      class = "com.ProgramaticTransaction.StudentJDBCTemplate">
+      <property name = "dataSource" ref = "dataSource" />
+      <property name = "transactionManager" ref = "transactionManager" />    
+   </bean>
+      
+</beans>
 ```
 
-Once you are done creating the source and bean configuration files, let us run the application. If everything is fine with your application, it will print the following exception. In this case, the transaction will be rolled back and no record will be created in the database table.
+Once you are done creating the source and bean configuration files, let us run the application. If everything is fine with your application, it will print the following (Also try to make a mistake on purpose and check the rollback result):
 ```
+------Records creation--------
+Created Name = Guilherme, Age = 11
+Created Name = Harry, Age = 20
+Created Name = Harryson, Age = 25
+------Listing all the records--------
+ID : 1, Name : Guilherme, Marks : 99, Year : 2010, Age : 11
+ID : 2, Name : Harry, Marks : 97, Year : 2010, Age : 20
+ID : 3, Name : Harryson, Marks : 100, Year : 2011, Age : 25
 ```
 
+**Spring Transaction Abstractions**
+
+The key to the Spring transaction abstraction is defined by the org.springframework.transaction.PlatformTransactionManager interface, which is as follows:
+```
+public interface PlatformTransactionManager {
+   TransactionStatus getTransaction(TransactionDefinition definition);
+   throws TransactionException;
+   
+   void commit(TransactionStatus status) throws TransactionException;
+   void rollback(TransactionStatus status) throws TransactionException;
+}
+```
+
+TransactionStatus getTransaction(TransactionDefinition definition) - This method returns a currently active transaction or creates a new one, according to the specified propagation behavior.
+
+**void commit(TransactionStatus status)** - This method commits the given transaction, with regard to its status.
+
+**void rollback(TransactionStatus status)** - This method performs a rollback of the given transaction.
+
+The TransactionDefinition is the core interface of the transaction support in Spring and it is defined as follows:
+```
+public interface TransactionDefinition {
+   int getPropagationBehavior();
+   int getIsolationLevel();
+   String getName();
+   int getTimeout();
+   boolean isReadOnly();
+}
+```
+
+**int getPropagationBehavior()** - This method returns the propagation behavior. Spring offers all of the transaction propagation options familiar from EJB CMT.
+
+**int getIsolationLevel()** - This method returns the degree to which this transaction is isolated from the work of other transactions.
+
+**String getName()** - This method returns the name of this transaction.
+
+**int getTimeout()** - This method returns the time in seconds in which the transaction must complete.
+
+**boolean isReadOnly()** - This method returns whether the transaction is read-only.
+
+Following are the possible values for isolation level:
+
+**TransactionDefinition.ISOLATION_DEFAULT** - This is the default isolation level.
+
+**TransactionDefinition.ISOLATION_READ_COMMITTED** - Indicates that dirty reads are prevented; non-repeatable reads and phantom reads can occur.
+
+**TransactionDefinition.ISOLATION_READ_UNCOMMITTED** - Indicates that dirty reads, non-repeatable reads, and phantom reads can occur.
+
+**TransactionDefinition.ISOLATION_REPEATABLE_READ** - Indicates that dirty reads and non-repeatable reads are prevented; phantom reads can occur.
+
+**TransactionDefinition.ISOLATION_SERIALIZABLE** - Indicates that dirty reads, non-repeatable reads, and phantom reads are prevented.
+
+Following are the possible values for propagation types:
+
+**TransactionDefinition.PROPAGATION_MANDATORY** - Supports a current transaction; throws an exception if no current transaction exists.
+
+**TransactionDefinition.PROPAGATION_NESTED** - Executes within a nested transaction if a current transaction exists.
+
+**TransactionDefinition.PROPAGATION_NEVER** - Does not support a current transaction; throws an exception if a current transaction exists.
+
+**TransactionDefinition.PROPAGATION_NOT_SUPPORTED** - Does not support a current transaction; rather always execute nontransactionally.
+
+**TransactionDefinition.PROPAGATION_REQUIRED** - Supports a current transaction; creates a new one if none exists.
+
+**TransactionDefinition.PROPAGATION_REQUIRES_NEW** - Creates a new transaction, suspending the current transaction if one exists.
+
+**TransactionDefinition.PROPAGATION_SUPPORTS** - Supports a current transaction; executes non-transactionally if none exists.
+
+**TransactionDefinition.TIMEOUT_DEFAULT** - Uses the default timeout of the underlying transaction system, or none if timeouts are not supported.
+
+The TransactionStatus interface provides a simple way for transactional code to control transaction execution and query transaction status.
+```
+public interface TransactionStatus extends SavepointManager {
+   boolean isNewTransaction();
+   boolean hasSavepoint();
+   void setRollbackOnly();
+   boolean isRollbackOnly();
+   boolean isCompleted();
+}
+```
+
+**boolean hasSavepoint()** - This method returns whether this transaction internally carries a savepoint, i.e., has been created as nested transaction based on a savepoint.
+
+**boolean isCompleted()** - This method returns whether this transaction is completed, i.e., whether it has already been committed or rolled back.
+
+**boolean isNewTransaction()** - This method returns true in case the present transaction is new.
+
+**boolean isRollbackOnly()** - This method returns whether the transaction has been marked as rollback-only.
+
+**void setRollbackOnly()** - This method sets the transaction as rollback-only.
 
 <a name="h21"/>
 
 **Web MVC Framework:**
 
 <a name="h22"/>
-
-**Logging with Log4J:**
-
-<a name="h23"/>
 
 **USEFUL LINKS**
 
