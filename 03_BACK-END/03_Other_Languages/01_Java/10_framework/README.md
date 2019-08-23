@@ -48,7 +48,7 @@ Spring framework is an open source Java platform that provides comprehensive inf
 
 [Web MVC Framework](#h21)
 
-[Spring MVC Example](#h22)
+[Spring MVC CRUD directory structure example using Maven](#h22)
 
 [USEFUL LINKS](#h23)
 
@@ -2671,13 +2671,9 @@ Here ${message} is the attribute which we have set up inside the Controller. You
 
 <a name="h22"/>
 
-**Spring MVC Example using Maven**
-
-In this application, I am creating most simple employee management application demo having only one feature i.e. list all available employees in system. Let’s note down the directory structure of this application:
+**Spring MVC CRUD directory structure example using Maven**
 
 ![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/Spring_MVC_Structure.png)
-
-
 
 <a name="h23"/>
 
@@ -2691,10 +2687,13 @@ https://www.tutorialspoint.com/spring/index.htm
 
 https://www.tutorialspoint.com/spring/spring_environment_setup.htm
 
-**Spring MVC Tutorials**
+**Spring MVC CRUD Tutorial**
 
-https://howtodoinjava.com/spring-mvc-tutorial/
+https://www.javatpoint.com/spring-mvc-crud-example
 
+**Fix 404 error:**
+
+https://www.youtube.com/watch?v=kjkqYSTLVLE
 
 
 
