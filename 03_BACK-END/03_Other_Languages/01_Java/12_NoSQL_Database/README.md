@@ -360,33 +360,445 @@ Options parameter is optional, so you need to specify only the name of the colle
 | size | number | (Optional) Specifies a maximum size in bytes for a capped collection. If capped is true, then you need to specify this field also. |
 | max | number | (Optional) Specifies the maximum number of documents allowed in the capped collection. |
 
+While inserting the document, MongoDB first checks size field of capped collection, then it checks max field.
+
+Basic syntax of createCollection() method without options:
+```
+>use test
+switched to db test
+>db.createCollection("mycollection")
+{ "ok" : 1 }
+>
+```
+
+You can check the created collection by using the command show collections:
+```
+>show collections
+mycollection
+system.indexes
+```
+
+The following example shows the syntax of createCollection() method with few important options:
+```
+>db.createCollection("mycol", { capped : true, autoIndexId : true, size : 
+   6142800, max : 10000 } )
+{ "ok" : 1 }
+>
+```
+
+In MongoDB, you don't need to create collection. MongoDB creates collection automatically, when you insert some document:
+```
+>db.COLLECTION_NAME.insert({"name" : "COLLECTION_NAME"})
+>show collections
+mycol
+mycollection
+system.indexes
+COLLECTION_NAME
+>
+```
+
 <a name="h8"/>
 
 **Drop Collection:**
+
+MongoDB's **db.collection.drop()** is used to drop a collection from the database:
+```
+db.COLLECTION_NAME.drop()
+```
+
+Example
+
+First, check the available collections into your database mydb.
+```
+>use mydb
+switched to db mydb
+>show collections
+mycol
+mycollection
+system.indexes
+COLLECTION_NAME
+>
+```
+
+Now drop the collection with the name COLLECTION_NAME:
+```
+>db.COLLECTION_NAME.drop()
+true
+>
+```
+
+Again check the list of collections into database:
+```
+>show collections
+mycol
+system.indexes
+tutorialspoint
+>
+```
+
+drop() method will return true, if the selected collection is dropped successfully, otherwise it will return false.
 
 <a name="h9"/>
 
 **Data Types:**
 
+MongoDB supports many datatypes. Some of them are:
+
+* **String** − This is the most commonly used datatype to store the data. String in MongoDB must be UTF-8 valid.
+
+* **Integer** − This type is used to store a numerical value. Integer can be 32 bit or 64 bit depending upon your server.
+
+* **Boolean** − This type is used to store a boolean (true/ false) value.
+
+* **Double** − This type is used to store floating point values.
+
+* **Min/ Max keys** − This type is used to compare a value against the lowest and highest BSON elements.
+
+* **Arrays** − This type is used to store arrays or list or multiple values into one key.
+
+* **Timestamp** − ctimestamp. This can be handy for recording when a document has been modified or added.
+
+* **Object** − This datatype is used for embedded documents.
+
+* **Null** − This type is used to store a Null value.
+
+* **Symbol** − This datatype is used identically to a string; however, it's generally reserved for languages that use a specific symbol type.
+
+* **Date** − This datatype is used to store the current date or time in UNIX time format. You can specify your own date time by creating object of Date and passing day, month, year into it.
+
+* **Object ID** − This datatype is used to store the document’s ID.
+
+* **Binary data** − This datatype is used to store binary data.
+
+* **Code** − This datatype is used to store JavaScript code into the document.
+
+* **Regular expression** − This datatype is used to store regular expression.
+
 <a name="h10"/>
 
 **Insert Document:**
+
+To insert data into MongoDB collection, you need to use MongoDB's **insert()** or **save()** method:
+```
+db.COLLECTION_NAME.insert(document)
+```
+
+Example:
+```
+>db.mycol.insert({
+   _id: ObjectId(7df78ad8902c),
+   title: 'MongoDB Overview', 
+   description: 'MongoDB is no sql database',
+   by: 'Guilherme Dias',
+   url: 'http://www.github.com',
+   tags: ['mongodb', 'database', 'NoSQL'],
+   likes: 100
+})
+```
+
+Here mycol is our collection name. If the collection doesn't exist in the database, then MongoDB will create this collection and then insert a document into it.
+
+In the inserted document, if we don't specify the _id parameter, then MongoDB assigns a unique ObjectId for this document.
+
+To insert multiple documents in a single query, you can pass an array of documents in insert() command:
+```
+>db.post.insert([
+   {
+      title: 'MongoDB Overview', 
+      description: 'MongoDB is no sql database',
+      by: 'Guilherme Dias',
+      url: 'http://www.github.com',
+      tags: ['mongodb', 'database', 'NoSQL'],
+      likes: 100
+   },
+	
+   {
+      title: 'NoSQL Database', 
+      description: "NoSQL database doesn't have tables",
+      by: 'Guilherme Dias',
+      url: 'http://www.github.com',
+      tags: ['mongodb', 'database', 'NoSQL'],
+      likes: 20, 
+      comments: [	
+         {
+            user:'user1',
+            message: 'My first comment',
+            dateCreated: new Date(2013,11,10,2,35),
+            like: 0 
+         }
+      ]
+   }
+])
+```
+
+To insert the document you can use db.post.save(document) also. If you don't specify _id in the document then save() method will work same as insert() method. If you specify _id then it will replace whole data of document containing _id as specified in save() method.
 
 <a name="h11"/>
 
 **Query Document:**
 
+To query data from MongoDB collection, you need to use MongoDB's **find()** method:
+```
+db.COLLECTION_NAME.find()
+```
+
+**find()** method will display all the documents in a non-structured way.
+
+To display the results in a formatted way, you can use **pretty()** method:
+```
+db.mycol.find().pretty()
+```
+
+Example:
+```
+>db.mycol.find().pretty()
+{
+   "_id": ObjectId(7df78ad8902c),
+   "title": "MongoDB Overview", 
+   "description": "MongoDB is no sql database",
+   "by": "tutorials point",
+   "url": "http://www.tutorialspoint.com",
+   "tags": ["mongodb", "database", "NoSQL"],
+   "likes": "100"
+}
+>
+```
+
+Apart from find() method, there is **findOne()** method, that returns only one document.
+
+RDBMS Where Clause Equivalents in MongoDB
+
+To query the document on the basis of some condition, you can use following operations:
+
+| **Operation** | **Syntax** | **Example** | **RDBMS Equivalent** |
+| --- | --- | --- | --- |
+| Equality | {<key>:<value>} | db.mycol.find({"by":"guilherme dias"}).pretty() | where by = 'guilherme dias' |
+| Less Than | {<key>:{$lt:<value>}} | db.mycol.find({"likes":{$lt:50}}).pretty() | where likes < 50 |
+| Less Than Equals | {<key>:{$lte:<value>}} | db.mycol.find({"likes":{$lte:50}}).pretty() | where likes <= 50 |
+| Greater Than | {<key>:{$gt:<value>}} | db.mycol.find({"likes":{$gt:50}}).pretty() | where likes > 50 |
+| Greater Than Equals | {<key>:{$gte:<value>}} | db.mycol.find({"likes":{$gte:50}}).pretty() | where likes >= 50 |
+| Not Equals | {<key>:{$ne:<value>}} | db.mycol.find({"likes":{$ne:50}}).pretty() | where likes != 50 |
+
+
+**AND** in MongoDB
+
+Syntax:
+
+In the **find()** method, if you pass multiple keys by separating them by ',' then MongoDB treats it as **AND** condition:
+```
+>db.mycol.find(
+   {
+      $and: [
+         {key1: value1}, {key2:value2}
+      ]
+   }
+).pretty()
+```
+
+Example:
+
+Following example will show all the tutorials written by 'guilherme dias' and whose title is 'MongoDB Overview':
+```
+>db.mycol.find({$and:[{"by":"guilherme dias"},{"title": "MongoDB Overview"}]}).pretty() {
+   "_id": ObjectId(7df78ad8902c),
+   "title": "MongoDB Overview", 
+   "description": "MongoDB is no sql database",
+   "by": "guilherme dias",
+   "url": "http://www.github.com",
+   "tags": ["mongodb", "database", "NoSQL"],
+   "likes": "100"
+}
+```
+
+For the above given example, equivalent where clause will be ' where by = 'guilherme dias' AND title = 'MongoDB Overview' '. You can pass any number of key, value pairs in find clause.
+
+**OR** in MongoDB
+
+Syntax:
+
+To query documents based on the OR condition, you need to use $or keyword:
+```
+>db.mycol.find(
+   {
+      $or: [
+         {key1: value1}, {key2:value2}
+      ]
+   }
+).pretty()
+```
+
+Example:
+
+Following example will show all the tutorials written by 'guilherme dias' or whose title is 'MongoDB Overview'.
+```
+>db.mycol.find({$or:[{"by":"guilherme dias"},{"title": "MongoDB Overview"}]}).pretty()
+{
+   "_id": ObjectId(7df78ad8902c),
+   "title": "MongoDB Overview", 
+   "description": "MongoDB is no sql database",
+   "by": "guilherme dias",
+   "url": "http://www.github.com",
+   "tags": ["mongodb", "database", "NoSQL"],
+   "likes": "100"
+}
+>
+```
+
+Using AND and OR Together
+
+Example:
+
+The following example will show the documents that have likes greater than 10 and whose title is either 'MongoDB Overview' or by is 'guilherme dias'. Equivalent SQL where clause is 'where likes>10 AND (by = 'tutorials point' OR title = 'MongoDB Overview')'
+```
+>db.mycol.find({"likes": {$gt:10}, $or: [{"by": "tutorials point"},
+   {"title": "MongoDB Overview"}]}).pretty()
+{
+   "_id": ObjectId(7df78ad8902c),
+   "title": "MongoDB Overview", 
+   "description": "MongoDB is no sql database",
+   "by": "tutorials point",
+   "url": "http://www.tutorialspoint.com",
+   "tags": ["mongodb", "database", "NoSQL"],
+   "likes": "100"
+}
+>
+```
+
 <a name="h12"/>
 
 **Update Document:**
+
+MongoDB's **update()** and **save()** methods are used to update document into a collection. The **update()** method updates the values in the existing document while the **save()** method replaces the existing document with the document passed in **save()** method:
+```
+db.COLLECTION_NAME.update(SELECTION_CRITERIA, UPDATED_DATA)
+```
+
+Example
+Consider the mycol collection has the following data:
+```
+{ "_id" : ObjectId(5983548781331adf45ec5), "title":"MongoDB Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec6), "title":"NoSQL Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec7), "title":"Java Overview"}
+```
+
+The following example will set the new title 'New MongoDB Tutorial' of the documents whose title is 'MongoDB Overview':
+```
+>db.mycol.update({'title':'MongoDB Overview'},{$set:{'title':'New MongoDB Tutorial'}})
+>db.mycol.find()
+{ "_id" : ObjectId(5983548781331adf45ec5), "title":"New MongoDB Tutorial"}
+{ "_id" : ObjectId(5983548781331adf45ec6), "title":"NoSQL Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec7), "title":"Java Overview"}
+>
+```
+
+By default, MongoDB will update only a single document. To update multiple documents, you need to set a parameter 'multi' to true:
+```
+>db.mycol.update({'title':'MongoDB Overview'},
+   {$set:{'title':'New MongoDB Tutorial'}},{multi:true})
+```
+
+MongoDB **save()** Method:
+
+The **save()** method replaces the existing document with the new document passed in the save() method:
+```
+db.COLLECTION_NAME.save({_id:ObjectId(),NEW_DATA})
+```
+
+Example:
+
+Following example will replace the document with the _id '5983548781331adf45ec5':
+```
+>db.mycol.save(
+   {
+      "_id" : ObjectId(5983548781331adf45ec5), "title":"Guilherme Dias New Topic",
+      "by":"Guilherme Dias"
+   }
+)
+>db.mycol.find()
+{ "_id" : ObjectId(5983548781331adf45ec5), "title":"Guilherme Dias New Topic",
+   "by":"Tutorials Point"}
+{ "_id" : ObjectId(5983548781331adf45ec6), "title":"NoSQL Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec7), "title":"Guilherme Dias Overview"}
+>
+```
 
 <a name="h13"/>
 
 **Delete Document:**
 
+MongoDB's **remove()** method is used to remove a document from the collection. **remove()** method accepts two parameters. One is deletion criteria and second is justOne flag:
+
+* **deletion criteria** − (Optional) deletion criteria according to documents will be removed.
+
+* **justOne** − (Optional) if set to true or 1, then remove only one document.
+```
+>db.COLLECTION_NAME.remove(DELLETION_CRITTERIA)
+```
+
+Example:
+
+Consider the mycol collection has the following data:
+```
+{ "_id" : ObjectId(5983548781331adf45ec5), "title":"MongoDB Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec6), "title":"NoSQL Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec7), "title":"Guilherme Dias Overview"}
+```
+
+Following example will remove all the documents whose title is 'MongoDB Overview'.
+```
+>db.mycol.remove({'title':'MongoDB Overview'})
+>db.mycol.find()
+{ "_id" : ObjectId(5983548781331adf45ec6), "title":"NoSQL Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec7), "title":"Guilherme Dias Overview"}
+>
+```
+
+Remove Only One:
+
+If there are multiple records and you want to delete only the first record, then set **justOne** parameter in **remove()** method:
+```
+>db.COLLECTION_NAME.remove(DELETION_CRITERIA,1)
+```
+
+Remove All Documents:
+
+If you don't specify deletion criteria, then MongoDB will delete whole documents from the collection. This is equivalent of SQL's truncate command:
+```
+>db.mycol.remove({})
+>db.mycol.find()
+>
+```
+
 <a name="h14"/>
 
 **Projection:**
+
+In MongoDB, projection means selecting only the necessary data rather than selecting whole of the data of a document. If a document has 5 fields and you need to show only 3, then select only 3 fields from them.
+
+MongoDB's **find()** method accepts second optional parameter that is list of fields that you want to retrieve. In MongoDB, when you execute **find()** method, then it displays all fields of a document. To limit this, you need to set a list of fields with value 1 or 0. 1 is used to show the field while 0 is used to hide the fields.
+```
+>db.COLLECTION_NAME.find({},{KEY:1})
+```
+
+Example:
+
+Consider the collection mycol has the following data:
+```
+{ "_id" : ObjectId(5983548781331adf45ec5), "title":"MongoDB Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec6), "title":"NoSQL Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec7), "title":"Guilherme Dias Overview"}
+```
+
+Following example will display the title of the document while querying the document.
+```
+>db.mycol.find({},{"title":1,_id:0})
+{"title":"MongoDB Overview"}
+{"title":"NoSQL Overview"}
+{"title":"Guilherme Dias Overview"}
+>
+```
+
+Note that the _id field is always displayed while executing find() method, if you don't want this field, then you need to set it as 0.
 
 <a name="h15"/>
 
