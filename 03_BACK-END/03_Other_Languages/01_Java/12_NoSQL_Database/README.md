@@ -804,17 +804,197 @@ Note that the _id field is always displayed while executing find() method, if yo
 
 **Limiting Records:**
 
+To limit the records in MongoDB, you need to use **limit()** method. The method accepts one number type argument, which is the number of documents that you want to be displayed:
+```
+>db.COLLECTION_NAME.find().limit(NUMBER)
+```
+
+Example:
+
+Consider the collection myycol has the following data:
+```
+{ "_id" : ObjectId(5983548781331adf45ec5), "title":"MongoDB Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec6), "title":"NoSQL Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec7), "title":"Guilherme Dias Overview"}
+```
+
+Following example will display only two documents while querying the document:
+```
+>db.mycol.find({},{"title":1,_id:0}).limit(2)
+{"title":"MongoDB Overview"}
+{"title":"NoSQL Overview"}
+>
+```
+
+If you don't specify the number argument in limit() method then it will display all documents from the collection.
+
+MongoDB Skip() Method
+
+Apart from **limit()** method, there is one more method **skip()** which also accepts number type argument and is used to skip the number of documents.
+
+The basic syntax of skip() method is as follows:
+```
+>db.COLLECTION_NAME.find().limit(NUMBER).skip(NUMBER)
+```
+
+Example:
+
+Following example will display only the second document:
+```
+>db.mycol.find({},{"title":1,_id:0}).limit(1).skip(1)
+{"title":"NoSQL Overview"}
+>
+```
+
+Please note, the default value in skip() method is 0.
+
 <a name="h16"/>
 
 **Sorting Records:**
+
+To sort documents in MongoDB, you need to use **sort()** method. The method accepts a document containing a list of fields along with their sorting order. To specify sorting order 1 and -1 are used. 1 is used for ascending order while -1 is used for descending order.
+```
+>db.COLLECTION_NAME.find().sort({KEY:1})
+```
+
+Example:
+
+Consider the collection myycol has the following data:
+```
+{ "_id" : ObjectId(5983548781331adf45ec5), "title":"MongoDB Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec6), "title":"NoSQL Overview"}
+{ "_id" : ObjectId(5983548781331adf45ec7), "title":"Tutorials Point Overview"}
+```
+
+Following example will display the documents sorted by title in the descending order:
+```
+>db.mycol.find({},{"title":1,_id:0}).sort({"title":-1})
+{"title":"Guilherme Dias Overview"}
+{"title":"NoSQL Overview"}
+{"title":"MongoDB Overview"}
+>
+```
+
+Please note, if you don't specify the sorting preference, then sort() method will display the documents in ascending order.
 
 <a name="h17"/>
 
 **Indexing:**
 
+Indexes support the efficient resolution of queries. Without indexes, MongoDB must scan every document of a collection to select those documents that match the query statement. This scan is highly inefficient and require MongoDB to process a large volume of data.
+
+Indexes are special data structures, that store a small portion of the data set in an easy-to-traverse form. The index stores the value of a specific field or set of fields, ordered by the value of the field as specified in the index.
+
+To create an index you need to use **ensureIndex()** method of MongoDB.
+```
+>db.COLLECTION_NAME.ensureIndex({KEY:1})
+```
+
+Here key is the name of the field on which you want to create index and 1 is for ascending order. To create index in descending order you need to use -1.
+
+Example:
+```
+>db.mycol.ensureIndex({"title":1})
+>
+```
+
+In **ensureIndex()** method you can pass multiple fields, to create index on multiple fields.
+```
+>db.mycol.ensureIndex({"title":1,"description":-1})
+>
+```
+
+**ensureIndex()** method also accepts list of options (which are optional):
+| **Parameter** | **Type** | **Description** |
+| --- | --- | --- |
+| background | Boolean | Builds the index in the background so that building an index does not block other database activities. Specify true to build in the background. The default value is false. |
+| unique | Boolean | Creates a unique index so that the collection will not accept insertion of documents where the index key or keys match an existing value in the index. Specify true to create a unique index. The default value is false. |
+| name | string | The name of the index. If unspecified, MongoDB generates an index name by concatenating the names of the indexed fields and the sort order. |
+| dropDups | Boolean | Creates a unique index on a field that may have duplicates. MongoDB indexes only the first occurrence of a key and removes all documents from the collection that contain subsequent occurrences of that key. Specify true to create unique index. The default value is false. |
+| sparse | Boolean | If true, the index only references documents with the specified field. These indexes use less space but behave differently in some situations (particularly sorts). The default value is false. |
+| expireAfterSeconds | integer | Specifies a value, in seconds, as a TTL to control how long MongoDB retains documents in this collection. |
+| v | index version | The index version number. The default index version depends on the version of MongoDB running when creating the index. |
+| weights | document | The weight is a number ranging from 1 to 99,999 and denotes the significance of the field relative to the other indexed fields in terms of the score. |
+| default_language | string | For a text index, the language that determines the list of stop words and the rules for the stemmer and tokenizer. The default value is english. |
+| language_override | string | For a text index, specify the name of the field in the document that contains, the language to override the default language. The default value is language. |
+
 <a name="h18"/>
 
 **Aggregation:**
+
+Aggregations operations process data records and return computed results. Aggregation operations group values from multiple documents together, and can perform a variety of operations on the grouped data to return a single result. In SQL count() and with group by is an equivalent of mongodb aggregation.
+
+For the aggregation in MongoDB, you should use **aggregate()** method.
+```
+>db.COLLECTION_NAME.aggregate(AGGREGATE_OPERATION)
+```
+
+Example:
+
+In the collection you have the following data:
+```
+{
+   _id: ObjectId(7df78ad8902c)
+   title: 'MongoDB Overview', 
+   description: 'MongoDB is no sql database',
+   by_user: 'Guilherme Dias',
+   url: 'http://www.github.com',
+   tags: ['mongodb', 'database', 'NoSQL'],
+   likes: 100
+},
+{
+   _id: ObjectId(7df78ad8902d)
+   title: 'NoSQL Overview', 
+   description: 'No sql database is very fast',
+   by_user: 'Guilherme Dias',
+   url: 'http://www.github.com',
+   tags: ['mongodb', 'database', 'NoSQL'],
+   likes: 10
+},
+{
+   _id: ObjectId(7df78ad8902e)
+   title: 'Neo4j Overview', 
+   description: 'Neo4j is no sql database',
+   by_user: 'Neo4j',
+   url: 'http://www.neo4j.com',
+   tags: ['neo4j', 'database', 'NoSQL'],
+   likes: 750
+},
+```
+
+Now from the above collection, if you want to display a list stating how many tutorials are written by each user, then you will use the following **aggregate()** method:
+```
+> db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$sum : 1}}}])
+{
+   "result" : [
+      {
+         "_id" : "Guilherme Dias",
+         "num_tutorial" : 2
+      },
+      {
+         "_id" : "Neo4j",
+         "num_tutorial" : 1
+      }
+   ],
+   "ok" : 1
+}
+>
+```
+
+Sql equivalent query for the above use case will be **SELECT by_user, count() FROM mycol GROUP by by_user**.
+
+In the above example, we have grouped documents by field by_user and on each occurrence of by_user previous value of sum is incremented. Following is a list of available aggregation expressions:
+
+| **Expression** | **Description** | **Example** |
+| --- | --- | --- |
+| $sum | Sums up the defined value from all documents in the collection. | db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$sum : "$likes"}}}]) |
+| $avg | Calculates the average of all given values from all documents in the collection. | db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$avg : "$likes"}}}]) |
+| $min | Gets the minimum of the corresponding values from all documents in the collection. | db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$min : "$likes"}}}]) |
+| $max | Gets the maximum of the corresponding values from all documents in the collection. | db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$max : "$likes"}}}]) |
+| $push | Inserts the value to an array in the resulting document. | db.mycol.aggregate([{$group : {_id : "$by_user", url : {$push: "$url"}}}]) |
+| $addToSet | 	Inserts the value to an array in the resulting document but does not create duplicates. | db.mycol.aggregate([{$group : {_id : "$by_user", url : {$addToSet : "$url"}}}]) |
+| $first | Gets the first document from the source documents according to the grouping. Typically this makes only sense together with some previously applied “$sort”-stage. | db.mycol.aggregate([{$group : {_id : "$by_user", first_url : {$first : "$url"}}}]) |
+| $last | Gets the last document from the source documents according to the grouping. Typically this makes only sense together with some previously applied “$sort”-stage. | db.mycol.aggregate([{$group : {_id : "$by_user", last_url : {$last : "$url"}}}]) |
 
 <a name="h19"/>
 
