@@ -905,6 +905,7 @@ In **ensureIndex()** method you can pass multiple fields, to create index on mul
 ```
 
 **ensureIndex()** method also accepts list of options (which are optional):
+
 | **Parameter** | **Type** | **Description** |
 | --- | --- | --- |
 | background | Boolean | Builds the index in the background so that building an index does not block other database activities. Specify true to build in the background. The default value is false. |
