@@ -997,9 +997,121 @@ In the above example, we have grouped documents by field by_user and on each occ
 | $first | Gets the first document from the source documents according to the grouping. Typically this makes only sense together with some previously applied “$sort”-stage. | db.mycol.aggregate([{$group : {_id : "$by_user", first_url : {$first : "$url"}}}]) |
 | $last | Gets the last document from the source documents according to the grouping. Typically this makes only sense together with some previously applied “$sort”-stage. | db.mycol.aggregate([{$group : {_id : "$by_user", last_url : {$last : "$url"}}}]) |
 
+Pipeline Concept:
+
+In UNIX command, shell pipeline means the possibility to execute an operation on some input and use the output as the input for the next command and so on. MongoDB also supports same concept in aggregation framework. There is a set of possible stages and each of those is taken as a set of documents as an input and produces a resulting set of documents (or the final resulting JSON document at the end of the pipeline). This can then in turn be used for the next stage and so on.
+
+Following are the possible stages in aggregation framework:
+
+* **$project** − Used to select some specific fields from a collection.
+
+* **$match** − This is a filtering operation and thus this can reduce the amount of documents that are given as input to the next stage.
+
+* **$group** − This does the actual aggregation as discussed above.
+
+* **$sort** − Sorts the documents.
+
+* **$skip** − With this, it is possible to skip forward in the list of documents for a given amount of documents.
+
+* **$limit** − This limits the amount of documents to look at, by the given number starting from the current positions.
+
+* **$unwind** − This is used to unwind document that are using arrays. When using an array, the data is kind of pre-joined and this operation will be undone with this to have individual documents again. Thus with this stage we will increase the amount of documents for the next stage.
+
 <a name="h19"/>
 
 **Replication:**
+
+Replication is the process of synchronizing data across multiple servers. Replication provides redundancy and increases data availability with multiple copies of data on different database servers. Replication protects a database from the loss of a single server. Replication also allows you to recover from hardware failure and service interruptions. With additional copies of the data, you can dedicate one to disaster recovery, reporting, or backup.
+
+Why Replication?
+
+* To keep your data safe
+
+* High (24*7) availability of data
+
+* Disaster recovery
+
+* No downtime for maintenance (like backups, index rebuilds, compaction)
+
+* Read scaling (extra copies to read from)
+
+* Replica set is transparent to the application
+
+How Replication Works in MongoDB
+
+MongoDB achieves replication by the use of replica set. A replica set is a group of mongod instances that host the same data set. In a replica, one node is primary node that receives all write operations. All other instances, such as secondaries, apply operations from the primary so that they have the same data set. Replica set can have only one primary node.
+
+A typical diagram of MongoDB replication is shown in which client application always interact with the primary node and the primary node then replicates the data to the secondary nodes.
+
+* Replica set is a group of two or more nodes (generally minimum 3 nodes are required).
+
+* In a replica set, one node is primary node and remaining nodes are secondary.
+
+* All data replicates from primary to secondary node.
+
+* At the time of automatic failover or maintenance, election establishes for primary and a new primary node is elected.
+
+* After the recovery of failed node, it again join the replica set and works as a secondary node.
+
+A typical diagram of MongoDB replication is shown in which client application always interact with the primary node and the primary node then replicates the data to the secondary nodes.
+
+![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/mongo_replication.png)
+
+Replica Set Features:
+
+* A cluster of N nodes
+
+* Any one node can be primary
+
+* All write operations go to primary
+
+* Automatic failover
+
+* Automatic recovery
+
+* Consensus election of primary
+
+Set Up a Replica Set:
+
+Convert to replica set:
+
+* Shutdown already running MongoDB server.
+
+* Start the MongoDB server by specifying -- replSet option. Following is the basic syntax of --replSet −
+```
+mongod --port "PORT" --dbpath "YOUR_DB_DATA_PATH" --replSet "REPLICA_SET_INSTANCE_NAME"
+```
+
+Example:
+```
+mongod --port 27017 --dbpath "D:\set up\mongodb\data" --replSet rs0
+```
+
+* It will start a mongod instance with the name rs0, on port 27017.
+
+* Now start the command prompt and connect to this mongod instance.
+
+* In Mongo client, issue the command **rs.initiate()** to initiate a new replica set.
+
+* To check the replica set configuration, issue the command **rs.conf()**. To check the status of replica set issue the command **rs.status()**.
+
+Add Members to Replica Set:
+
+To add members to replica set, start mongod instances on multiple machines. Now start a mongo client and issue a command **rs.add()**:
+```
+>rs.add(HOST_NAME:PORT)
+```
+
+Example:
+
+Suppose your mongod instance name is mongod1.net and it is running on port 27017. To add this instance to replica set, issue the command **rs.add()** in Mongo client.
+```
+>rs.add("mongod1.net:27017")
+>
+```
+
+You can add mongod instance to replica set only when you are connected to primary node. To check whether you are connected to primary or not, issue the command **db.isMaster()** in mongo client.
+
 
 <a name="h20"/>
 
