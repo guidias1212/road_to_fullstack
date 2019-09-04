@@ -1175,7 +1175,7 @@ The best approach incorporates prototyping your set up, conducting load testing,
 
 To monitor your deployment, MongoDB provides some of the following commands:
 
-* mongostat:
+mongostat:
 
 This command checks the status of all running mongod instances and return counters of database operations. These counters include inserts, queries, updates, deletes, and cursors. Command also shows when you’re hitting page faults, and showcase your lock percentage. This means that you're running low on memory, hitting write capacity or have some performance issue.
 
