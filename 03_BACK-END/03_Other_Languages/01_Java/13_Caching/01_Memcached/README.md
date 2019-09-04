@@ -46,7 +46,7 @@ Memcached is not:
 
 * fault-tolerant or highly available
 
-**Difference between memcache vs. memcached:**
+**Difference between Memcached vs. Couchbase:**
 
 The short answer is: nothing. The longer answer is that, because memcache is executed in the background on Linux systems (and is thus considered a “daemon”), the program file used to start the software is named memcached to follow daemon naming conventions. So, technically, memcache refers to the software and memcached refers to the name of the program file. But most people simply use memcached to refer to both at this point.
 
