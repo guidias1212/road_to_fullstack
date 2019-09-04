@@ -38,5 +38,11 @@ public class MemcachedExample {
             // Prints {"name":"Arthur"}
             System.out.println(row);
         }
+        
+        // Just close a single bucket
+        bucket.close();
+
+        // Disconnect and close all buckets
+        cluster.disconnect();
     }
 }

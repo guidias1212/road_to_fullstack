@@ -69,6 +69,8 @@ The short answer is: nothing. The longer answer is that, because memcache is exe
 
 The code snippet below shows how the Java SDK may be used for some common operations:
 ```
+package com.Memcached;
+
 import com.couchbase.client.java.*;
 import com.couchbase.client.java.document.*;
 import com.couchbase.client.java.document.json.*;
@@ -107,6 +109,12 @@ public class MemcachedExample {
             // Prints {"name":"Arthur"}
             System.out.println(row);
         }
+        
+        // Just close a single bucket
+        bucket.close();
+
+        // Disconnect and close all buckets
+        cluster.disconnect();
     }
 }
 ```
