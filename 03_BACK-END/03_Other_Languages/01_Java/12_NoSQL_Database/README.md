@@ -1207,6 +1207,465 @@ Apart from the MongoDB tools, 10gen provides a free, hosted monitoring service, 
 
 **Java:**
 
+**Connect to Database:**
+
+To connect database, you need to specify the database name, if the database doesn't exist then MongoDB creates it automatically.
+
+Following is the code snippet to connect to the database:
+```
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb.MongoClient; 
+import com.mongodb.MongoCredential;  
+
+public class ConnectToDB { 
+   
+   public static void main( String args[] ) {  
+      
+      // Creating a Mongo client 
+      MongoClient mongo = new MongoClient( "localhost" , 27017 ); 
+   
+      // Creating Credentials 
+      MongoCredential credential; 
+      credential = MongoCredential.createCredential("sampleUser", "myDb", 
+         "password".toCharArray()); 
+      System.out.println("Connected to the database successfully");  
+      
+      // Accessing the database 
+      MongoDatabase database = mongo.getDatabase("myDb"); 
+      System.out.println("Credentials ::"+ credential);     
+   } 
+}
+```
+
+On executing, the above program gives you the following output:
+```
+Connected to the database successfully
+Credentials ::MongoCredential{mechanism=null,
+ userName='sampleUser',
+ source='myDb',
+ password=<hidden>,
+ mechanismProperties=<hidden>
+ }
+```
+
+**Create a Collection:**
+
+To create a collection, **createCollection()** method of **com.mongodb.client.MongoDatabase** class is used.
+
+Following is the code snippet to create a collection:
+```
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb.MongoClient; 
+import com.mongodb.MongoCredential;  
+
+public class CreatingCollection { 
+   
+   public static void main( String args[] ) {  
+      
+      // Creating a Mongo client 
+      MongoClient mongo = new MongoClient( "localhost" , 27017 ); 
+     
+      // Creating Credentials 
+      MongoCredential credential; 
+      credential = MongoCredential.createCredential("sampleUser", "myDb", 
+         "password".toCharArray()); 
+      System.out.println("Connected to the database successfully");  
+      
+      //Accessing the database 
+      MongoDatabase database = mongo.getDatabase("myDb");  
+      
+      //Creating a collection 
+      database.createCollection("sampleCollection"); 
+      System.out.println("Collection created successfully"); 
+   } 
+} 
+```
+
+On executing, the above program gives you the following output:
+```
+Connected to the database successfully 
+Collection created successfully
+```
+
+**Getting/Selecting a Collection:**
+
+To get/select a collection from the database, **getCollection()** method of **com.mongodb.client.MongoDatabase** class is used.
+
+Following is the program to get/select a collection:
+```
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase; 
+
+import org.bson.Document; 
+import com.mongodb.MongoClient; 
+import com.mongodb.MongoCredential;  
+
+public class SelectingCollection { 
+   
+   public static void main( String args[] ) {  
+      
+      // Creating a Mongo client 
+      MongoClient mongo = new MongoClient( "localhost" , 27017 ); 
+     
+      // Creating Credentials 
+      MongoCredential credential; 
+      credential = MongoCredential.createCredential("sampleUser", "myDb", 
+         "password".toCharArray()); 
+      System.out.println("Connected to the database successfully");  
+      
+      // Accessing the database 
+      MongoDatabase database = mongo.getDatabase("myDb");  
+
+      // Retieving a collection
+      MongoCollection<Document> collection = database.getCollection("sampleCollection"); 
+      System.out.println("Collection myCollection selected successfully"); 
+   }
+}
+```
+
+On compiling, the above program gives you the following result:
+```
+Connected to the database successfully
+Collection sampleCollection selected successfully
+```
+
+**Insert a Document:**
+
+To insert a document into MongoDB, **insert()** method of **com.mongodb.client.MongoCollection** class is used.
+
+Following is the code snippet to insert a document:
+```
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase; 
+
+import org.bson.Document;  
+import com.mongodb.MongoClient; 
+import com.mongodb.MongoCredential;  
+
+public class InsertingDocument { 
+   
+   public static void main( String args[] ) {  
+      
+      // Creating a Mongo client 
+      MongoClient mongo = new MongoClient( "localhost" , 27017 ); 
+
+      // Creating Credentials 
+      MongoCredential credential; 
+      credential = MongoCredential.createCredential("sampleUser", "myDb", 
+         "password".toCharArray()); 
+      System.out.println("Connected to the database successfully");  
+      
+      // Accessing the database 
+      MongoDatabase database = mongo.getDatabase("myDb"); 
+
+      // Retrieving a collection
+      MongoCollection<Document> collection = database.getCollection("sampleCollection"); 
+      System.out.println("Collection sampleCollection selected successfully");
+
+      Document document = new Document("title", "MongoDB") 
+      .append("id", 1)
+      .append("description", "database") 
+      .append("likes", 100) 
+      .append("url", "http://www.github.com") 
+      .append("by", "Guilherme Dias");  
+      collection.insertOne(document); 
+      System.out.println("Document inserted successfully");     
+   } 
+}
+```
+
+On compiling, the above program gives you the following result:
+```
+Connected to the database successfully
+Collection sampleCollection selected successfully
+Document inserted successfully
+```
+
+**Retrieve All Documents:**
+
+To select all documents from the collection, find() method of com.mongodb.client.MongoCollection class is used. This method returns a cursor, so you need to iterate this cursor.
+
+Following is the program to select all documents:
+```
+import com.mongodb.client.FindIterable; 
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase;  
+
+import java.util.Iterator; 
+import org.bson.Document; 
+import com.mongodb.MongoClient; 
+import com.mongodb.MongoCredential;  
+
+public class RetrievingAllDocuments { 
+   
+   public static void main( String args[] ) {  
+      
+      // Creating a Mongo client 
+      MongoClient mongo = new MongoClient( "localhost" , 27017 ); 
+
+      // Creating Credentials 
+      MongoCredential credential;
+      credential = MongoCredential.createCredential("sampleUser", "myDb", 
+         "password".toCharArray()); 
+      System.out.println("Connected to the database successfully");  
+      
+      // Accessing the database 
+      MongoDatabase database = mongo.getDatabase("myDb");  
+      
+      // Retrieving a collection 
+      MongoCollection<Document> collection = database.getCollection("sampleCollection");
+      System.out.println("Collection sampleCollection selected successfully"); 
+
+      // Getting the iterable object 
+      FindIterable<Document> iterDoc = collection.find(); 
+      int i = 1; 
+
+      // Getting the iterator 
+      Iterator it = iterDoc.iterator(); 
+    
+      while (it.hasNext()) {  
+         System.out.println(it.next());  
+      i++; 
+      }
+   } 
+}
+```
+
+On compiling, the above program gives you the following result:
+```
+Connected to the database successfully
+Collection sampleCollection selected successfully
+Document{{_id=5d6fd0af0e30f333a81f6ffa, title=MongoDB, id=1, description=database, likes=100, url=http://www.github.com, by=Guilherme Dias}}
+```
+
+**Update Document:**
+
+To update a document from the collection, **updateOne()** method of **com.mongodb.client.MongoCollection** class is used.
+
+Following is the program to select the first document:
+```
+import com.mongodb.client.FindIterable; 
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb.client.model.Filters; 
+import com.mongodb.client.model.Updates; 
+
+import java.util.Iterator; 
+import org.bson.Document;  
+import com.mongodb.MongoClient; 
+import com.mongodb.MongoCredential;  
+
+public class UpdatingDocuments { 
+   
+   public static void main( String args[] ) {  
+      
+      // Creating a Mongo client 
+      MongoClient mongo = new MongoClient( "localhost" , 27017 ); 
+     
+      // Creating Credentials 
+      MongoCredential credential; 
+      credential = MongoCredential.createCredential("sampleUser", "myDb", 
+         "password".toCharArray()); 
+      System.out.println("Connected to the database successfully");  
+      
+      // Accessing the database 
+      MongoDatabase database = mongo.getDatabase("myDb"); 
+
+      // Retrieving a collection 
+      MongoCollection<Document> collection = database.getCollection("sampleCollection");
+      System.out.println("Collection sampleCollection selected successfully"); 
+
+      collection.updateOne(Filters.eq("id", 1), Updates.set("likes", 150));       
+      System.out.println("Document update successfully...");  
+      
+      // Retrieving the documents after update
+      // Getting the iterable object
+      FindIterable<Document> iterDoc = collection.find(); 
+      int i = 1; 
+
+      // Getting the iterator 
+      Iterator it = iterDoc.iterator(); 
+
+      while (it.hasNext()) {  
+         System.out.println(it.next());  
+         i++; 
+      }     
+   }  
+}
+```
+
+On compiling, the above program gives you the following result:
+```
+Connected to the database successfully
+Collection sampleCollection selected successfully
+Document update successfully...
+Document{{_id=5d6fd0af0e30f333a81f6ffa, title=MongoDB, id=1, description=database, likes=150, url=http://www.github.com, by=Guilherme Dias}}
+```
+
+**Delete a Document:**
+
+To delete a document from the collection, you need to use the **deleteOne()** method of the **com.mongodb.client.MongoCollection** class.
+
+Following is the program to delete a document:
+```
+import com.mongodb.client.FindIterable; 
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb.client.model.Filters;  
+
+import java.util.Iterator; 
+import org.bson.Document; 
+import com.mongodb.MongoClient; 
+import com.mongodb.MongoCredential;  
+
+public class DeletingDocuments { 
+   
+   public static void main( String args[] ) {  
+   
+      // Creating a Mongo client 
+      MongoClient mongo = new MongoClient( "localhost" , 27017 );
+      
+      // Creating Credentials 
+      MongoCredential credential; 
+      credential = MongoCredential.createCredential("sampleUser", "myDb", 
+         "password".toCharArray()); 
+      System.out.println("Connected to the database successfully");  
+      
+      // Accessing the database 
+      MongoDatabase database = mongo.getDatabase("myDb"); 
+
+      // Retrieving a collection
+      MongoCollection<Document> collection = database.getCollection("sampleCollection");
+      System.out.println("Collection sampleCollection selected successfully"); 
+
+      // Deleting the documents 
+      collection.deleteOne(Filters.eq("id", 1)); 
+      System.out.println("Document deleted successfully...");  
+      
+      // Retrieving the documents after updation 
+      // Getting the iterable object 
+      FindIterable<Document> iterDoc = collection.find(); 
+      int i = 1; 
+
+      // Getting the iterator 
+      Iterator it = iterDoc.iterator(); 
+
+      while (it.hasNext()) {  
+         System.out.println("Inserted Document: "+i);  
+         System.out.println(it.next());  
+         i++; 
+      }       
+   } 
+}
+```
+
+On compiling, the above program gives you the following result:
+```
+Connected to the database successfully
+Collection sampleCollection selected successfully
+Document deleted successfully...
+```
+
+**Dropping a Collection:**
+
+To drop a collection from a database, you need to use the **drop()** method of the **com.mongodb.client.MongoCollection** class.
+
+Following is the program to delete a collection:
+```
+import com.mongodb.client.MongoCollection; 
+import com.mongodb.client.MongoDatabase;  
+
+import org.bson.Document;  
+import com.mongodb.MongoClient; 
+import com.mongodb.MongoCredential;  
+
+public class DropingCollection { 
+   
+   public static void main( String args[] ) {  
+
+      // Creating a Mongo client 
+      MongoClient mongo = new MongoClient( "localhost" , 27017 ); 
+
+      // Creating Credentials 
+      MongoCredential credential; 
+      credential = MongoCredential.createCredential("sampleUser", "myDb", 
+         "password".toCharArray()); 
+      System.out.println("Connected to the database successfully");  
+      
+      // Accessing the database 
+      MongoDatabase database = mongo.getDatabase("myDb");  
+
+      // Retieving a collection
+      MongoCollection<Document> collection = database.getCollection("sampleCollection");
+
+      // Dropping a Collection 
+      collection.drop(); 
+      System.out.println("Collection dropped successfully");
+   } 
+}
+```
+
+On compiling, the above program gives you the following result:
+```
+Connected to the database successfully
+Collection dropped successfully
+```
+
+**Listing All the Collections:**
+
+To list all the collections in a database, you need to use the **listCollectionNames()** method of the **com.mongodb.client.MongoDatabase** class.
+
+Following is the program to list all the collections of a database:
+```
+import com.mongodb.client.MongoDatabase; 
+import com.mongodb.MongoClient; 
+import com.mongodb.MongoCredential;  
+
+public class ListOfCollection { 
+   
+   public static void main( String args[] ) {  
+      
+      // Creating a Mongo client 
+      MongoClient mongo = new MongoClient( "localhost" , 27017 ); 
+
+      // Creating Credentials 
+      MongoCredential credential; 
+      credential = MongoCredential.createCredential("sampleUser", "myDb", 
+         "password".toCharArray()); 
+
+      System.out.println("Connected to the database successfully");  
+      
+      // Accessing the database 
+      MongoDatabase database = mongo.getDatabase("myDb"); 
+      
+      //Creating collections 
+      database.createCollection("sampleCollection_1"); 
+      database.createCollection("sampleCollection_2"); 
+      database.createCollection("sampleCollection_3"); 
+      database.createCollection("sampleCollection_4"); 
+      database.createCollection("sampleCollection_5"); 
+      System.out.println("Collections created successfully"); 
+      
+      for (String name : database.listCollectionNames()) { 
+         System.out.println(name); 
+      } 
+   }
+} 
+```
+
+On compiling, the above program gives you the following result:
+```
+Connected to the database successfully
+Collections created successfully
+sampleCollection_2
+sampleCollection_1
+sampleCollection_5
+sampleCollection_4
+sampleCollection_3
+```
+
+Remaining MongoDB methods save(), limit(), skip(), sort() etc. work same as explained before.
+
 <a name="h24"/>
 
 **Relationships:**
@@ -1282,3 +1741,7 @@ https://www.tutorialspoint.com/mongodb/index.htm
 **NoSQL:**
 
 https://www.mongodb.com/nosql-inline
+
+**MongoDB JDBC Driver:**
+
+https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver
