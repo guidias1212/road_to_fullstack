@@ -8,29 +8,29 @@ Representational state transfer (REST) is a software architectural style that de
 
 [The API we will develop](#h1)
 
-[Project Structure] (#h2)
+[Project Structure](#h2)
 
-[Creating the model (JPA Entity)] (#h3)
+[Creating the model (JPA Entity)](#h3)
 
-[Creating the JPA Repository] (#h4)
+[Creating the JPA Repository](#h4)
 
-[Creating the Controller] (#h5)
+[Creating the Controller](#h5)
 
-[Retrieve All Contacts (GET /contacts)] (#h6)
+[Retrieve All Contacts (GET /contacts)](#h6)
 
-[Retrieve a Contact by ID (GET /contacts/{id})] (#h7)
+[Retrieve a Contact by ID (GET /contacts/{id})](#h7)
 
-[Create a new Contact (POST /contacts)] (#h8)
+[Create a new Contact (POST /contacts)](#h8)
 
-[Update a Contact (PUT /contacts)] (#h9)
+[Update a Contact (PUT /contacts)](#h9)
 
-[Remove a Contact (DELETE /contacts/{id})] (#h10)
+[Remove a Contact (DELETE /contacts/{id})](#h10)
 
-[Initializing the MySQL database] (#h11)
+[Initializing the MySQL database](#h11)
 
-[Configuring MySQL Database] (#h12)
+[Configuring MySQL Database](#h12)
 
-[Testing the APIs] (#h13)
+[Testing the APIs](#h13)
 
 [USEFUL LINKS](#h14)
 
