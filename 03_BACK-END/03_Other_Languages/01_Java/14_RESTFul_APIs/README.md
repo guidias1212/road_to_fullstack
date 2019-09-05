@@ -38,6 +38,8 @@ https://start.spring.io/
 
 With the following setup:
 
+-------------
+
 * **Project:** Maven
 
 * **Language:** Java
@@ -55,6 +57,8 @@ With the following setup:
 		* **Java:** 12
 
 * **Dependencies:** Spring Data JPA
+
+-------------
 
 <a name="h1"/>
 
