@@ -171,7 +171,7 @@ The client provides an access token to the resource server to access protected r
 
 There are two standard ways of sending credentials
 
-** 1) Bearer Token:** The access token can only be placed in POST request body or GET URL parameter as a fallback option in the authorization HTTP header.
+1) **Bearer Token:** The access token can only be placed in POST request body or GET URL parameter as a fallback option in the authorization HTTP header.
 
 They are included in the authorization header:
 ```
@@ -185,7 +185,7 @@ Host: example.com
 Authorization: Bearer abc...
 ```
 
-** 2) MAC:** A cryptographic Message Authentication Code (MAC) is computed using the elements of the request and is sent to the authorization header. Upon receiving the request, the MAC is then compared and computed by the resource owner.
+2) **MAC:** A cryptographic Message Authentication Code (MAC) is computed using the elements of the request and is sent to the authorization header. Upon receiving the request, the MAC is then compared and computed by the resource owner.
 
 **Concepts of accessing protected resource:**
 
