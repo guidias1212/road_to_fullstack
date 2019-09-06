@@ -20,7 +20,7 @@ OAuth is an open standard for access delegation, commonly used as a way for Inte
 
 [IANA Considerations](#h7)
 
-[USEFUL LINKS](#hx)
+[USEFUL LINKS](#h8)
 
 </details>
 
@@ -291,7 +291,38 @@ The following table shows OAuth parameters registry containing the initial conte
 | **password** | token request | IETF RFC 6749 |
 | **refresh_token** | token request, token response | IETF RFC 6749 |
 
-<a name="hx"/>
+**OAuth Authorization Endpoint Response Type Registry**
+
+This can be used to define OAuth Authorization Endpoint Response Type Registry. The response types are registered by experts with the required specification and if they are satisfied with the registration, only then they will publish the specification. The registration request will be sent to the @ietf.org for reviewing. The experts will either reject or accept the request within 14 days of the request.
+
+**Registration Template**
+
+The registration template contains specifications such as Type Name, Change Controller and Specification Document as defined in the above OAuth Access Token Types Registry section.
+
+**Initial Registry Contents**
+
+The following table shows the authorization endpoint response type registry containing the initial contents.
+
+| Parameter Name | Change Controller | Specification Document |
+| --- | --- | --- |
+| code | IETF | RFC 6749 |
+| token | IETF | RFC 6749 |
+
+**OAuth Extensions Error Registry**
+
+This can be used to define OAuth Extensions Error Registry. The error codes along with protocol extensions such as grant types, token types, etc. are registered by experts with the required specification. If they are satisfied with the registration, then they will publish the specification. The registration request will be sent to the @ietf.org for reviewing with subject ("Request for error code: example"). Experts will either reject or accept the request within 14 days of the request.
+
+**Registration Template**
+
+The registration template contains specifications such as Change Controller and Specification Document as defined in the above OAuth Access Token Types Registry section, except the following specifications:
+
+* **Error Name:** It is the name of the request.
+
+* **Error Usage Location:** It specifies the location of the error such as authorization code grant error response, implicit grant response or token error response, etc, which specifies where the error can be used.
+
+* **Related Protocol Extension:** You can use protocol extensions such as extension grant type, access token type, extension parameter, etc.
+
+<a name="h8"/>
 
 **USEFUL LINKS**
 
