@@ -139,13 +139,29 @@ login.html
 
 This will produce the following result:
 
+* Welcome page:
+
 ![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/basic_auth_welcome.png)
+
+---------------
+
+* Login page:
 
 ![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/basic_auth_login.png)
 
+---------------
+
+* Invalid user attempt:
+
 ![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/basic_auth_fail.png)
 
+---------------
+
+* Successful user login:
+
 ![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/basic_auth_success.png)
+
+---------------
 
 <a name="h2"/>
 
