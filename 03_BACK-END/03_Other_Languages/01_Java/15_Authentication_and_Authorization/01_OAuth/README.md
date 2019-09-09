@@ -2,6 +2,10 @@
 
 OAuth is an open standard for access delegation, commonly used as a way for Internet users to grant websites or applications access to their information on other websites but without giving them the passwords. This mechanism is used by companies such as Amazon, Google, Facebook, Microsoft and Twitter to permit the users to share information about their accounts with third party applications or websites.
 
+## Check an example made with Spring Boot:
+
+https://example-oauth.herokuapp.com
+
 <details open>
 <summary>Table of Contents</summary>
 <br>
@@ -20,7 +24,9 @@ OAuth is an open standard for access delegation, commonly used as a way for Inte
 
 [IANA Considerations](#h7)
 
-[USEFUL LINKS](#h8)
+[Spring Boot Example](#h8)
+
+[USEFUL LINKS](#h9)
 
 </details>
 
@@ -324,6 +330,276 @@ The registration template contains specifications such as Change Controller and 
 
 <a name="h8"/>
 
+**Spring Boot Example:**
+
+* Create a GitHub under Settings > Developer Settings > OAuth Apps > Register a new application and get your **Client ID** and **Client Secret**.
+
+* Create a new Spring Boot application using Spring Initialzr bootstrap and add **OAuth2 Client**, **thymeleaf**, **Spring Web** and **Spring Security** dependencies.
+
+* Add an index page:
+
+index.html
+```
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>OAuth Example Application</title>
+</head>
+<body>
+    <h1>Spring Security OAuth SSO (Simple Sign On) example app</h1>  
+    <a href="login.html">Login</a> 
+</body>
+</html>
+```
+
+* Add a login page:
+
+login.html
+```
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Login page</title>
+  </head>
+  <body>
+    <h1>Login page</h1>
+    <p>The scope of this application is to make the user login with an external application. There is no way to login using the username + password below. Click on "Login with GitHub to check it and later try to manually go to /home without logging in"</p>
+    <form th:action="@{/login.html}" method="post">
+      <label for="username">Username</label>:
+      <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
+      <label for="password">Password</label>:
+      <input type="password" id="password" name="password" /> <br />
+      <input type="submit" value="Log in" />
+    </form>
+    <br>
+    <br>
+    <p>Or</p>
+    <br>
+    <br>
+    <a href="Auth_GitHub">Login with GitHub</a> 
+  </body>
+</html>
+```
+
+* Add a home page (secured):
+
+home.html
+```
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>OAuth Example Application</title>
+</head>
+<body>
+    <h1>-Secured Page Example-</h1>
+    <br>
+    <a href="/logout">Logout</a>
+    <br>
+    <br>
+    <div>User Name: <span th:text="${userName}"></span></div>   
+    <br>
+    <br>
+    <div>Here is a complete list of user attributes from GitHub that could be used:</div>
+    <br>
+    <br>
+    <div>User Attributes: <span th:text="${userAttributes}"></span></div> 
+</body>
+</html>
+```
+
+* Add a logout page:
+
+logout.html
+```
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>OAuth Example Application</title>
+</head>
+<body>
+    <h1>Successfully logged out</h1>
+    <br>
+    <a href="/">Back</a>
+    <br>
+    <br>
+</body>
+</html>
+```
+
+
+* Add the following configurations:
+
+pom.xml
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.8.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.example</groupId>
+	<artifactId>OAuthGitHub</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>OAuthGitHub</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+	      	<groupId>org.springframework.boot</groupId>
+	      	<artifactId>spring-boot-starter-oauth2-client</artifactId>
+	    </dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+
+```
+
+* Add a controller:
+
+WebController.java
+```
+@Controller  
+public class WebController {  
+
+    @RequestMapping("/Auth_GitHub")  
+    public String auth_GitHub(Model model,
+    						  @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient authorizedClient,  
+                              @AuthenticationPrincipal OAuth2User oauth2User,
+                              HttpServletRequest request) {  
+    	HttpSession session = request.getSession(true);
+    	session.setAttribute("user",oauth2User);
+    	return "redirect:" + "home";
+    }   
+    
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    public String home(Model model, HttpServletRequest request) {
+    	HttpSession session = request.getSession(false);
+    	if (session.getAttribute("user") != null) {
+    		OAuth2User user = (OAuth2User) session.getAttribute("user");
+        	model.addAttribute("userName", user.getName());  
+            model.addAttribute("userAttributes", user.getAttributes()); 
+        	return "home";
+    	} else {
+    		return "home";
+    	}
+    	
+    }
+    
+    
+    @RequestMapping(value = "/login.html", method = RequestMethod.GET)
+    public String login() {
+      return "login.html";
+    }
+    
+    @RequestMapping(value = "/login.html", method = RequestMethod.POST)
+    public void loginPost() {
+      login();
+    }
+}
+```
+
+* Add configuration:
+
+application.yml
+```
+spring: 
+  thymeleaf:  
+    cache: false  
+  security:  
+    oauth2:  
+      client:  
+        registration:  
+          github:  
+            client-id: <your GitHub client id here>
+            client-secret: <your github client secret here>
+```
+
+* On the main spring boot method:
+
+OAuthGitHubApplication.java
+```
+@SpringBootApplication
+@Configuration
+@EnableWebSecurity
+public class OAuthGitHubApplication extends WebSecurityConfigurerAdapter{
+
+	public static void main(String[] args) {
+		SpringApplication.run(OAuthGitHubApplication.class, args);
+	}
+	@Override  
+    public void configure(HttpSecurity http) throws Exception {  
+		
+        http.antMatcher("/**")  
+            .authorizeRequests()  
+            .antMatchers("/", "/login**","/logout").permitAll()  
+            .anyRequest().authenticated()  
+            .and()
+            .oauth2Login();
+            
+
+ 
+        http.logout()
+        	.clearAuthentication(true)
+        	.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+        	.logoutSuccessUrl("/logout.html")
+        	.deleteCookies("JSESSIONID")
+        	.invalidateHttpSession(true);  
+    }  
+
+}
+```
+
+<a name="h9"/>
+
 **USEFUL LINKS**
 
 **OAuth Wikipedia:**
@@ -340,4 +616,25 @@ https://www.tutorialspoint.com/oauth2.0/index.htm
 
 **OAuth 2.0 tutorial with Spring:**
 
-https://spring.io/guides/tutorials/spring-boot-oauth2/
+https://developer.okta.com/blog/2019/05/15/spring-boot-login-options
+
+**OAuth logout:**
+
+https://stackoverflow.com/questions/36557294/spring-security-logout-does-not-work-does-not-clear-security-context-and-authe
+
+https://www.baeldung.com/spring-security-logout
+
+**Set OAuth redirect name:**
+
+https://dzone.com/articles/spring-boot-how-to-solve-oauth2-redirect-uri-misma
+
+**Thymeleaf login with Spring security:**
+
+https://www.thymeleaf.org/doc/articles/springsecurity.html
+
+**Authentication full tutorial:**
+
+https://www.callicoder.com/spring-boot-security-oauth2-social-login-part-1/
+
+https://www.callicoder.com/spring-boot-security-oauth2-social-login-part-2/
+

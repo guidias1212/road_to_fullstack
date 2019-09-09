@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Login page</title>
+  </head>
+  <body>
+    <h1>Login page</h1>
+    <p>The scope of this application is to make the user login with an external application. There is no way to login using the username + password below. Click on "Login with GitHub to check it and later try to manually go to /home without logging in"</p>
+    <form th:action="@{/login.html}" method="post">
+      <label for="username">Username</label>:
+      <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
+      <label for="password">Password</label>:
+      <input type="password" id="password" name="password" /> <br />
+      <input type="submit" value="Log in" />
+    </form>
+    <br>
+    <br>
+    <p>Or</p>
+    <br>
+    <br>
+    <a href="Auth_GitHub">Login with GitHub</a> 
+  </body>
+</html>

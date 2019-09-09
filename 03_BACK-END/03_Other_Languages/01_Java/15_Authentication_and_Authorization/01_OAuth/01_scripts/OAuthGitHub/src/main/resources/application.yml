@@ -1,0 +1,10 @@
+spring: 
+  thymeleaf:  
+    cache: false  
+  security:  
+    oauth2:  
+      client:  
+        registration:  
+          github:  
+            client-id: <your GitHub client id here>
+            client-secret: <your github client secret here>
