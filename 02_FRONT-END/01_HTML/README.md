@@ -433,9 +433,43 @@ Example:
 
 **Paragraphs:**
 
+The HTML <p> element defines a paragraph:
+
+Example:
+```
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+```
+
+**The HTML <pre> Element**
+
+The HTML <pre> element defines preformatted text.
+
+The text inside a <pre> element is displayed in a fixed-width font (usually Courier), and it preserves both spaces and line breaks:
+
+Example:
+```
+<pre>
+  My Bonnie lies over the ocean.
+
+  My Bonnie lies over the sea.
+
+  My Bonnie lies over the ocean.
+
+  Oh, bring back my Bonnie to me.
+</pre>
+```
+
 <a name="h7"/>
 
 **Styles:**
+
+Setting the style of an HTML element, can be done with the style attribute.
+
+The HTML style attribute has the following syntax:
+´´´
+<tagname style="property:value;">
+´´´
 
 <a name="h8"/>
 
