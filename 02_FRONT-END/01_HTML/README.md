@@ -625,19 +625,210 @@ Example:
 <p>This is <sub>subscripted</sub> text.</p>
 ```
 
+**HTML <sup> Element**
+
+The HTML <sup> element defines superscripted text.
+
+Example:
+```
+<p>This is <sup>superscripted</sup> text.</p>
+```
+
 <a name="h9"/>
 
 **Quotations:**
+
+**HTML <q> for Short Quotations**
+
+The HTML <q> element defines a short quotation.
+
+Browsers usually insert quotation marks around the <q> element.
+
+Example:
+```
+<p>WWF's goal is to: <q>Build a future where people live in harmony with nature.</q></p>
+```
+
+**HTML <blockquote> for Quotations**
+
+The HTML <blockquote> element defines a section that is quoted from another source.
+
+Browsers usually indent <blockquote> elements.
+
+Example:
+```
+<p>Here is a quote from WWF's website:</p>
+<blockquote cite="http://www.worldwildlife.org/who/index.html">
+For 50 years, WWF has been protecting the future of nature.
+The world's leading conservation organization,
+WWF works in 100 countries and is supported by
+1.2 million members in the United States and
+close to 5 million globally.
+</blockquote>
+```
+
+**HTML <abbr> for Abbreviations**
+
+The HTML <abbr> element defines an abbreviation or an acronym.
+
+Marking abbreviations can give useful information to browsers, translation systems and search-engines.
+
+Example:
+```
+<p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>
+```
+
+**HTML <address> for Contact Information**
+
+The HTML <address> element defines contact information (author/owner) of a document or an article.
+
+The <address> element is usually displayed in italic. Most browsers will add a line break before and after the element.
+
+Example:
+```
+<address>
+Written by John Doe.<br>
+Visit us at:<br>
+Example.com<br>
+Box 564, Disneyland<br>
+USA
+</address>
+```
+
+**HTML <cite> for Work Title**
+
+The HTML <cite> element defines the title of a work.
+
+Browsers usually display <cite> elements in italic.
+
+Example:
+```
+<p><cite>The Scream</cite> by Edvard Munch. Painted in 1893.</p>
+```
+
+**HTML <bdo> for Bi-Directional Override**
+
+The HTML <bdo> element defines bi-directional override.
+
+The <bdo> element is used to override the current text direction:
+
+Example:
+```
+<bdo dir="rtl">This text will be written from right to left</bdo>
+```
 
 <a name="h10"/>
 
 **Comments:**
 
+You can add comments to your HTML source by using the following syntax:
+```
+<!-- Write your comments here -->
+```
+
 <a name="h11"/>
 
 **Colors:**
 
+HTML supports 140 standard color names:
+
+https://www.w3schools.com/colors/colors_names.asp
+
+**Background Color**
+
+You can set the background color for HTML elements:
+
+Example:
+```
+<h1 style="background-color:DodgerBlue;">Hello World</h1>
+<p style="background-color:Tomato;">Lorem ipsum...</p>
 <a name="h12"/>
+```
+
+**Text Color**
+
+You can set the color of text:
+
+Example:
+```
+<h1 style="color:Tomato;">Hello World</h1>
+<p style="color:DodgerBlue;">Lorem ipsum...</p>
+<p style="color:MediumSeaGreen;">Ut wisi enim...</p>
+```
+
+**Border Color**
+
+You can set the color of borders:
+
+Example:
+```
+<h1 style="border:2px solid Tomato;">Hello World</h1>
+<h1 style="border:2px solid DodgerBlue;">Hello World</h1>
+<h1 style="border:2px solid Violet;">Hello World</h1>
+```
+
+**Color Values**
+
+In HTML, colors can also be specified using RGB values, HEX values, HSL values, RGBA values, and HSLA values:
+
+Example:
+```
+<h1 style="background-color:rgb(255, 99, 71);">...</h1>
+<h1 style="background-color:#ff6347;">...</h1>
+<h1 style="background-color:hsl(9, 100%, 64%);">...</h1>
+
+<h1 style="background-color:rgba(255, 99, 71, 0.5);">...</h1>
+<h1 style="background-color:hsla(9, 100%, 64%, 0.5);">...</h1>
+```
+
+**RGB Value**
+
+In HTML, a color can be specified as an RGB value, using this formula:
+```
+rgb(red, green, blue)
+```
+
+Each parameter (red, green, and blue) defines the intensity of the color between 0 and 255.
+
+**HEX Value**
+In HTML, a color can be specified using a hexadecimal value in the form:
+```
+#rrggbb
+```
+
+Where rr (red), gg (green) and bb (blue) are hexadecimal values between 00 and ff (same as decimal 0-255).
+
+**HSL Value**
+
+In HTML, a color can be specified using hue, saturation, and lightness (HSL) in the form:
+```
+hsl(hue, saturation, lightness)
+```
+
+Hue is a degree on the color wheel from 0 to 360. 0 is red, 120 is green, and 240 is blue.
+
+**RGBA Value**
+
+RGBA color values are an extension of RGB color values with an alpha channel - which specifies the opacity for a color.
+
+An RGBA color value is specified with:
+```
+rgba(red, green, blue, alpha)
+```
+
+The alpha parameter is a number between 0.0 (fully transparent) and 1.0 (not transparent at all)
+
+**HSLA Value**
+
+HSLA color values are an extension of HSL color values with an alpha channel - which specifies the opacity for a color.
+
+An HSLA color value is specified with:
+```
+hsla(hue, saturation, lightness, alpha)
+```
+
+The alpha parameter is a number between 0.0 (fully transparent) and 1.0 (not transparent at all)
+
 
 **CSS:**
 
