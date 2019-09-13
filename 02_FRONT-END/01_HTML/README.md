@@ -829,8 +829,182 @@ hsla(hue, saturation, lightness, alpha)
 
 The alpha parameter is a number between 0.0 (fully transparent) and 1.0 (not transparent at all)
 
-
 **CSS:**
+
+CSS stands for Cascading Style Sheets.
+
+CSS describes how HTML elements are to be displayed on screen, paper, or in other media.
+
+CSS saves a lot of work. It can control the layout of multiple web pages all at once.
+
+CSS can be added to HTML elements in 3 ways:
+
+* **Inline** - by using the style attribute in HTML elements
+* **Internal** - by using a <style> element in the <head> section
+* **External** - by using an external CSS file
+The most common way to add CSS, is to keep the styles in separate CSS files. However, here we will use inline and internal styling, because this is easier to demonstrate, and easier for you to try it
+
+**Inline CSS**
+
+An inline CSS is used to apply a unique style to a single HTML element.
+
+An inline CSS uses the style attribute of an HTML element.
+
+This example sets the text color of the <h1> element to blue:
+
+Example:
+```
+<h1 style="color:blue;">This is a Blue Heading</h1>
+```
+**Internal CSS**
+
+An internal CSS is used to define a style for a single HTML page.
+
+An internal CSS is defined in the <head> section of an HTML page, within a <style> element:
+
+Example:
+```
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {background-color: powderblue;}
+h1   {color: blue;}
+p    {color: red;}
+</style>
+</head>
+<body>
+
+<h1>This is a heading</h1>
+<p>This is a paragraph.</p>
+
+</body>
+</html>
+```
+
+**External CSS**
+
+An external style sheet is used to define the style for many HTML pages.
+
+With an external style sheet, you can change the look of an entire web site, by changing one file!
+
+To use an external style sheet, add a link to it in the <head> section of the HTML page:
+
+Example:
+```
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>This is a heading</h1>
+<p>This is a paragraph.</p>
+
+</body>
+</html>
+```
+
+An external style sheet can be written in any text editor. The file must not contain any HTML code, and must be saved with a .css extension.
+
+Here is how the "styles.css" looks:
+```
+body {
+  background-color: powderblue;
+}
+h1 {
+  color: blue;
+}
+p {
+  color: red;
+}
+```
+
+**CSS Fonts**
+
+The CSS color property defines the text color to be used.
+
+The CSS font-family property defines the font to be used.
+
+The CSS font-size property defines the text size to be used.
+
+Example:
+```
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {
+  color: blue;
+  font-family: verdana;
+  font-size: 300%;
+}
+p  {
+  color: red;
+  font-family: courier;
+  font-size: 160%;
+}
+</style>
+</head>
+<body>
+
+<h1>This is a heading</h1>
+<p>This is a paragraph.</p>
+
+</body>
+</html>
+```
+
+**CSS Border**
+
+The CSS border property defines a border around an HTML element:
+
+Example:
+```
+p {
+  border: 1px solid powderblue;
+}
+```
+
+**CSS Padding**
+The CSS padding property defines a padding (space) between the text and the border:
+
+Example:
+```
+p {
+  border: 1px solid powderblue;
+  padding: 30px;
+}
+```
+
+**CSS Margin**
+
+The CSS margin property defines a margin (space) outside the border:
+
+Example:
+```
+p {
+  border: 1px solid powderblue;
+  margin: 50px;
+}
+```
+
+**The id Attribute**
+
+To define a specific style for one special element, add an id attribute to the element:
+```
+<p id="p01">I am different</p>
+```
+
+then define a style for the element with the specific id:
+
+Example:
+```
+#p01 {
+  color: blue;
+}
+```
 
 <a name="h13"/>
 
