@@ -467,13 +467,163 @@ Example:
 Setting the style of an HTML element, can be done with the style attribute.
 
 The HTML style attribute has the following syntax:
-´´´
+```
 <tagname style="property:value;">
-´´´
+```
+
+**Background Color**
+
+The CSS background-color property defines the background color for an HTML element.
+
+This example sets the background color for a page to powderblue:
+
+Example:
+```
+<body style="background-color:powderblue;">
+
+<h1>This is a heading</h1>
+<p>This is a paragraph.</p>
+
+</body>
+```
+
+**Text Color**
+
+The CSS color property defines the text color for an HTML element:
+
+Example:
+```
+<h1 style="color:blue;">This is a heading</h1>
+<p style="color:red;">This is a paragraph.</p>
+```
+
+**Fonts**
+
+The CSS font-family property defines the font to be used for an HTML element:
+
+Example:
+```
+<h1 style="font-family:verdana;">This is a heading</h1>
+<p style="font-family:courier;">This is a paragraph.</p>
+```
+
+**Text Size**
+
+The CSS font-size property defines the text size for an HTML element:
+
+Example:
+```
+<h1 style="font-size:300%;">This is a heading</h1>
+<p style="font-size:160%;">This is a paragraph.</p>
+```
+
+**Text Alignment**
+
+The CSS text-align property defines the horizontal text alignment for an HTML element:
+
+Example:
+```
+<h1 style="text-align:center;">Centered Heading</h1>
+<p style="text-align:center;">Centered paragraph.</p>
+```
 
 <a name="h8"/>
 
 **Formatting:**
+
+HTML also defines special elements for defining text with a special meaning.
+
+HTML uses elements like <b> and <i> for formatting output, like bold or italic text.
+
+Formatting elements were designed to display special types of text:
+
+* <b> - Bold text
+* <strong> - Important text
+* <i> - Italic text
+* <em> - Emphasized text
+* <mark> - Marked text
+* <small> - Small text
+* <del> - Deleted text
+* <ins> - Inserted text
+* <sub> - Subscript text
+* <sup> - Superscript text
+
+**HTML <b> and <strong> Elements**
+
+The HTML <b> element defines bold text, without any extra importance.
+
+Example:
+```
+<b>This text is bold</b>
+```
+
+The HTML <strong> element defines strong text, with added semantic "strong" importance.
+
+Example:
+```
+<strong>This text is strong</strong>
+```
+
+**HTML <i> and <em> Elements**
+
+The HTML <i> element defines italic text, without any extra importance.
+
+Example:
+```
+<i>This text is italic</i>
+```
+
+The HTML <em> element defines emphasized text, with added semantic importance.
+
+Example:
+```
+<em>This text is emphasized</em>
+```
+
+**HTML <small> Element**
+
+The HTML <small> element defines smaller text:
+
+Example:
+```
+<h2>HTML <small>Small</small> Formatting</h2>
+```
+
+**HTML <mark> Element**
+
+The HTML <mark> element defines marked/highlighted text:
+
+Example:
+```
+<h2>HTML <mark>Marked</mark> Formatting</h2>
+```
+
+**HTML <del> Element**
+
+The HTML <del> element defines deleted/removed text.
+
+Example:
+```
+<p>My favorite color is <del>blue</del> red.</p>
+```
+
+**HTML <ins> Element**
+
+The HTML <ins> element defines inserted/added text.
+
+Example:
+```
+<p>My favorite <ins>color</ins> is red.</p>
+```
+
+**HTML <sub> Element**
+
+The HTML <sub> element defines subscripted text.
+
+Example:
+```
+<p>This is <sub>subscripted</sub> text.</p>
+```
 
 <a name="h9"/>
 
