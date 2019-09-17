@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Javascript inside the headder -->
+	<script>
+	function myFunction1() {
+	  document.getElementById("demo1").innerHTML = "Paragraph changed.";
+	}
+	</script>
+	
+	<!-- Call External Javascript -->
+	<script src="js_example.js"></script>
+</head>
+<body>
+
+	<h1>A Web page to show some js examples</h1>
+	
+	<!-- Javascript inside the headder -->
+	<p id="demo1">A Paragraph</p>
+	<button type="button" onclick="myFunction1()">Try it</button>
+	
+	<!-- Javascript inside the body -->
+	<p id="demo2">A Paragraph</p>
+	<button type="button" onclick="myFunction2()">Try it</button>
+	<script>
+	function myFunction2() {
+	  document.getElementById("demo2").innerHTML = "Paragraph changed.";
+	}
+	</script>
+	
+	<!-- Javascript inside the body -->
+	<p id="demo3">A Paragraph</p>
+	<button type="button" onclick="myFunction3()">Try it</button>
+	
+	
+
+</body>
+</html>
