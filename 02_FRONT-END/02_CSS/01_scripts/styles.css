@@ -1,0 +1,128 @@
+@charset "ISO-8859-1";
+
+/* Here, the body element will have the background color blue */
+body {
+  background-color: lightblue;
+}
+
+
+/* Here, all <p> elements on the page will be center-aligned, with a red text color */
+p {
+  color: red;
+  text-align: center;
+}
+
+/* The CSS rule below will be applied to the HTML element with id="para1 */
+#para1 {
+  text-align: center;
+  color: red;
+}
+
+
+/* In this example all HTML elements with class="center" will be red and center-aligned */
+.center {
+  text-align: center;
+  color: red;
+}
+
+/* In this example only <p> elements with class="center" will be center-aligned */
+p.center {
+  text-align: center;
+  color: red;
+  border: 2px solid red;
+  border-radius: 5px;
+  margin: 25px 50px 75px 100px;
+  padding: 25px 50px 75px 100px;
+}
+
+/* The CSS rule below will affect every HTML element on the page */
+* {
+  /*text-align: center;*/
+  color: blue;
+}
+
+/* In this example we have grouped the selectors */
+h1, h2, p {
+  text-align: center;
+  color: red;
+}
+
+
+a:link, a:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: red;
+}
+
+ul {
+  list-style-image: url('list.png');
+}
+
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 5px;
+  background-color: #cae8ca;
+  border: 2px solid #4CAF50;
+}
+
+img.logo {
+  position: absolute;
+  top: 0px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  float: right;
+  z-index: -1;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
