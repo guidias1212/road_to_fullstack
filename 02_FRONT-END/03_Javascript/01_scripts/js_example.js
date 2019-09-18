@@ -51,3 +51,7 @@ var user = {
 function myFunction12(a_user) {  
 	window.alert(a_user.fullName());
 }
+
+function myFunction13() {  
+	document.getElementById('demo13').innerHTML = Date()
+}
