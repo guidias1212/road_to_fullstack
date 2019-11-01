@@ -314,11 +314,11 @@ Product Owner is responsible for the Product Backlog and for the User Stories. H
 
 The User Story **structure** is like:
 
-As a <Type of User>,
+As a -Type of User-,
 
-I want <To Perform Some Task>,
+I want -To Perform Some Task-,
 
-So that <I can achieve some goal/benefit/value>.
+So that -I can achieve some goal/benefit/value-.
 
 **User Story: Customer’s Cash Withdrawal example:**
 
