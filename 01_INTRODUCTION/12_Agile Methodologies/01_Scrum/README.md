@@ -24,9 +24,7 @@ Scrum is an agile process framework for managing complex knowledge work, with an
 
 [Tools](#h9)
 
-[Benefits](#h10)
-
-[USEFULL LINKS](#h11)
+[USEFULL LINKS](#h10)
 
 </details>
 
@@ -440,10 +438,6 @@ There are many different types of Scrum Tools available. Some are free (open sou
 | Urban Turtle | ScrumTool | Scrum Works | Timebox | Tangy Orange Scrum |
 
 <a name="h10"/>
-
-**Benefits:**
-
-<a name="h11"/>
 
 **USEFULL LINKS**
 
