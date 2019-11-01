@@ -445,3 +445,8 @@ There are many different types of Scrum Tools available. Some are free (open sou
 
 https://en.wikipedia.org/wiki/Scrum_(software_development)
 
+**Tutorial:**
+
+https://www.tutorialspoint.com/scrum/index.htm
+
+
