@@ -8,11 +8,13 @@ Work items are visualized to give participants a view of progress and process, f
 <summary>Table of Contents</summary>
 <br>
 
-[USEFULL LINKS](#h1)
+[USEFULL LINKS](#hx)
 
 </details>
 
-<a name="h1"/>
+![alt text](https://raw.githubusercontent.com/guidias1212/road_to_fullstack/master/images/kanban_board.png)
+
+<a name="hx"/>
 
 **USEFULL LINKS**
 
@@ -20,3 +22,6 @@ Work items are visualized to give participants a view of progress and process, f
 
 https://en.wikipedia.org/wiki/Kanban_(development)
 
+**Tutorial:**
+
+https://www.tutorialspoint.com/kanban/index.htm
