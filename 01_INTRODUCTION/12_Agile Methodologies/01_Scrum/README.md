@@ -423,8 +423,9 @@ Scrum Tools facilitate planning and tracking for Scrum projects. They provide a 
 
 There are many different types of Scrum Tools available. Some are free (open source), some are paid, and for some, you get a distilled version of the tool. However, to get all the features and scalability, you need to buy a full version.
 
-| Axosoft | Airgile | Agile Cockpit | Jira | Mingle |
+|  |  |  |  |  |
 | --- | --- | --- | --- | --- |
+| Axosoft | Airgile | Agile Cockpit | Jira | Mingle |
 | Scrumwise | Agilo For Scrum | Banana Scrum | Kunagi | OnTime Now |
 | Version One | AgileWrap | Daily-Scrum | Intervals | Pango Scrum |
 | Acunote | Agile Tracking Tool | Digaboard | iMeta Agility | Pivotal Tracker |
