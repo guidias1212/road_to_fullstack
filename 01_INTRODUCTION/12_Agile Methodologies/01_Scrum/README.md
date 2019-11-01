@@ -395,9 +395,47 @@ This way, at any point in time in a Sprint, the total work remaining in the Spri
 
 **Estimation:**
 
+In Scrum Projects, Estimation is done by the entire team during Sprint Planning Meeting. The objective of the Estimation is to consider the User Stories for the Sprint by Priority and by the Ability of the team to deliver during the Time Box of the Sprint.
+
+Product Owner ensures that the prioritized User Stories are clear, can be subjected to estimation and brought to the beginning of the Product Backlog.
+
+As the Scrum Team is responsible for delivering the product increment, they must take care to select User Stories for the Sprint based on the size of the Product Increment and the effort required for the same.
+
+The size of the Product Increment is estimated in terms of User Story Points. Once the size is determined, the effort is estimated.
+
+The Scrum Estimation of User Stories is the degree of difficulty for each User Story. To set the degree of difficulty, a particular scale is used.
+
+There are several types of scales that are used in Scrum Estimation:
+
+* Numeric Sizing (1 through 10)
+
+* T-shirt Sizes (XS, S, M, L, XL XXL, XXXL)
+
+* Fibonacci Sequence (1, 2, 3, 5, 8, 13, 21, 34, etc.)
+
+* Dog Breeds (Chihuahua,………,Great Dane)
+
 <a name="h9"/>
 
 **Tools:**
+
+Scrum Tools facilitate planning and tracking for Scrum projects. They provide a single place for managing the product backlog, sprint backlog, planning and tracking Sprints, displaying Burndown charts, conducting daily Scrum Meetings, and conducting Scrum Retrospectives.
+
+There are many different types of Scrum Tools available. Some are free (open source), some are paid, and for some, you get a distilled version of the tool. However, to get all the features and scalability, you need to buy a full version.
+
+| Axosoft | Airgile | Agile Cockpit | Jira | Mingle |
+| Scrumwise | Agilo For Scrum | Banana Scrum | Kunagi | OnTime Now |
+| Version One | AgileWrap | Daily-Scrum | Intervals | Pango Scrum |
+| Acunote | Agile Tracking Tool | Digaboard | iMeta Agility | Pivotal Tracker |
+| Agile Agenda | Agile Task | EasyBacklog | Ice Scrum | pmScrum |
+| Agile Bench | Agile Soup | Explain PMT | Hansoft | Prj Planner |
+| Agile Buddy | Agile Manager | Agile Express | GravityDev | Project Cards |
+| Agile Fan | Agile Log | Fire Scrum | Fulcrum | Quantum Whisper |
+| Quick Scrum | Retrospectiva | Scrum’d | Scrum Factory | Scrumpy |
+| Rally Dev | Scrinch | Scrum Dashboard | Scrum Edge | Scrum Pad |
+| Redmine Backlogs | Scrum 2 Go | Scrum Desk | Scrum Do | Tweet Scrum |
+| Scrumrf | Scrum Time | Scrumwise | Select Solution Factory | Tackle |
+| Urban Turtle | ScrumTool | Scrum Works | Timebox | Tangy Orange Scrum |
 
 <a name="h10"/>
 
