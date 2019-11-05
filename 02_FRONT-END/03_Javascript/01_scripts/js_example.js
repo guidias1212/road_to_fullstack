@@ -107,3 +107,21 @@ function myFunction17() {
 	child.innerHTML = "This is a new node.";
 	parent.appendChild(child);
 }
+
+function myFunction18() {  
+	var xhttp = new XMLHttpRequest();
+	var parent = document.getElementById('demo18');
+	var child = document.createElement("p");
+	var res;
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			res = this.responseText;
+			parent.innerHTML = res;
+			obj = JSON.parse(res);
+			child.innerHTML = obj.body;
+			parent.appendChild(child);
+		}
+	};
+	xhttp.open("GET", "https://jsonplaceholder.typicode.com/posts/1", true);
+	xhttp.send();
+}
