@@ -100,3 +100,10 @@ function myFunction16() {
 	car = new Car("BMW");
 	document.getElementById('demo16').innerHTML = car.getName();
 }
+
+function myFunction17() {  
+	var parent = document.getElementById('demo17');
+	var child = document.createElement("p");
+	child.innerHTML = "This is a new node.";
+	parent.appendChild(child);
+}
