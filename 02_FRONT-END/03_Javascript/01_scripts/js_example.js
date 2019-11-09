@@ -125,3 +125,44 @@ function myFunction18() {
 	xhttp.open("GET", "https://jsonplaceholder.typicode.com/posts/1", true);
 	xhttp.send();
 }
+
+function myFunction19() {  
+	// Define API url:
+	const URL_TO_FETCH = 'https://jsonplaceholder.typicode.com/posts/1'; 
+	
+	// Fetch data:
+	fetch(URL_TO_FETCH, {method: 'get'})
+
+	// Do something with the response (ENTIRE TEXT):
+	// .then(function(response) { 
+	// 	response.text()
+	// 	.then(function(result){ 
+
+	// 		document.getElementById('demo19').innerHTML = result;
+			
+	// 	})
+	// })
+
+	// Do something with the response (JSON):
+	.then(function(response) { 
+		response.json()
+		.then(function(result){ 
+
+			document.getElementById('demo19').innerHTML = result.title;
+			
+		})
+	})
+
+	// Do something when error:
+	.catch(function(err) { 
+		console.error(err); 
+	});
+
+
+
+
+
+
+
+
+}
