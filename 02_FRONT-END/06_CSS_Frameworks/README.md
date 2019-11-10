@@ -6,11 +6,15 @@ Bootstrap is a free and open-source CSS framework directed at responsive, mobile
 <summary>Table of Contents</summary>
 <br>
 
-[USEFULL LINKS](#hx)
+[USEFULL LINKS](#h1)
 
 </details>
 
-<a name="hx"/>
+Check bootstrap examples and its capabilities under:
+
+https://www.w3schools.com/bootstrap4/default.asp
+
+<a name="h1"/>
 
 **USEFULL LINKS**
 
