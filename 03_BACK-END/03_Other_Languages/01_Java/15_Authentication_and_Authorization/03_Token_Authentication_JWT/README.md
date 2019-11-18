@@ -547,3 +547,7 @@ https://en.wikipedia.org/wiki/JSON_Web_Token
 **Token Authentication Spring Boot JWT tutorial:**
 
 https://medium.com/swlh/spring-boot-security-jwt-hello-world-example-b479e457664c
+
+**Spring Boot + JWT + Postgresql tutorial:**
+
+https://grokonez.com/spring-framework/spring-boot/spring-security-jwt-authentication-postgresql-restapis-springboot-spring-mvc-spring-jpa
