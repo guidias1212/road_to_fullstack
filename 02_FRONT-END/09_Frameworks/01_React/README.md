@@ -1013,3 +1013,7 @@ https://www.w3schools.com/react/default.asp
 **Deploy react apps in Netlify:**
 
 https://www.netlify.com/blog/2016/07/22/deploy-react-apps-in-less-than-30-seconds/
+
+**React routes:**
+
+https://www.codingame.com/playgrounds/6517/react-router-tutorial
