@@ -1017,3 +1017,7 @@ https://www.netlify.com/blog/2016/07/22/deploy-react-apps-in-less-than-30-second
 **React routes:**
 
 https://www.codingame.com/playgrounds/6517/react-router-tutorial
+
+**React JWT authentication example:**
+
+https://www.devdiaries.net/blog/Spring-Boot-2-PostgreSQL-JWT-React-Part-4/
