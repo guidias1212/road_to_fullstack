@@ -1021,3 +1021,7 @@ https://www.codingame.com/playgrounds/6517/react-router-tutorial
 **React JWT authentication example:**
 
 https://www.devdiaries.net/blog/Spring-Boot-2-PostgreSQL-JWT-React-Part-4/
+
+**React protecting routes:**
+
+https://medium.com/@subalerts/creating-protected-routes-in-react-js-89e95974a822
