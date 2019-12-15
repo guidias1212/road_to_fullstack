@@ -54,6 +54,8 @@ They all need to agree on the external interface so that communication between s
 Services should be changed without breaking other services. And so long as we don’t change the external interface there will be no problem for other services.
 As a result of changes, the versions of services are updating individually, and there is no relationship between them.
 
+
+
 <a name="hx"/>
 
 **USEFUL LINKS**
@@ -61,6 +63,10 @@ As a result of changes, the versions of services are updating individually, and 
 **Microservices Wiki:**
 
 https://en.wikipedia.org/wiki/Microservices
+
+**Microservices Example:**
+
+https://examples.javacodegeeks.com/spring-boot-microservices-example/
 
 
 
