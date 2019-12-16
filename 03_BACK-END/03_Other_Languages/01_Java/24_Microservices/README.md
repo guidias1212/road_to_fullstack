@@ -68,6 +68,10 @@ https://en.wikipedia.org/wiki/Microservices
 
 https://examples.javacodegeeks.com/spring-boot-microservices-example/
 
+**Good video about Microservices using Open Feign and Eureka Server:**
+
+https://www.youtube.com/watch?v=a6Sxyc1v7U4
+
 
 
 
