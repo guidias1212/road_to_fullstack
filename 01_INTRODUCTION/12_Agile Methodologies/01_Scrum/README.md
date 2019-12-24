@@ -148,6 +148,8 @@ Scrum Process Framework can be viewed by means of a sequence of events and the c
 
 * Sprint Planning
 
+* Grooming
+
 * Daily Scrum Meetings
 
 * The Sprint Review
@@ -189,6 +191,10 @@ The Scrum Team then sets up a Sprint Goal. The Sprint Goal is an objective that 
 The work during a sprint is estimated during Sprint Planning and may be of varying size and/or effort. By the end of the Sprint Planning meeting, the work is divided into tasks of duration of one day or less. This happens to enable work allocation and track the completion. If the Team realizes that it has too much or too little work, they can renegotiate the selected Product Backlog items with the Product Owner.
 
 The Team may also invite others (not part of Scrum Team) to attend the Sprint Planning meeting to obtain technical or domain advice or help in estimation.
+
+**Grooming:**
+
+Backlog grooming, also referred to as backlog refinement or story time, is a recurring event for agile product development teams. The primary purpose of a backlog grooming session is to ensure the next few sprints worth of user stories in the product backlog are prepared for sprint planning. Regular backlog grooming sessions also help ensure the right stories are prioritized and that the product backlog does not become a black hole.
 
 **Daily Scrum Meetings:**
 
