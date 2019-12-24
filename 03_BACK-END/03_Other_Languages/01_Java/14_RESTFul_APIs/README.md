@@ -326,3 +326,7 @@ https://www.tutorialspoint.com/spring_boot/spring_boot_building_restful_web_serv
 **Postman:**
 
 https://www.getpostman.com/
+
+**Swagger (Very interesting API creation tool):**
+
+https://swagger.io/
