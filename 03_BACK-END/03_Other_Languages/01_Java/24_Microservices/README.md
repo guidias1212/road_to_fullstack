@@ -8,7 +8,23 @@ A microservice is an engineering approach focused on decomposing applications in
 
 [Overview](#h1)
 
-[USEFUL LINKS](#hx)
+[Eureka Service Discovery](#h2)
+
+[Spring Config Server](#h3)
+
+[Client Side Load Balancer](#h4)
+
+[Distributed Tracing](#h5)
+
+[Zuul API Gateway](#h6)
+
+[Authentication and Authorizarion Server](#h7)
+
+[Hystrix - Error Handling in Distributed Systems](#h8)
+
+[Bulkhead](#h9)
+
+[USEFUL LINKS](#h10)
 
 </details>
 
@@ -54,9 +70,55 @@ They all need to agree on the external interface so that communication between s
 Services should be changed without breaking other services. And so long as we don’t change the external interface there will be no problem for other services.
 As a result of changes, the versions of services are updating individually, and there is no relationship between them.
 
+<a name="h2"/>
 
+**Eureka Service Discovery:**
 
-<a name="hx"/>
+This project provides Netflix OSS integrations for Spring Boot apps through autoconfiguration and binding to the Spring Environment and other Spring programming model idioms. With a few simple annotations you can quickly enable and configure the common patterns inside your application and build large distributed systems with battle-tested Netflix components. The patterns provided include Service Discovery (Eureka), Circuit Breaker (Hystrix), Intelligent Routing (Zuul) and Client Side Load Balancing (Ribbon).
+
+<a name="h3"/>
+
+**Spring Config Server:**
+
+Spring Cloud Config Server provides an HTTP resource-based API for external configuration (name-value pairs or equivalent YAML content). The server is embeddable in a Spring Boot application, by using the @EnableConfigServer annotation. Consequently, the following application is a config server.
+
+<a name="h4"/>
+
+**Client Side Load Balancer:**
+
+Load Balancing automatically distributes incoming application traffic between two or more computers. It enables you to achieve fault tolerance in your applications, seamlessly providing the required amount of load balancing capacity needed to route application traffic. Load balancing aims to optimize resource use, maximize throughput, minimize response time, and avoid overload of any single resource. Using multiple components with load balancing instead of a single component may increase reliability and availability through redundancy.
+
+<a name="h5"/>
+
+**Distributed Tracing:**
+
+Distributed tracing, also called distributed request tracing, is a method used to profile and monitor applications, especially those built using a microservices architecture. Distributed tracing helps pinpoint where failures occur and what causes poor performance.
+
+<a name="h6"/>
+
+**Zuul API Gateway:**
+
+Zuul is an L7 application gateway that provides capabilities for dynamic routing, monitoring, resiliency, security, and more.
+
+<a name="h7"/>
+
+**Authentication and Authorizarion Server:**
+
+OAuth 2.0 is a protocol that allows a user to grant limited access to their resources on one site, to another site, without having to expose their credentials.
+
+<a name="h8"/>
+
+**Hystrix - Error Handling in Distributed Systems:**
+
+Hystrix is a latency and fault tolerance library designed to isolate points of access to remote systems, services and 3rd party libraries, stop cascading failure and enable resilience in complex distributed systems where failure is inevitable.
+
+<a name="h9"/>
+
+**Bulkhead:**
+
+In general, the goal of the bulkhead pattern is to avoid faults in one part of a system to take the entire system down. The term comes from ships where a ship is divided in separate watertight compartments to avoid a single hull breach to flood the entire ship; it will only flood one bulkhead.
+
+<a name="h10"/>
 
 **USEFUL LINKS**
 
@@ -72,7 +134,40 @@ https://examples.javacodegeeks.com/spring-boot-microservices-example/
 
 https://www.youtube.com/watch?v=a6Sxyc1v7U4
 
+**Eureka Service Register Tutorial:**
 
+https://spring.io/guides/gs/service-registration-and-discovery/
 
+**Spring Config Server Tutorial:**
 
+https://cloud.spring.io/spring-cloud-config/multi/multi__spring_cloud_config_server.html
 
+**Client Side Load Balancing Tutorial:**
+
+https://dzone.com/articles/spring-cloud-netflix-load-balancer-with-ribbonfeig
+
+**Distributed Tracing Tool:**
+
+https://www.papertrail.com/
+
+**Zuul Tutorial:**
+
+https://howtodoinjava.com/spring-cloud/spring-cloud-api-gateway-zuul/
+
+**OAuth2 Authentication Server Tutorial:**
+
+https://spring.io/guides/tutorials/spring-boot-oauth2/
+
+**Hystrix Tutorial:**
+
+https://spring.io/guides/gs/circuit-breaker/
+
+**Bulkheading with Hystrix:**
+
+https://medium.com/better-programming/maintaining-resiliency-in-a-microservice-architecture-729021f5369a
+
+**These courses (Portuguese) are awesome for learning microservices:**
+
+https://cursos.alura.com.br/course/microservices-spring-cloud-service-registry-config-server
+
+https://www.alura.com.br/curso-online-microservices-spring-cloud-circuit-breaker-api-gateway
