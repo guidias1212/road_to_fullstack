@@ -1,4 +1,4 @@
-# 3.3.1.6.1) JaCoCo
+# 3.3.1.6.2) JaCoCo
 
 JaCoCo – a code coverage reports generator for Java projects.
 
