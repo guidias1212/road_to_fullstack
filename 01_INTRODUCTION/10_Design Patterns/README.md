@@ -134,7 +134,9 @@ Consumer-driven contracts have the following characteristics:
 
 * **Singular and non-authoritative:** Provider contracts are singular in their expression of the business functionality available to the system, but non-authoritative because derived from the union of existing consumer expectations.
 
-* **Singular and non-authoritative:**
+* **Singular and non-authoritative:** Provider contracts are singular in their expression of the business functionality available to the system, but non-authoritative because derived from the union of existing consumer expectations.
+
+* **Bounded stability and immutability:** A consumer-driven contract is stable and immutable in respect of a particular set of consumer contracts. That is to say, we can determine the validity of a consumer-driven contract according to a specified set of consumer contracts, effectively bounding the forwards- and backwards-compatible nature of the contract in time and space. The compatibility of a contract remains stable and immutable for a particular set of consumer contracts and expectations, but is subject to change as expectations come and go.
 
 <a name="h9"/>
 
