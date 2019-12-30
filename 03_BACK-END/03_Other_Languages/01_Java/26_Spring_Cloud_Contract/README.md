@@ -8,6 +8,8 @@ Spring Cloud Contract is an umbrella project holding solutions that help users i
 
 [Introduction](#h1)
 
+[Purposes](#h2)
+
 [USEFUL LINKS](#hx)
 
 </details>
@@ -17,6 +19,20 @@ Spring Cloud Contract is an umbrella project holding solutions that help users i
 **Introduction:**
 
 Consumer-Driven Contracts are a pattern for evolving services. In Consumer-Driven Contracts, each consumer captures their expectations of the provider in a separate contract. All of these contracts are shared with the provider so they gain insight into the obligations they must fulfill for each individual client.
+
+<a name="h2"/>
+
+**Purposes:**
+
+The main purposes of Spring Cloud Contract are:
+
+* To ensure that HTTP and Messaging stubs (used when developing the client) do exactly what the actual server-side implementation does.
+
+* To promote the ATDD (acceptance test-driven developement) method and the microservices architectural style.
+
+* To provide a way to publish changes in contracts that are immediately visible on both sides.
+
+* To generate boilerplate test code to be used on the server side.
 
 <a name="hx"/>
 
