@@ -158,3 +158,7 @@ https://cloud.spring.io/spring-cloud-contract/reference/html/getting-started.htm
 **Interesting article about Consumer-Driven Contracts:**
 
 https://martinfowler.com/articles/consumerDrivenContracts.html
+
+**Spring Cloud Contract Simple Tutorial:**
+
+https://spring.io/guides/gs/contract-rest/
