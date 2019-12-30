@@ -12,6 +12,10 @@ Spring Cloud Contract is an umbrella project holding solutions that help users i
 
 [What is a Contract](h3)
 
+[On the Producer side](h4)
+
+[On the Consumer side](h5)
+
 [USEFUL LINKS](#hx)
 
 </details>
@@ -74,6 +78,73 @@ Contract.make {
     }
 }
 ```
+
+To start working with Spring Cloud Contract, you can add files with REST or messaging contracts expressed in either Groovy DSL or YAML to the contracts directory, which is set by the contractsDslDir property. 
+
+By default, it is:
+```
+$rootDir/src/test/resources/contracts.
+```
+
+<a name="h4"/>
+
+**On the Producer side:**
+
+Add the Spring Cloud Contract Verifier dependency and plugin to your build file, as the following example shows:
+```
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-contract-verifier</artifactId>
+    <scope>test</scope>
+</dependency>
+```
+
+The following listing shows how to add the plugin, which should go in the build/plugins portion of the file:
+```
+<plugin>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-contract-maven-plugin</artifactId>
+    <version>${spring-cloud-contract.version}</version>
+    <extensions>true</extensions>
+    <configuration>
+        <packageWithBaseClasses>com.example.contractTest.BaseTestClass</packageWithBaseClasses> 
+    </configuration>
+</plugin>
+```
+
+<a name="h5"/>
+
+**On the Consumer side:**
+
+You can use Spring Cloud Contract Stub Runner in the integration tests to get a running WireMock instance or messaging route that simulates the actual service.
+
+To do so, add the dependency to Spring Cloud Contract Stub Runner, as the following example shows:
+```
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
+    <scope>test</scope>
+</dependency>
+```
+
+Pass the stub artifact IDs and artifact repository URL as Spring Cloud Contract Stub Runner properties, as the following example shows:
+```
+stubrunner:
+  ids: 'com.example:http-server-dsl:+:stubs:8080'
+  repositoryRoot: https://repo.spring.io/libs-snapshot
+```
+
+Now you can annotate your test class with @AutoConfigureStubRunner. In the annotation, provide the group-id and artifact-id values for Spring Cloud Contract Stub Runner to run the collaborators' stubs for you, as the following example shows:
+```
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment=WebEnvironment.NONE)
+@AutoConfigureStubRunner(ids = {"com.example:http-server-dsl:+:stubs:6565"},
+        stubsMode = StubRunnerProperties.StubsMode.LOCAL)
+public class LoanApplicationServiceTests {
+...
+}
+```
+
 <a name="hx"/>
 
 **USEFUL LINKS**
