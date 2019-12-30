@@ -10,6 +10,8 @@ Spring Cloud Contract is an umbrella project holding solutions that help users i
 
 [Purposes](#h2)
 
+[What is a Contract](h3)
+
 [USEFUL LINKS](#hx)
 
 </details>
@@ -34,6 +36,17 @@ The main purposes of Spring Cloud Contract are:
 
 * To generate boilerplate test code to be used on the server side.
 
+<a name="h3"/>
+
+**What is a Contract:**
+
+As consumers of services, we need to define what exactly we want to achieve. We need to formulate our expectations. That is why we write contracts. In other words, a contract is an agreement on how the API or message communication should look. Consider the following example:
+
+Assume that you want to send a request that contains two numbers that needs to be added together. You want to send it to the /add endopoint. The following listing shows a contract to check which response a client should receive, in Groovy:
+
+```
+test
+```
 <a name="hx"/>
 
 **USEFUL LINKS**
