@@ -162,3 +162,9 @@ https://martinfowler.com/articles/consumerDrivenContracts.html
 **Spring Cloud Contract Simple Tutorial:**
 
 https://spring.io/guides/gs/contract-rest/
+
+**Spring Cloud Contract Portuguese Guide:**
+
+https://diegolirio.wordpress.com/2019/10/22/spring-cloud-contract-pt-1/
+
+https://diegolirio.wordpress.com/2019/10/29/spring-cloud-contract-stub-runner/
