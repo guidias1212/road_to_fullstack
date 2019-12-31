@@ -255,10 +255,6 @@ https://junit.org/junit5/docs/current/user-guide/
 
 https://stackoverflow.com/questions/2665812/what-is-mocking
 
-**Mock MVC tutorial:**
-
-https://spring.io/guides/gs/testing-web/
-
 **Stubs:**
 
 https://stackoverflow.com/questions/463278/what-is-a-stub
@@ -266,3 +262,9 @@ https://stackoverflow.com/questions/463278/what-is-a-stub
 **Web Application Testing:**
 
 https://examples.javacodegeeks.com/core-java/junit/junit-test-case-example-for-web-application/
+
+https://spring.io/guides/gs/testing-web/
+
+**Mockito Notations:**
+
+https://www.baeldung.com/mockito-annotations
