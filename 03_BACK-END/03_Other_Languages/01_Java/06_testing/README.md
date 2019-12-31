@@ -255,6 +255,10 @@ https://junit.org/junit5/docs/current/user-guide/
 
 https://stackoverflow.com/questions/2665812/what-is-mocking
 
+**Mock MVC tutorial:**
+
+https://spring.io/guides/gs/testing-web/
+
 **Stubs:**
 
 https://stackoverflow.com/questions/463278/what-is-a-stub
