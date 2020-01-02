@@ -10,13 +10,13 @@ Spring Cloud Contract is an umbrella project holding solutions that help users i
 
 [Purposes](#h2)
 
-[What is a Contract](h3)
+[What is a Contract](#h3)
 
-[On the Producer side](h4)
+[On the Producer side](#h4)
 
-[On the Consumer side](h5)
+[On the Consumer side](#h5)
 
-[Contract Usefull Terms](h6)
+[Contract Usefull Terms](#h6)
 
 [USEFUL LINKS](#hx)
 
