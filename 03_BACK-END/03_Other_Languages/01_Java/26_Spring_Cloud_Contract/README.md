@@ -102,6 +102,7 @@ Add the Spring Cloud Contract Verifier dependency and plugin to your build file,
 ```
 
 The following listing shows how to add the plugin, which should go in the build/plugins portion of the file:
+**Pay attention here, the test folders and the folders where the contracts are should match. Check an example project and see how it is supposed to be done.**
 ```
 <plugin>
     <groupId>org.springframework.cloud</groupId>
