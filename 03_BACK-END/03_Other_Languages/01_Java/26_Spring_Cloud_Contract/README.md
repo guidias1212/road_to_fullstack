@@ -16,6 +16,8 @@ Spring Cloud Contract is an umbrella project holding solutions that help users i
 
 [On the Consumer side](h5)
 
+[Contract Usefull Terms](h6)
+
 [USEFUL LINKS](#hx)
 
 </details>
@@ -144,6 +146,10 @@ public class LoanApplicationServiceTests {
 ...
 }
 ```
+
+<a name="h6"/>
+
+Contract Usefull Terms
 
 **Contract Terms List:**
 
