@@ -145,6 +145,53 @@ public class LoanApplicationServiceTests {
 }
 ```
 
+**Contract Terms List:**
+
+Here is an usefull list of contract terms:
+```
+T anyAlphaUnicode();
+
+T anyAlphaNumeric();
+
+T anyNumber();
+
+T anyInteger();
+
+T anyPositiveInt();
+
+T anyDouble();
+
+T anyHex();
+
+T aBoolean();
+
+T anyIpAddress();
+
+T anyHostname();
+
+T anyEmail();
+
+T anyUrl();
+
+T anyHttpsUrl();
+
+T anyUuid();
+
+T anyDate();
+
+T anyDateTime();
+
+T anyTime();
+
+T anyIso8601WithOffset();
+
+T anyNonBlankString();
+
+T anyNonEmptyString();
+
+T anyOf(String... values);
+```
+
 <a name="hx"/>
 
 **USEFUL LINKS**
