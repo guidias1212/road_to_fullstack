@@ -236,6 +236,11 @@ mv ~/origin/directory/test.txt ~/target/directory
 rm ~/directory/test.txt
 ```
 
+**Delete directory/folder:**
+```
+rmdir directory
+```
+
 <a name="h1"/>
 
 **Open terminal:**
