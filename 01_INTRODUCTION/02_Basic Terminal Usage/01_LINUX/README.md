@@ -184,6 +184,48 @@ Some usefull terminal commands used on LINUX.
 
 </details>
 
+**Check files:**
+```
+ls ~/directory
+```
+
+**Create files:**
+```
+touch ~/directory/test.txt
+```
+
+**Edit files:**
+```
+vi ~/directory/test.txt
+
+i -> Goes to insert mode
+
+ctrl+c -> Ends insert mode
+
+esc -> Leaves insert mode
+
+:x -> Save changes
+
+:q -> Quit editor
+
+:q! -> Quit editor without saving changes
+```
+
+**Copy files:**
+```
+cp ~/origin/directory/test.txt ~/target/directory
+```
+
+**Move files:**
+```
+mv ~/origin/directory/test.txt ~/target/directory
+```
+
+**Delete files:**
+```
+rm ~/directory/test.txt
+```
+
 <a name="h1"/>
 
 **Open terminal:**
