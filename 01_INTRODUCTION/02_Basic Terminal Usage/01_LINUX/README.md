@@ -189,6 +189,11 @@ Some usefull terminal commands used on LINUX.
 ls ~/directory
 ```
 
+**Create directory/folder:**
+```
+mkdir directory
+```
+
 **Create files:**
 ```
 touch ~/directory/test.txt
