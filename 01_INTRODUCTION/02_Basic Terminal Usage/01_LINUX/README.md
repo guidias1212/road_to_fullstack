@@ -184,6 +184,11 @@ Some usefull terminal commands used on LINUX.
 
 </details>
 
+**Print stuff:**
+```
+echo Somestuff
+```
+
 **Check files:**
 ```
 ls ~/directory
