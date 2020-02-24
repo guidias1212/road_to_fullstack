@@ -194,6 +194,11 @@ echo Somestuff
 ls ~/directory
 ```
 
+**View file content:**
+```
+cat ~/directory/file.txt
+```
+
 **Create directory/folder:**
 ```
 mkdir directory
