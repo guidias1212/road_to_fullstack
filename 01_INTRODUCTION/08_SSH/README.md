@@ -228,3 +228,7 @@ https://www.hostinger.com/tutorials/how-to-connect-to-your-account-using-putty
 **Digital Ocean:**
 
 https://www.digitalocean.com/
+
+**Setup an SSH connection:**
+
+https://phoenixnap.com/kb/ssh-to-connect-to-remote-server-linux-or-windows
