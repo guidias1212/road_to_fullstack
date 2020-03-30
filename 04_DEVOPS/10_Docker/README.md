@@ -66,6 +66,38 @@ Remove stopped containers:
 docker system prune
 ```
 
+Build custom Docker image:
+```
+docker image build -t my-dockerimage-name .
+```
+
+Check image list:
+```
+docker image ls
+```
+
+Run a Docker image from local image:
+```
+docker run -p 5001:5000 -d docker-image-name
+```
+
+Check container logs:
+```
+docker container logs container-name
+```
+
+Tag the Dcoker image to match the Dcoker Hub convention (Or any other used by your company):
+```
+docker tag python-hello-world [dockerhub username]/python-hello-world
+```
+
+Push the Docker image to Docker Hub:
+```
+docker login
+
+docker push [dockerhub username]/python-hello-world
+```
+
 
 
 <a name="h2"/>
