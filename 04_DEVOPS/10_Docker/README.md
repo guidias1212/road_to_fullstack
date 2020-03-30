@@ -122,6 +122,26 @@ Inspect Docker services:
 docker service ls
 ```
 
+Update the number of Replicas from the service:
+```
+docker service update --replicas=5 --detach=true nginx1
+```
+
+Check replicas status and nodes where they are running:
+```
+docker service ps nginx1
+```
+When you send multiple requests to this swarm, it will load balance them automatically now.
+
+Apply rolling update to containers:
+```
+docker service update --image nginx:1.13 --detach=true nginx1
+```
+
+Make a node leave the swarm:
+```
+docker swarm leave
+```
 
 <a name="h2"/>
 
