@@ -98,7 +98,24 @@ docker login
 docker push [dockerhub username]/python-hello-world
 ```
 
+Initialize the swarm (Docker orchestrator):
+```
+docker swarm init --advertise-addr eth0
+```
 
+Obs.: Check on the response from the previous command on how to add worker nodes to this Master node.
+
+Verify the nodes cluster:
+```
+docker node ls
+```
+
+Concept: A SERVICE is an abstraction that represents multiple containers of the same image deployed across a distributed cluster.
+
+Deploy a service:
+```
+docker service create --detach=true --name nginx1 --publish 80:80  --mount source=/etc/hostname,target=/usr/share/nginx/html/index.html,type=bind,ro nginx:1.12 pgqdxr41dpy8qwkn6qm7vke0q
+```
 
 <a name="h2"/>
 
@@ -111,6 +128,7 @@ https://en.wikipedia.org/wiki/Docker_(software)
 **Docker Playground:**
 https://labs.play-woth-docker.com
 
-
+**Docker documentation:**
+https://docs.docker.com/
 
 
